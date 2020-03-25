@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Controls\BubbleContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Chat\ChatList\ChatListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Chat\ChatList\ChatListItemControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Chat\ChatMessage\ChatMessageListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Input\PasswordEntryControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Input\TextEntryControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Menu\VerticalMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PageHost.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\SettingsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\SideMenuControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dialogs\DialogMessageBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DialogWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ChatPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\RegisterPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\BubbleContent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Chat\ChatList\ChatListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Chat\ChatList\ChatListItemControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Chat\ChatMessage\ChatMessageListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Input\PasswordEntryControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Input\TextEntryControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Menu\VerticalMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PageHost.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\SettingsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\SideMenuControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\DialogMessageBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DialogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ChatPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Fonts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Scroll.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Texts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

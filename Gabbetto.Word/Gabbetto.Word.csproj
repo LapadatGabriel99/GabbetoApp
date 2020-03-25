@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Fasseto.Word</AssemblyName>
+    <RootNamespace>Fasseto.Word</RootNamespace>
+    <ApplicationIcon>Images\Logos\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.0" />
+  </ItemGroup>  
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fasseto.Word.Core\Fasseto.Word.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\emoji-background.png" />
+    <Resource Include="Images\Logos\icon.ico" />
+    <Resource Include="Images\Logos\logo-small.png" />
+    <Resource Include="Images\Logos\logo.png" />
+    <Resource Include="Images\Samples\HappySample.jpg" />
+    <Resource Include="Images\Samples\HappySmaple1jpg.jpg" />
+    <Resource Include="Images\Samples\Test2AllisonParker.jpg" />
+    <Resource Include="Images\Samples\TestAllisonParker.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Lato-Black.ttf" />
+    <Resource Include="Fonts\Lato-BlackItalic.ttf" />
+    <Resource Include="Fonts\Lato-Bold.ttf" />
+    <Resource Include="Fonts\Lato-BoldItalic.ttf" />
+    <Resource Include="Fonts\Lato-Hairline.ttf" />
+    <Resource Include="Fonts\Lato-HairlineItalic.ttf" />
+    <Resource Include="Fonts\Lato-Heavy.ttf" />
+    <Resource Include="Fonts\Lato-HeavyItalic.ttf" />
+    <Resource Include="Fonts\Lato-Italic.ttf" />
+    <Resource Include="Fonts\Lato-Light.ttf" />
+    <Resource Include="Fonts\Lato-LightItalic.ttf" />
+    <Resource Include="Fonts\Lato-Medium.ttf" />
+    <Resource Include="Fonts\Lato-MediumItalic.ttf" />
+    <Resource Include="Fonts\Lato-Regular.ttf" />
+    <Resource Include="Fonts\Lato-Semibold.ttf" />
+    <Resource Include="Fonts\Lato-SemiboldItalic.ttf" />
+    <Resource Include="Fonts\Lato-Thin.ttf" />
+    <Resource Include="Fonts\Lato-ThinItalic.ttf" />
+    <Resource Include="Fonts\fontawesome-webfont.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

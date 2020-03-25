@@ -1,0 +1,9 @@
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\bin\Debug\netstandard2.0\Fasseto.Word.Core.deps.json
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\bin\Debug\netstandard2.0\Fasseto.Word.Core.dll
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\bin\Debug\netstandard2.0\Fasseto.Word.Core.pdb
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\obj\Debug\netstandard2.0\Fasseto.Word.Core.csprojAssemblyReference.cache
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\obj\Debug\netstandard2.0\Fasseto.Word.Core.AssemblyInfoInputs.cache
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\obj\Debug\netstandard2.0\Fasseto.Word.Core.AssemblyInfo.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\obj\Debug\netstandard2.0\Fasseto.Word.Core.csproj.Fody.CopyLocal.cache
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\obj\Debug\netstandard2.0\Fasseto.Word.Core.dll
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\FassetoApp\Fasseto.Word.Core\obj\Debug\netstandard2.0\Fasseto.Word.Core.pdb
