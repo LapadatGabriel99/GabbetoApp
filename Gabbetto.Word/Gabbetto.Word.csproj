@@ -14,11 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.0" />
-  </ItemGroup>  
+    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.1" />
+  </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fasseto.Word.Core\Fasseto.Word.Core.csproj" />
+    <ProjectReference Include="..\Gabbeto.Word.Core\Gabbeto.Word.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

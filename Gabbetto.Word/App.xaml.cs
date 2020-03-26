@@ -48,7 +48,9 @@ namespace Fasseto.Word
         private void ApplicationSetup()
         {
             // Setup of ProjectUniversal framework
-            Framework.Startup();           
+            new DefaultFrameworkConstruction()
+                .UseFileLogger()
+                .Build();
 
             //Setup IoC
             IoC.Setup();

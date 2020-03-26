@@ -9,7 +9,7 @@
       "Fasseto.Word/1.0.0": {
         "dependencies": {
           "Fasseto.Word.Core": "1.0.0",
-          "ProjectUniversal.Framework": "1.0.0"
+          "ProjectUniversal.Framework": "1.0.1"
         },
         "runtime": {
           "Fasseto.Word.dll": {}
@@ -254,7 +254,7 @@
           }
         }
       },
-      "ProjectUniversal.Framework/1.0.0": {
+      "ProjectUniversal.Framework/1.0.1": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "3.1.2",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "3.1.2",
@@ -268,8 +268,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/ProjectUniversal.Framework.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
           }
         }
       },
@@ -558,12 +558,12 @@
       "path": "ninject/3.3.4",
       "hashPath": "ninject.3.3.4.nupkg.sha512"
     },
-    "ProjectUniversal.Framework/1.0.0": {
+    "ProjectUniversal.Framework/1.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7G0UQp63UOLga708pXQwgbzk3NL+46XjmhOxQxH7A5svjU8esxSUWy5yS9aznf1nqtJctjIY0eldSWo1YZJbFQ==",
-      "path": "projectuniversal.framework/1.0.0",
-      "hashPath": "projectuniversal.framework.1.0.0.nupkg.sha512"
+      "sha512": "sha512-QGfAAN3evYfs9MfhbylfN8zbC9UMB/kTqLH2mKY13NUhRoBZ9aujs/47ZMWfcvp1pNUkZacg67PK/zcMx629Zg==",
+      "path": "projectuniversal.framework/1.0.1",
+      "hashPath": "projectuniversal.framework.1.0.1.nupkg.sha512"
     },
     "PropertyChanged.Fody/3.2.6": {
       "type": "package",

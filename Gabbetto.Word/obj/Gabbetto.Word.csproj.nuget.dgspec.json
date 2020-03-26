@@ -4,14 +4,14 @@
     "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbetto.Word\\Gabbetto.Word.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Fasseto.Word.Core\\Fasseto.Word.Core.csproj": {
+    "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbeto.Word.Core\\Gabbeto.Word.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Fasseto.Word.Core\\Fasseto.Word.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbeto.Word.Core\\Gabbeto.Word.Core.csproj",
         "projectName": "Fasseto.Word.Core",
-        "projectPath": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Fasseto.Word.Core\\Fasseto.Word.Core.csproj",
+        "projectPath": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbeto.Word.Core\\Gabbeto.Word.Core.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Fasseto.Word.Core\\obj\\",
+        "outputPath": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbeto.Word.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -110,8 +110,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Fasseto.Word.Core\\Fasseto.Word.Core.csproj": {
-                "projectPath": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Fasseto.Word.Core\\Fasseto.Word.Core.csproj"
+              "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbeto.Word.Core\\Gabbeto.Word.Core.csproj": {
+                "projectPath": "C:\\Users\\Gabriel\\Documents\\Visual Studio 2019\\Projects\\GabbetoApp\\Gabbeto.Word.Core\\Gabbeto.Word.Core.csproj"
               }
             }
           }
@@ -127,7 +127,7 @@
           "dependencies": {
             "ProjectUniversal.Framework": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[1.0.1, )"
             }
           },
           "imports": [
