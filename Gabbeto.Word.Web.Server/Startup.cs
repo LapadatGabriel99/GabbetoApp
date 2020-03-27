@@ -66,6 +66,8 @@ namespace Gabbetto.Word.Web.Server
                 options.Password.RequireNonAlphanumeric = false;
             });
 
+            // Inject Mvc service into the service colletion
+            // Also add xml formatters for input and output(for the response/request actions)
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new XmlSerializerInputFormatter());
