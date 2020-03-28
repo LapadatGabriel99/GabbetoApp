@@ -63,10 +63,10 @@
           "lib/netstandard2.0/Ninject.dll": {}
         }
       },
-      "PropertyChanged.Fody/3.2.6": {
+      "PropertyChanged.Fody/3.2.7": {
         "type": "package",
         "dependencies": {
-          "Fody": "6.1.0",
+          "Fody": "6.1.1",
           "NETStandard.Library": "1.6.1"
         },
         "compile": {
@@ -417,10 +417,10 @@
         "ninject.nuspec"
       ]
     },
-    "PropertyChanged.Fody/3.2.6": {
-      "sha512": "LpeV66T+AcWB9NTuGjGE7dm4ykudqZEByQdYvzK0PS0uwKUgU/vOqUSaTueSq6ZY0Mbg0mDdoQbKUDZKwpuj0g==",
+    "PropertyChanged.Fody/3.2.7": {
+      "sha512": "2hbuKlk9/Vmsc4ttkfHYjnTriReQrqJidciicIGI7dr07v0cwPtMSYcqegJk0WvMc6WM8xbPzO8mysozibxSyQ==",
       "type": "package",
-      "path": "propertychanged.fody/3.2.6",
+      "path": "propertychanged.fody/3.2.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -429,7 +429,7 @@
         "lib/net40/PropertyChanged.xml",
         "lib/netstandard1.0/PropertyChanged.dll",
         "lib/netstandard1.0/PropertyChanged.xml",
-        "propertychanged.fody.3.2.6.nupkg.sha512",
+        "propertychanged.fody.3.2.7.nupkg.sha512",
         "propertychanged.fody.nuspec",
         "weaver/PropertyChanged.Fody.dll",
         "weaver/PropertyChanged.Fody.xcf"
@@ -973,7 +973,7 @@
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 12.0.3",
       "Ninject >= 3.3.4",
-      "PropertyChanged.Fody >= 3.2.6"
+      "PropertyChanged.Fody >= 3.2.7"
     ]
   },
   "packageFolders": {
@@ -1042,7 +1042,7 @@
           },
           "PropertyChanged.Fody": {
             "target": "Package",
-            "version": "[3.2.6, )"
+            "version": "[3.2.7, )"
           }
         },
         "imports": [

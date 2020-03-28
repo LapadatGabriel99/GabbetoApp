@@ -13,7 +13,7 @@
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "12.0.3",
           "Ninject": "3.3.4",
-          "PropertyChanged.Fody": "3.2.6"
+          "PropertyChanged.Fody": "3.2.7"
         },
         "runtime": {
           "Fasseto.Word.Core.dll": {}
@@ -47,15 +47,15 @@
           }
         }
       },
-      "PropertyChanged.Fody/3.2.6": {
+      "PropertyChanged.Fody/3.2.7": {
         "dependencies": {
           "Fody": "6.1.1",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
           "lib/netstandard1.0/PropertyChanged.dll": {
-            "assemblyVersion": "3.2.6.0",
-            "fileVersion": "3.2.6.0"
+            "assemblyVersion": "3.2.7.0",
+            "fileVersion": "3.2.7.0"
           }
         }
       },
@@ -181,12 +181,12 @@
       "path": "ninject/3.3.4",
       "hashPath": "ninject.3.3.4.nupkg.sha512"
     },
-    "PropertyChanged.Fody/3.2.6": {
+    "PropertyChanged.Fody/3.2.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LpeV66T+AcWB9NTuGjGE7dm4ykudqZEByQdYvzK0PS0uwKUgU/vOqUSaTueSq6ZY0Mbg0mDdoQbKUDZKwpuj0g==",
-      "path": "propertychanged.fody/3.2.6",
-      "hashPath": "propertychanged.fody.3.2.6.nupkg.sha512"
+      "sha512": "sha512-2hbuKlk9/Vmsc4ttkfHYjnTriReQrqJidciicIGI7dr07v0cwPtMSYcqegJk0WvMc6WM8xbPzO8mysozibxSyQ==",
+      "path": "propertychanged.fody/3.2.7",
+      "hashPath": "propertychanged.fody.3.2.7.nupkg.sha512"
     },
     "System.IO/4.3.0": {
       "type": "package",

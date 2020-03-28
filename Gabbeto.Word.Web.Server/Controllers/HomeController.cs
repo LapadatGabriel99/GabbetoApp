@@ -151,7 +151,7 @@ namespace Gabbetto.Word.Web.Server
         }
 
         [Route("test")]
-        public SettingsDataModel Test(SettingsDataModel model)
+        public SettingsDataModel Test([FromBody]SettingsDataModel model)
         {
             return new SettingsDataModel { Id = "some id", Name = "Gabi", Value = "100" };
         }

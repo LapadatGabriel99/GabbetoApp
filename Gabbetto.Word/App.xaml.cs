@@ -52,6 +52,21 @@ namespace Fasseto.Word
                 .UseFileLogger()
                 .Build();
 
+            // Creating a task
+            // to send a request to the server
+            Task.Run(async () =>
+            {
+                //Testing our POST API request(Json)
+                var resultJson = await WebRequests.PostAsync<SettingsDataModel>("https://localhost:5001/test", new SettingsDataModel { Id = "smth from me", Name = "BossBaros", Value = "tralala" });
+                var a = resultJson;
+
+                var resultXml = await WebRequests.PostAsync<SettingsDataModel>("https://localhost:5001/test",
+                    new SettingsDataModel { Id = "smth from me", Name = "BossBaros", Value = "tralala" },
+                    KnownContentSerializers.Xml, KnownContentSerializers.Xml);
+
+                var b = resultXml;
+            });
+
             //Setup IoC
             IoC.Setup();
 
@@ -71,6 +86,15 @@ namespace Fasseto.Word
 
             //Bind UI Manager
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());//TODO: Uncomment this line after port completion
+        }
+
+        public class SettingsDataModel
+        {
+            public string Id { get; set; }
+
+            public string Name { get; set; }
+            
+            public string Value { get; set; }
         }
     }
 }

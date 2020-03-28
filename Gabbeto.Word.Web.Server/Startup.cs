@@ -70,7 +70,7 @@ namespace Gabbetto.Word.Web.Server
             // Also add xml formatters for input and output(for the response/request actions)
             services.AddMvc(options =>
             {
-                options.InputFormatters.Add(new XmlSerializerInputFormatter());
+                options.InputFormatters.Add(new XmlSerializerInputFormatter(options));
                 options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
