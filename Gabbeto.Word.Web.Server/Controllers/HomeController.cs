@@ -1,5 +1,6 @@
 ﻿using Gabbetto.Word.Web.Server;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Gabbetto.Word.Web.Server
 {   
+    /// <summary>
+    /// Manages the standard web server pages
+    /// </summary>
     public class HomeController : Controller
     {
         #region Protected Members
@@ -131,7 +135,7 @@ namespace Gabbetto.Word.Web.Server
         public async Task<IActionResult> LoginAsync(string returnUrl)
         {
             // Sign out any previous sessions
-            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);            
 
             // Sign user in with valid credentials
             var result = await _signInManager.PasswordSignInAsync("KGUltraz", "password", true, true);

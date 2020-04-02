@@ -1,4 +1,5 @@
 ﻿using Gabbetto.Word.Web.Server;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +8,9 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Text;
 
 namespace Gabbetto.Word.Web.Server
 {
@@ -15,17 +18,15 @@ namespace Gabbetto.Word.Web.Server
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+            IocContainer.Configuration = configuration;
+        }        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
             // Add ApplicationDbContext to DI
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(IocContainer.Configuration.GetConnectionString("DefaultConnection")));
 
             // AddIdentity adds cookie based authentication
             // Adds scoped classes for things like UserManager, SignInManager, PasswordHashers etc..
@@ -42,6 +43,22 @@ namespace Gabbetto.Word.Web.Server
                     // forgot password links, phone number verification codes
                     .AddDefaultTokenProviders();
 
+            // Add JWT Authentification for api clients
+            services.AddAuthentication().
+                AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = IocContainer.Configuration.GetSection("Jwt")["Issuer"],
+                        ValidAudience = IocContainer.Configuration.GetSection("Jwt")["Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(IocContainer.Configuration.GetSection("Jwt")["SecretKey"]))
+                    };
+                });
+
             // Alter app cookie info
             services.ConfigureApplicationCookie(options =>
             {
@@ -50,10 +67,7 @@ namespace Gabbetto.Word.Web.Server
 
                 //Change cookie timeout to expire in 15 seconds
                 options.ExpireTimeSpan = TimeSpan.FromSeconds(15);
-            });
-
-            
-
+            });            
 
             // Change password policy
             services.Configure<IdentityOptions>(options =>

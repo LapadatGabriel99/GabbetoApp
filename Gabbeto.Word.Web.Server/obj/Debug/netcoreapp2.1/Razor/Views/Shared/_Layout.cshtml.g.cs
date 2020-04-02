@@ -49,7 +49,7 @@ using Gabbetto.Word.Web.Server;
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en-GB\">\r\n");
             EndContext();
             BeginContext(38, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5dbff1ae5f0a4bb1a1c515ac76117c03", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "05235ee11dcb43edbf0ded05b729a923", async() => {
                 BeginContext(44, 56, true);
                 WriteLiteral("\r\n    <meta charset=\"utf-8\">\r\n    <title>Title</title>\r\n");
                 EndContext();
@@ -69,7 +69,7 @@ using Gabbetto.Word.Web.Server;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(109, 34, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b551056809c46ad8aed7eb911e44c80", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86a98981496240bebff21654783faaee", async() => {
                 BeginContext(115, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,5 +61,10 @@ namespace Gabbetto.Word.Web.Server
                 _firstSet = true;
             }
         }
+
+        /// <summary>
+        /// The configuration manager for this application
+        /// </summary>
+        public static IConfiguration Configuration { get; set; }
     }
 }
