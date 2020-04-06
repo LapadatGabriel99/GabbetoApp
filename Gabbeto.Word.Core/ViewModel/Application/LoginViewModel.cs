@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectUniversal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
@@ -71,24 +72,95 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// Attempts to log in the user
         /// </summary>
-        /// <param name="parameter">Thee <see cref="SecureString"/> passed in from the view for the ussers password</param>
+        /// <param name="parameter">Thee <see cref="SecureString"/> passed in from the view for the users password</param>
         /// <returns></returns>
         public async Task LoginAsync(object parameter)
         {
             await RunCommandAsync(() => this.LoginIsRunning, async () =>
             {
-                //TODO: Fake a login...
-                await Task.Delay(2000);
+                // Call the server and attempt to log in with credentials
+                // TODO: Move all url's and api routes to static class in core
+                var result = await WebRequests.PostAsync<ApiResponse<LoginResultApiModel>>(
+                    "https://localhost:5001/api/login",
+                    new LoginCredentialsApiModel
+                    {
+                        UsernameOrEmail = Email,
+                        Password = (parameter as IHavePassword).SecurePassword.Unsecure()
+                    }
+                    );
 
-                //Ok successfully logged in... now get users data
-                //TODO: ask server for users info
+                // If there was no result, bad data, or a response with a error message...
+                if(result == null || result.ServerResponse == null || !result.ServerResponse.Successful)
+                {
+                    // Default message
+                    // TODO: Localize strings
+                    var message = "Unknown error from server call";
 
-                //TODO: Remove this with real info pulled from our database in futere
-                IoC.SettingsViewModel.Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Gabi Lapadat { DateTime.Now.ToLocalTime() }" };
-                IoC.SettingsViewModel.UserName = new TextEntryViewModel { Label = "UserName", OriginalText = "gabi" };
-                IoC.SettingsViewModel.Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "*******" };
-                IoC.SettingsViewModel.Email = new TextEntryViewModel { Label = "Email", OriginalText = "blabla@gmail.com" };
+                    // If got a response from the server
+                    if (result?.ServerResponse != null)
+                    {
+                        // Set the message to the server response error message
+                        message = result.ServerResponse.ErrorMessage;
+                    }
+                    // If we have a result, but deserialization failed
+                    else if(!result.RawServerResponse.IsNullOrWhitespace())
+                    {
+                        message = $"Unexpected response from server. { result.RawServerResponse }";
+                    }
+                    // If we have a result, but no server response details
+                    else if(result != null)
+                    {
+                        // Set message to standard HTTP server response details
+                        message = $"Failed to communicate with server. Status code { result.StatusCode }. { result.StatusDescription }";
+                    }
 
+                    // Display error call
+                    await IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+                    {
+                        // TODO: Localize strings
+                        Title = "Login Failed",
+                        OkText = "Ok",
+                        Message = message
+                    });
+
+                    // Return
+                    return;
+                }
+
+                //OK successfully logged in... now get users data   
+
+                // The user data we just received
+                var userData = result.ServerResponse.Response;
+                
+                // Set the Name of the user inside the settings view model
+                IoC.SettingsViewModel.Name = new TextEntryViewModel 
+                { 
+                    Label = "Name", 
+                    OriginalText = $"{ userData.FirstName } { userData.LastName } { DateTime.Now.ToLocalTime() }" 
+                };
+
+                // Set the UserName of the user inside the settings view model
+                IoC.SettingsViewModel.UserName = new TextEntryViewModel 
+                { 
+                    Label = "UserName", 
+                    OriginalText = $"{ userData.UserName }" 
+                };
+
+                // We leave the password as it is, no need to show here the real deal :)
+                IoC.SettingsViewModel.Password = new PasswordEntryViewModel 
+                { 
+                    Label = "Password", 
+                    FakePassword = "*******" 
+                };
+
+                // Set the Email of the user inside the settings view model
+                IoC.SettingsViewModel.Email = new TextEntryViewModel 
+                { 
+                    Label = "Email", 
+                    OriginalText = $"{ userData.Email }" 
+                };
+
+                // Go to the chat page after all this is done
                 IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
 
                 //var email = this.Email;

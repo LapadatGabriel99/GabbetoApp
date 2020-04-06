@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Fasseto.Word.Core;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using ProjectUniversal;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Gabbetto.Word.Web.Server
 {
@@ -14,21 +18,116 @@ namespace Gabbetto.Word.Web.Server
     /// </summary>
     public class ApiController : Controller
     {
-        [Route("api/login")]
-        public IActionResult LogIn()
-        {
-            //TODO: Get users login information and check it is correct
+        #region Protected Members
 
-            var username = "KGUltraz";
-            var email = "lapadatrobert123@gmail.com";
+        /// <summary>
+        /// The database context of this application
+        /// </summary>
+        protected ApplicationDbContext _context;
+
+        /// <summary>
+        /// The user manager
+        /// </summary>
+        protected UserManager<ApplicationUser> _userManager;
+
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
+        protected SignInManager<ApplicationUser> _signInManager;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="context">The database context of this application</param>
+        /// <param name="userManager">The user manager</param>
+        /// <param name="signInManager">The sign in manager</param>
+        public ApiController(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
+        {
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+        #endregion
+
+        [Route("api/login")]
+        public async Task<ApiResponse<LoginResultApiModel>> LogInAsync([FromBody]LoginCredentialsApiModel loginCredentials)
+        {
+            // TODO: localize all strings
+            // The message when login fails
+            var invalidErrorMessage = "Invalid username or password";
+
+            // The error api response for a failed login
+            var errorResponse = new ApiResponse<LoginResultApiModel>
+            {
+                ErrorMessage = invalidErrorMessage
+            };
+
+            // Make sure we have a username
+            if (loginCredentials?.UsernameOrEmail == null || loginCredentials.UsernameOrEmail.IsNullOrWhitespace())
+            {
+                // Return error message
+                return errorResponse;
+            }
+
+            // Validate if the user credentials are correct
+
+            // Is this an email
+            var isEmail = loginCredentials.UsernameOrEmail.Contains("@");
+
+            // Get the user details
+            var user = isEmail ?
+
+                // Find by email
+                await _userManager.FindByEmailAsync(loginCredentials.UsernameOrEmail) :
+
+                // Find by name
+                await _userManager.FindByNameAsync(loginCredentials.UsernameOrEmail); 
+
+            // If we failed to find the user
+            if (user == null)
+            {
+                return errorResponse;
+            }
+
+            // If we got here we have a user...
+            // Now we have to validate password
+
+            // Get if password is valid
+            var isValidPassword = await _userManager.CheckPasswordAsync(user, loginCredentials.Password);
+
+            // If password was wrong
+            if(!isValidPassword)
+            {
+                return errorResponse;
+            }
+
+            // If we get here we are valid and the user passed the correct login details
+
+            // Get username
+            var username = user.UserName;
+
+            // Get the email
+            var email = user.Email;
 
             // Set our tokens claims
             var claims = new[]
             {
+                // Unique ID for this token
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),                
+
+                // The username using the Identity name so it fills out the HttpContext.User.Identity.Name value
                 new Claim(ClaimsIdentity.DefaultNameClaimType, username),
-                new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim("mykey", "myvalue")
+
+                // Set the Email as a claim of this token
+                new Claim(JwtRegisteredClaimNames.Email, email),                
             };
 
             // Create the credentials used to generate the token
@@ -46,10 +145,17 @@ namespace Gabbetto.Word.Web.Server
                 );
 
             // Return token to user
-            return Ok(new
+            return new ApiResponse<LoginResultApiModel>
             {
-                token = new JwtSecurityTokenHandler().WriteToken(token)
-            });
+                Response = new LoginResultApiModel
+                {
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    UserName = user.UserName
+                },               
+            };
         }
 
         [AuthorizeToken]

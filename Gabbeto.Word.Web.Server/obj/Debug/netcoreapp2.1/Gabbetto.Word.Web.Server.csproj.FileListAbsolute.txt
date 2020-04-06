@@ -26,3 +26,5 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.W
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Web.Server\obj\Debug\netcoreapp2.1\Gabbetto.Word.Web.Server.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Web.Server\obj\Debug\netcoreapp2.1\Gabbetto.Word.Web.Server.pdb
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Web.Server\obj\Debug\netcoreapp2.1\Gabbetto.Word.Web.Server.csproj.CopyComplete
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Web.Server\bin\Debug\netcoreapp2.1\Fasseto.Word.Core.dll
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Web.Server\bin\Debug\netcoreapp2.1\Fasseto.Word.Core.pdb

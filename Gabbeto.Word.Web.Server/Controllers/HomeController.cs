@@ -95,7 +95,9 @@ namespace Gabbetto.Word.Web.Server
             var result = await _userManager.CreateAsync(new ApplicationUser
             {
                 UserName = "KGUltraz",
-                Email = "lapadatrobert123@yahoo.com"
+                Email = "lapadatrobert123@yahoo.com",
+                FirstName = "Gabi",
+                LastName = "Lapadat"
             }, "password");
 
             if(result.Succeeded)

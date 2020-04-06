@@ -14,4 +14,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Gabbeto.Word.Core\Gabbeto.Word.Core.csproj" />
+  </ItemGroup>
+
 </Project>

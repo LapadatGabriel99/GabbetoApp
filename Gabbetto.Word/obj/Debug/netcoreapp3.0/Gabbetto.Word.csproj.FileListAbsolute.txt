@@ -117,10 +117,6 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\Ninject.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\ProjectUniversal.Framework.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\PropertyChanged.dll
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\System.ComponentModel.Annotations.dll
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\System.Text.Encodings.Web.dll
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\System.Text.Json.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\Fasseto.Word.Core.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\Fasseto.Word.Core.pdb
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Gabbetto.Word.csprojAssemblyReference.cache

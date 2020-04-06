@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[3.3.4, )"
             },
+            "ProjectUniversal.Framework": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "PropertyChanged.Fody": {
               "target": "Package",
               "version": "[3.2.7, )"
