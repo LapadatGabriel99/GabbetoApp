@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Fasseto.Word.Core
@@ -54,6 +55,16 @@ namespace Fasseto.Word.Core
         /// </summary>
         public ICommand LogoutCommand { get; set; }
 
+        /// <summary>
+        /// The command to clear the users data from the view model
+        /// </summary>
+        public ICommand ClearUserDataCommand { get; set; }
+
+        /// <summary>
+        /// The command to load the client settings data from the client data store
+        /// </summary>
+        public ICommand LoadCommand { get; set; }
+
         #endregion
 
         #region Constructors
@@ -67,12 +78,8 @@ namespace Fasseto.Word.Core
             GoBackCommand = new RelayCommand(() => GoBackToChatPage());
             GoToCommand = new RelayCommand(() => GoToSettingsPage());
             LogoutCommand = new RelayCommand(() => Logout());
-
-            //TODO: Remove this in fhe future( when we have a real back-end )
-            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Gabi Lapadat" };
-            UserName = new TextEntryViewModel { Label = "UserName", OriginalText = "gabi" };
-            Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "*******" };
-            Email = new TextEntryViewModel { Label = "Email", OriginalText = "blabla@gmail.com" };
+            ClearUserDataCommand = new RelayCommand(() => ClearUserData());
+            LoadCommand = new RelayCommand(async () => await LoadAsync());
 
             //TODO: Get from localization
             LogoutButtonText = "Logout";
@@ -115,6 +122,39 @@ namespace Fasseto.Word.Core
 
             //Go to login page
             IoC.ApplicationViewModel.GoToPage(ApplicationPage.Login);
+        }
+
+        /// <summary>
+        /// Sets the settings view model properties based on the data in the client data store
+        /// </summary>
+        public async Task LoadAsync()
+        {
+           
+            var storedCredentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
+
+            Name = new TextEntryViewModel
+            {
+                Label = "Name",
+                OriginalText = $"{ storedCredentials?.FirstName } { storedCredentials?.LastName } { DateTime.UtcNow.ToLocalTime() }"
+            };
+
+            UserName = new TextEntryViewModel
+            {
+                Label = "Username",
+                OriginalText = $"{ storedCredentials?.Username }"
+            };
+
+            Password = new PasswordEntryViewModel
+            {
+                Label = "Password",
+                FakePassword = "*******"
+            };
+
+            Email = new TextEntryViewModel
+            {
+                Label = "Email",
+                OriginalText = $"{ storedCredentials?.Email }"
+            };            
         }
 
         #endregion

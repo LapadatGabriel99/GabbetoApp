@@ -131,34 +131,18 @@ namespace Fasseto.Word.Core
 
                 // The user data we just received
                 var userData = result.ServerResponse.Response;
+
+                await IoC.ClientDataStore.SaveLoginCredentialsAsync(new LoginCredentialsDataModel
+                {
+                    FirstName = userData.FirstName,
+                    LastName = userData.LastName,
+                    Email = userData.Email,
+                    Username = userData.UserName,
+                    Token = userData.Token                    
+                });
                 
-                // Set the Name of the user inside the settings view model
-                IoC.SettingsViewModel.Name = new TextEntryViewModel 
-                { 
-                    Label = "Name", 
-                    OriginalText = $"{ userData.FirstName } { userData.LastName } { DateTime.Now.ToLocalTime() }" 
-                };
-
-                // Set the UserName of the user inside the settings view model
-                IoC.SettingsViewModel.UserName = new TextEntryViewModel 
-                { 
-                    Label = "UserName", 
-                    OriginalText = $"{ userData.UserName }" 
-                };
-
-                // We leave the password as it is, no need to show here the real deal :)
-                IoC.SettingsViewModel.Password = new PasswordEntryViewModel 
-                { 
-                    Label = "Password", 
-                    FakePassword = "*******" 
-                };
-
-                // Set the Email of the user inside the settings view model
-                IoC.SettingsViewModel.Email = new TextEntryViewModel 
-                { 
-                    Label = "Email", 
-                    OriginalText = $"{ userData.Email }" 
-                };
+                // After login save the client details inside the settings view model
+                await IoC.SettingsViewModel.LoadAsync();
 
                 // Go to the chat page after all this is done
                 IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);

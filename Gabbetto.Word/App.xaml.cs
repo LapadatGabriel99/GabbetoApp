@@ -1,4 +1,5 @@
 ﻿using Fasseto.Word.Core;
+using Gabbeto.Word.Relational;
 using ProjectUniversal;
 using System;
 using System.Collections.Generic;
@@ -19,23 +20,25 @@ namespace Fasseto.Word
         /// Custom startup so we load our IoC immediatly before anything else
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             //Let the base app do what it needs
             base.OnStartup(e);
 
             //Setup main application
-            ApplicationSetup();
+            await ApplicationSetup();
 
             // Log it            
             IoC.Logger.Log("This is Informative", LogLevel.Informative);
 
-            // A small example test to check our IoC.Task.Run()
-            // which is a wrapper that logs any possible errors to a file/console/Debug
-            //IoC.Task.Run(() =>
-            //{
-            //    throw new ArgumentNullException("oooopsieeee");
-            //});
+            // Set the application view model based on if we are logged in...
+            IoC.ApplicationViewModel.GoToPage(
+                // If we are logged in...
+                await IoC.ClientDataStore.HasCredentialsAsync() ? 
+                // Go to chat page
+                ApplicationPage.Chat : 
+                // Go to login page
+                ApplicationPage.Login);
 
             //Show the main window
             Current.MainWindow = new MainWindow();
@@ -45,27 +48,13 @@ namespace Fasseto.Word
         /// <summary>
         /// Configures our application ready for use
         /// </summary>
-        private void ApplicationSetup()
+        private async Task ApplicationSetup()
         {
             // Setup of ProjectUniversal framework
             new DefaultFrameworkConstruction()
                 .UseFileLogger()
-                .Build();
-
-            // Creating a task
-            // to send a request to the server
-            //Task.Run(async () =>
-            //{
-            //    //Testing our POST API request(Json)
-            //    var resultJson = await WebRequests.PostAsync<SettingsDataModel>("https://localhost:5001/test", new SettingsDataModel { Id = "smth from me", Name = "BossBaros", Value = "tralala" });
-            //    var a = resultJson;
-
-            //    var resultXml = await WebRequests.PostAsync<SettingsDataModel>("https://localhost:5001/test",
-            //        new SettingsDataModel { Id = "smth from me", Name = "BossBaros", Value = "tralala" },
-            //        KnownContentSerializers.Xml, KnownContentSerializers.Xml);
-
-            //    var b = resultXml;
-            //});
+                .UseDataClientStore()
+                .Build();            
 
             //Setup IoC
             IoC.Setup();
@@ -86,6 +75,12 @@ namespace Fasseto.Word
 
             //Bind UI Manager
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());//TODO: Uncomment this line after port completion
+
+            // Ensure the client data store
+            await IoC.ClientDataStore.EnsureDataStoreAsync();
+
+            // Load the initial settings
+            await IoC.SettingsViewModel.LoadAsync();
         }
 
         public class SettingsDataModel

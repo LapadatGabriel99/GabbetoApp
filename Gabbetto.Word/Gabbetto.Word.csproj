@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gabbeto.Word.Core\Gabbeto.Word.Core.csproj" />
+    <ProjectReference Include="..\Gabbeto.Word.Relational\Gabbeto.Word.Relational.csproj" />
   </ItemGroup>
 
   <ItemGroup>

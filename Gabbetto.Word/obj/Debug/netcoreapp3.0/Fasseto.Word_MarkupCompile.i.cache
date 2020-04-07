@@ -13,8 +13,8 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 22-1836230923
 
 59-148429231
-216455809440
+229283360116
 Controls\BubbleContent.xaml;Controls\Chat\ChatList\ChatListControl.xaml;Controls\Chat\ChatList\ChatListItemControl.xaml;Controls\Chat\ChatMessage\ChatMessageListControl.xaml;Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml;Controls\Input\PasswordEntryControl.xaml;Controls\Input\TextEntryControl.xaml;Controls\Menu\VerticalMenu.xaml;Controls\PageHost.xaml;Controls\SettingsControl.xaml;Controls\SideMenuControl.xaml;Dialogs\DialogMessageBox.xaml;DialogWindow.xaml;MainWindow.xaml;Pages\ChatPage.xaml;Pages\LoginPage.xaml;Pages\RegisterPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Scroll.xaml;Styles\Texts.xaml;
 
-True
+False
 

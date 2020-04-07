@@ -1,4 +1,5 @@
 ﻿using Ninject;
+using ProjectUniversal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,14 +38,19 @@ namespace Fasseto.Word.Core
         public static ITaskManager Task => IoC.Get<ITaskManager>();
 
         /// <summary>
-        /// A shotcut to acces the <see cref="Fasseto.Word.Core.ApplicationViewModel"/>
+        /// A shortcut to access the <see cref="Fasseto.Word.Core.ApplicationViewModel"/>
         /// </summary>
         public static ApplicationViewModel ApplicationViewModel => IoC.Get<ApplicationViewModel>();
 
         /// <summary>
-        /// A shotcut to acces the <see cref="Fasseto.Word.Core.SettingsViewModel"/>
+        /// A shortcut to access the <see cref="Fasseto.Word.Core.SettingsViewModel"/>
         /// </summary>
         public static SettingsViewModel SettingsViewModel => IoC.Get<SettingsViewModel>();
+
+        /// <summary>
+        /// A shortcut to access the <see cref="IClientDataStore"/> service
+        /// </summary>
+        public static IClientDataStore ClientDataStore => (IClientDataStore)Framework.Provider.GetService(typeof(IClientDataStore));
 
         #endregion
 

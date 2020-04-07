@@ -1,0 +1,11 @@
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\bin\Debug\netstandard2.0\Gabbeto.Word.Relational.deps.json
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\bin\Debug\netstandard2.0\Gabbeto.Word.Relational.dll
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\bin\Debug\netstandard2.0\Fasseto.Word.Core.dll
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\bin\Debug\netstandard2.0\Fasseto.Word.Core.pdb
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\obj\Debug\netstandard2.0\Gabbeto.Word.Relational.csprojAssemblyReference.cache
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\obj\Debug\netstandard2.0\Gabbeto.Word.Relational.AssemblyInfoInputs.cache
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\obj\Debug\netstandard2.0\Gabbeto.Word.Relational.AssemblyInfo.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\obj\Debug\netstandard2.0\Gabbeto.Word.Relational.csproj.CopyComplete
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\bin\Debug\netstandard2.0\Gabbeto.Word.Relational.pdb
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\obj\Debug\netstandard2.0\Gabbeto.Word.Relational.dll
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbeto.Word.Relational\obj\Debug\netstandard2.0\Gabbeto.Word.Relational.pdb
