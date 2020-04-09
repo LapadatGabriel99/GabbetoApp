@@ -35,7 +35,11 @@ namespace Fasseto.Word
         /// Registers a <see cref="CurrentPage"/> as a dependency property
         /// </summary>
         public static readonly DependencyProperty CurrentPageProperty =
-            DependencyProperty.Register(nameof(CurrentPage), typeof(ApplicationPage), typeof(PageHost), new UIPropertyMetadata(default(ApplicationPage), null, OnCurrentPagePropertyChanged));
+            DependencyProperty.Register(
+                nameof(CurrentPage), 
+                typeof(ApplicationPage), 
+                typeof(PageHost), 
+                new UIPropertyMetadata(default(ApplicationPage), null, OnCurrentPagePropertyChanged));
 
         public BaseViewModel CurrentPageViewModel
         {
@@ -47,7 +51,11 @@ namespace Fasseto.Word
         /// Registers a <see cref="CurrentPage"/> as a dependency property
         /// </summary>
         public static readonly DependencyProperty CurrentPageViewModelProperty =
-            DependencyProperty.Register(nameof(CurrentPageViewModel), typeof(BaseViewModel), typeof(PageHost), new UIPropertyMetadata());
+            DependencyProperty.Register(
+                nameof(CurrentPageViewModel), 
+                typeof(BaseViewModel), 
+                typeof(PageHost), 
+                new UIPropertyMetadata());
 
 
         #endregion
@@ -79,9 +87,9 @@ namespace Fasseto.Word
         /// <param name="d"></param>
         /// <param name="e"></param>
         private static object OnCurrentPagePropertyChanged(DependencyObject d, object value)
-        {
+        {           
             //Get current values
-            var currentPage = (ApplicationPage)d.GetValue(CurrentPageProperty);
+            var currentPage = (ApplicationPage)d.GetValue(CurrentPageProperty);           
             var currentPageViewModel = d.GetValue(CurrentPageViewModelProperty);
 
             //Get the frames

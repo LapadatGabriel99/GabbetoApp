@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectUniversal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,11 @@ namespace Fasseto.Word.Core
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// The username of the user
+        /// </summary>
+        public string Username { get; set; }
 
         /// <summary>
         /// The email of the user
@@ -66,7 +72,8 @@ namespace Fasseto.Word.Core
         /// <returns></returns>
         public async Task LoginAsync()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
+            // Goes to the login page
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login, new LoginViewModel());
 
             await Task.Delay(1);
         }
@@ -80,11 +87,9 @@ namespace Fasseto.Word.Core
         {
             await RunCommandAsync(() => this.RegisterIsRunning, async () => 
             {
-                await Task.Delay(5000);
-
-                var email = this.Email;
-
-                var securePassword = (parameter as IHavePassword).SecurePassword.Unsecure();
+                // Let the application view model perform a register task
+                // TODO: Move all url's and api routes to static class in core
+                await IoC.ApplicationViewModel.RegisterAsync("https://localhost:5001/api/login", Username, Email, parameter);
             });
         }
 

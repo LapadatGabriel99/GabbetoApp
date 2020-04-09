@@ -78,79 +78,9 @@ namespace Fasseto.Word.Core
         {
             await RunCommandAsync(() => this.LoginIsRunning, async () =>
             {
-                // Call the server and attempt to log in with credentials
-                // TODO: Move all url's and api routes to static class in core
-                var result = await WebRequests.PostAsync<ApiResponse<LoginResultApiModel>>(
-                    "https://localhost:5001/api/login",
-                    new LoginCredentialsApiModel
-                    {
-                        UsernameOrEmail = Email,
-                        Password = (parameter as IHavePassword).SecurePassword.Unsecure()
-                    }
-                    );
-
-                // If there was no result, bad data, or a response with a error message...
-                if(result == null || result.ServerResponse == null || !result.ServerResponse.Successful)
-                {
-                    // Default message
-                    // TODO: Localize strings
-                    var message = "Unknown error from server call";
-
-                    // If got a response from the server
-                    if (result?.ServerResponse != null)
-                    {
-                        // Set the message to the server response error message
-                        message = result.ServerResponse.ErrorMessage;
-                    }
-                    // If we have a result, but deserialization failed
-                    else if(!result.RawServerResponse.IsNullOrWhitespace())
-                    {
-                        message = $"Unexpected response from server. { result.RawServerResponse }";
-                    }
-                    // If we have a result, but no server response details
-                    else if(result != null)
-                    {
-                        // Set message to standard HTTP server response details
-                        message = $"Failed to communicate with server. Status code { result.StatusCode }. { result.StatusDescription }";
-                    }
-
-                    // Display error call
-                    await IoC.UI.ShowMessage(new MessageBoxDialogViewModel
-                    {
-                        // TODO: Localize strings
-                        Title = "Login Failed",
-                        OkText = "Ok",
-                        Message = message
-                    });
-
-                    // Return
-                    return;
-                }
-
-                //OK successfully logged in... now get users data   
-
-                // The user data we just received
-                var userData = result.ServerResponse.Response;
-
-                await IoC.ClientDataStore.SaveLoginCredentialsAsync(new LoginCredentialsDataModel
-                {
-                    FirstName = userData.FirstName,
-                    LastName = userData.LastName,
-                    Email = userData.Email,
-                    Username = userData.UserName,
-                    Token = userData.Token                    
-                });
-                
-                // After login save the client details inside the settings view model
-                await IoC.SettingsViewModel.LoadAsync();
-
-                // Go to the chat page after all this is done
-                IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
-
-                //var email = this.Email;
-
-                ////Note: Need to move this unsecure password
-                //var password = (parameter as IHavePassword).SecurePassword.Unsecure();
+                // Let the application view model perform a login task
+                // TODO: Move all url's and api routes to static class in core                
+                await IoC.ApplicationViewModel.LoginAsync("https://localhost:5001/api/login", Email, parameter);
             });
         }
 
@@ -159,22 +89,11 @@ namespace Fasseto.Word.Core
         /// </summary>
         /// <returns></returns>
         public async Task RegisterAsync()
-        {
-            // TODO: Go to register?           
-
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Register);
+        {                   
+            // Goes to the register page
+            IoC.ApplicationViewModel.GoToPage(ApplicationPage.Register, new RegisterViewModel());
 
             await Task.Delay(1);
-
-            //Because we broke our work into multiple projects, and our view models now are in a Core project that can be shared between different enviorments
-            //This way o accesing the UI isn't valid anymore
-            //var currentApplication = Application.Current;
-
-            //var mainWindow = (MainWindow)currentApplication.MainWindow;
-
-            //var dataContext = (WindowViewModel)mainWindow.DataContext;
-
-            //dataContext.CurrentPage = ApplicationPage.Register;
         }
 
         #endregion

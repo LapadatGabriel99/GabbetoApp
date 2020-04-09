@@ -38,11 +38,18 @@
                                        Foreground="{StaticResource ForegroundDarkBrush}"
                                        Margin="0 0 0 20"/>
 
-                            <!--Email-->
-                            <TextBox Tag="Email"
+                            <!--Username-->
+                            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                                     Tag="Username"
                                      local:IsFocusedProperty.Value="True"/>
+                            
+                            <!--Email-->
+                            <TextBox Tag="Email"                                     
+                                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+                            
                             <!--Password-->
                             <PasswordBox x:Name="PasswordText" Tag="Password" Margin="0 0 0 30"/>
+                            
                             <!--Register button-->
                             <Button Command="{Binding RegisterCommand}" 
                                     CommandParameter="{Binding ElementName=Page}" 

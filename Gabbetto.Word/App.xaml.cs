@@ -17,7 +17,7 @@ namespace Fasseto.Word
     public partial class App : Application
     {
         /// <summary>
-        /// Custom startup so we load our IoC immediatly before anything else
+        /// Custom startup so we load our IoC immediately before anything else
         /// </summary>
         /// <param name="e"></param>
         protected override async void OnStartup(StartupEventArgs e)
@@ -81,15 +81,6 @@ namespace Fasseto.Word
 
             // Load the initial settings
             await IoC.SettingsViewModel.LoadAsync();
-        }
-
-        public class SettingsDataModel
-        {
-            public string Id { get; set; }
-
-            public string Name { get; set; }
-            
-            public string Value { get; set; }
-        }
+        }        
     }
 }

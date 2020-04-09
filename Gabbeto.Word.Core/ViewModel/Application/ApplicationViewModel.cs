@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectUniversal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,5 +59,112 @@ namespace Fasseto.Word.Core
             else
                 SideMenuVisible = false;
         }
+
+        /// <summary>
+        /// A method that handles the aftermath of a successful authentication web request
+        /// </summary>
+        /// <param name="authenticationResult">The authentication result containing user details</param>
+        /// <returns>Returns once the client data store transaction, user settings load and page changing happen</returns>
+        public async Task OnSuccesfulLoginHandler(IDefaultAuthenticationResult authenticationResult)
+        {
+            // Save the web request result inside the client data store
+            await IoC.ClientDataStore.SaveLoginCredentialsAsync(new LoginCredentialsDataModel
+            {
+                Token = authenticationResult.Token,
+                Username = authenticationResult.Username,
+                Email = authenticationResult.Email,
+                FirstName = authenticationResult.FirstName,
+                LastName = authenticationResult.LastName
+            });
+
+            // After login save the client details inside the settings view model
+            await IoC.SettingsViewModel.LoadAsync();
+
+            // Go to chat page after all is done
+            IoC.ApplicationViewModel.GoToPage(ApplicationPage.Chat);
+        }
+       
+        /// <summary>
+        /// Tries to login a user
+        /// </summary>
+        /// <param name="url">The url where the request is made</param>
+        /// <param name="usernameOrEmail">The username or the email included in the credentials</param>
+        /// <param name="password">The password included in the credentials</param>
+        /// <returns>Returns once the task is finished</returns>
+        public async Task LoginAsync(string url, string usernameOrEmail, object password)
+        {
+            // Call the server and attempt to log in with credentials           
+            var result = await WebRequests.PostAsync<ApiResponse<LoginResultApiModel>>(
+                url,
+                new LoginCredentialsApiModel
+                {
+                    UsernameOrEmail = usernameOrEmail,
+                    Password = (password as IHavePassword).SecurePassword.Unsecure()
+                });
+
+            // Check the web request result for any possible errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse<LoginResultApiModel>, LoginResultApiModel>("Login Failed!", "OK");
+
+            // If we encounter any errors
+            if (errors)
+            {
+                // Return
+                return;
+            }
+
+            //OK successfully logged in... now get users data  
+
+            // The user data we just received
+            var userData = result.ServerResponse.Response;
+
+            // Pass the users data so that the response of the web request
+            // can be handled accordingly 
+            await IoC.ApplicationViewModel.OnSuccesfulLoginHandler(userData);
+        }
+
+        /// <summary>
+        /// Tries to register a suer
+        /// </summary>
+        /// <param name="url">The url where the request is made</param>
+        /// <param name="username">The username included in the credentials</param>
+        /// <param name="email">The email included in the credentials</param>
+        /// <param name="password">The password included in the credentials</param>
+        /// <returns>Returns once the task is finished</returns>
+        public async Task RegisterAsync(string url, string username, string email, object password)
+        {
+            // Call the server and attempt to log in with credentials
+            var result = await WebRequests.PostAsync<ApiResponse<RegisterResultApiModel>>(
+                url,
+                new RegisterCredentialsApiModel
+                {
+                    Username = username,
+                    Email = email,
+                    Password = (password as IHavePassword).SecurePassword.Unsecure()
+                });
+
+            // Check the web request result for any possible errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse<RegisterResultApiModel>, RegisterResultApiModel>("Register Failed!", "OK");
+
+            // If we encounter any errors
+            if (errors)
+            {
+                // Return
+                return;
+            }
+
+            //OK successfully registered... now get users data  
+
+            // The user data we just received
+            var userData = result.ServerResponse.Response;
+
+            // Pass the users data so that the response of the web request
+            // can be handled accordingly 
+            await IoC.ApplicationViewModel.OnSuccesfulLoginHandler(userData);
+        }
+
+        // TODO: Refactor Login/Register methods in the future...
+
+        // TODO: Add more pages to the app, and subsequent view models to them, so
+        //       the app becomes more dynamic
     }
 }

@@ -5,7 +5,7 @@ namespace Fasseto.Word.Core
     ///<sumary>
     /// The result of a successful login request via API
     ///</sumary>
-    public class LoginResultApiModel
+    public class LoginResultApiModel : IDefaultAuthenticationResult
     {
         #region Public Properties
 
@@ -27,7 +27,7 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// The users username
         /// </summary>
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// The users email

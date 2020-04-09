@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using ProjectUniversal;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,88 @@ namespace Gabbetto.Word.Web.Server
 
         #endregion
 
+        /// <summary>
+        /// Tries to register for a new account on the server
+        /// </summary>
+        /// <param name="registerCredentialsApiModel">The registration details</param>
+        /// <returns>Returns the result of the register request</returns>
+        [Route("api/register")]
+        public async Task<ApiResponse<RegisterResultApiModel>> RegisterAsync([FromBody] RegisterCredentialsApiModel registerCredentials)
+        {
+            // TODO: localize all strings
+            // The message when login fails
+            var invalidErrorMessage = "Please provide all required details to register an account";
+
+            // The error api response for a failed login
+            var errorResponse = new ApiResponse<RegisterResultApiModel>
+            {
+                ErrorMessage = invalidErrorMessage
+            };
+
+            // Make sure we have a register credentials
+            if (registerCredentials == null)
+                // Return failed response
+                return errorResponse;
+
+            // Make sure we have a user name
+            if (registerCredentials.Username.IsNullOrWhitespace())
+                // Return failed response
+                return errorResponse;
+
+            // Create the desired user from the given details
+            var user = new ApplicationUser
+            {
+                UserName = registerCredentials.Username,
+                FirstName = registerCredentials.FirstName,
+                LastName = registerCredentials.LastName,
+                Email = registerCredentials.Email,
+            };
+
+            // Try and create user
+            var result = await _userManager.CreateAsync(user, registerCredentials.Password);
+            
+            // If the registration was successful...
+            if(result.Succeeded)
+            {
+                // Get the user details
+                var userIdentity = await _userManager.FindByNameAsync(registerCredentials.Username);
+
+                // Generate an email verification code
+                var emailVerificationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                // TODO: Email the user the verification code                
+
+                return new ApiResponse<RegisterResultApiModel>
+                {
+                    Response = new RegisterResultApiModel
+                    {
+                        Token = userIdentity.GenerateToken(),
+                        FirstName = userIdentity.FirstName,
+                        LastName = userIdentity.LastName,
+                        Email = userIdentity.Email,
+                        Username = userIdentity.UserName
+                    }
+                };
+            }
+            // Otherwise if it failed...
+            else
+            {
+                // Return the failed response
+                return new ApiResponse<RegisterResultApiModel>
+                {
+                    // Aggregate all errors into a single error string
+                    ErrorMessage = result.Errors?.ToList()
+                        .Select(identityError => identityError.Description)
+                        .Aggregate((a, b) => $"{ a }{ Environment.NewLine }{ b }")
+                };
+            }
+        }
+
+        /// <summary>
+        /// Logs in a user using token-base authentication
+        /// </summary>
+        /// <param name="loginCredentials">The login credentials</param>
+        /// <returns>Returns an ApiResponse of LoginResultApiModel once the task is complete</returns>
         [Route("api/login")]
         public async Task<ApiResponse<LoginResultApiModel>> LogInAsync([FromBody]LoginCredentialsApiModel loginCredentials)
         {
@@ -115,45 +198,18 @@ namespace Gabbetto.Word.Web.Server
             var username = user.UserName;
 
             // Get the email
-            var email = user.Email;
-
-            // Set our tokens claims
-            var claims = new[]
-            {
-                // Unique ID for this token
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),                
-
-                // The username using the Identity name so it fills out the HttpContext.User.Identity.Name value
-                new Claim(ClaimsIdentity.DefaultNameClaimType, username),
-
-                // Set the Email as a claim of this token
-                new Claim(JwtRegisteredClaimNames.Email, email),                
-            };
-
-            // Create the credentials used to generate the token
-            var credentials = new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(IocContainer.Configuration["Jwt:SecretKey"])),
-                SecurityAlgorithms.HmacSha256);
-
-            // Generate the Jwt token
-            var token = new JwtSecurityToken(
-                issuer: IocContainer.Configuration["Jwt:Issuer"],
-                audience: IocContainer.Configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddMonths(3),
-                signingCredentials: credentials
-                );
+            var email = user.Email;           
 
             // Return token to user
             return new ApiResponse<LoginResultApiModel>
             {
                 Response = new LoginResultApiModel
                 {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    Token = user.GenerateToken(),
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    UserName = user.UserName
+                    Username = user.UserName
                 },               
             };
         }

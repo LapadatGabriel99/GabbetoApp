@@ -116,12 +116,12 @@ namespace Fasseto.Word.Core
 
             //TODO: Clear any user data/chace
 
-            //Clean all aplication level view models that contain
+            //Clean all application level view models that contain
             //any information about this current user
             ClearUserData();
 
             //Go to login page
-            IoC.ApplicationViewModel.GoToPage(ApplicationPage.Login);
+            IoC.ApplicationViewModel.GoToPage(ApplicationPage.Login, new LoginViewModel());
         }
 
         /// <summary>
