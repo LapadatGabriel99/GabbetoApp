@@ -149,6 +149,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[2.1.10, )"
+            },
+            "Sendgrid": {
+              "target": "Package",
+              "version": "[9.13.2, )"
             }
           },
           "imports": [

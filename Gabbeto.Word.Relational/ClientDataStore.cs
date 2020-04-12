@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Fasetto.Word.Core;
 using Fasseto.Word.Core;
+using System.IO;
+using System.Reflection;
 
 namespace Gabbeto.Word.Relational
 {
@@ -18,6 +21,12 @@ namespace Gabbeto.Word.Relational
         /// The database context for the client data store
         /// </summary>
         protected ClientDataStoreDbContext _dbContext;
+
+        #endregion
+
+        #region Private Members
+
+        private object _objectLock = new object();
 
         #endregion
 
@@ -56,18 +65,30 @@ namespace Gabbeto.Word.Relational
         /// <returns>Returns a task that will finish when setup is complete</returns>
         public async Task EnsureDataStoreAsync()
         {
-            // Make sure the database exists
-            await _dbContext.Database.EnsureCreatedAsync();
+            // Lock this action asynchronously so that
+            // a limited number of threads may access it concurrently
+            await AsyncAwaiter.AwaitAsync(Path.GetDirectoryName(
+                Assembly.GetEntryAssembly().Location) + nameof(ClientDataStore) + nameof(EnsureDataStoreAsync), async () =>             
+                // Make sure the database exists
+                await _dbContext.Database.EnsureCreatedAsync()
+            );                       
         }
 
         /// <summary>
         /// Gets the stored login credentials for this client
         /// </summary>
         /// <returns>Returns the login credentials if they exist, or null if none exist</returns>
-        public Task<LoginCredentialsDataModel> GetLoginCredentialsAsync()
+        public async Task<LoginCredentialsDataModel> GetLoginCredentialsAsync()
         {
+            // Lock this action asynchronously so that
+            // a limited number of threads may access it concurrently
+
             // Get the first row in the login credentials table, or null if none exits
-            return Task.FromResult(_dbContext.LoginCredentials.FirstOrDefault());
+            return await AsyncAwaiter.AwaitResultAsync<LoginCredentialsDataModel>(Path.GetDirectoryName(
+                Assembly.GetEntryAssembly().Location) + nameof(ClientDataStore) + nameof(EnsureDataStoreAsync), async () => 
+            {
+                return await Task.FromResult(_dbContext.LoginCredentials.FirstOrDefault()); 
+            });
         }
 
         /// <summary>
@@ -77,14 +98,27 @@ namespace Gabbeto.Word.Relational
         /// <returns>Returns a task that will finish once the save is complete</returns>
         public async Task SaveLoginCredentialsAsync(LoginCredentialsDataModel loginCredentials)
         {
-            // Clear all entries
-            _dbContext.LoginCredentials.RemoveRange(_dbContext.LoginCredentials);
+            
+            // Lock these line of codes
+            lock(_objectLock)
+            {
+                // Clear all entries
+                _dbContext.LoginCredentials.RemoveRange(_dbContext.LoginCredentials);
 
-            // Add a new one
-            _dbContext.LoginCredentials.Add(loginCredentials);
+                // Add a new one
+                _dbContext.LoginCredentials.Add(loginCredentials);
 
-            // Save changes to the database
-            await _dbContext.SaveChangesAsync();
+            }
+
+
+            // Lock this action asynchronously so that
+            // a limited number of threads may access it concurrently
+
+            await AsyncAwaiter.AwaitResultAsync(Path.GetDirectoryName(
+                Assembly.GetEntryAssembly().Location) + nameof(ClientDataStore) + nameof(EnsureDataStoreAsync), async () =>                
+                    // Save changes to the database
+                    await _dbContext.SaveChangesAsync()
+                );
         }
 
         #endregion

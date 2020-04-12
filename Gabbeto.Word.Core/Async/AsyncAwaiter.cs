@@ -1,5 +1,6 @@
 ﻿using Fasseto.Word.Core;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -27,6 +28,8 @@ namespace Fasetto.Word.Core
         /// A list of all semaphore locks (one per key)
         /// </summary>
         private static Dictionary<string, SemaphoreSlim> Semaphores = new Dictionary<string, SemaphoreSlim>();
+
+        private static ConcurrentDictionary<string, string> dict = new ConcurrentDictionary<string, string>();
 
         #endregion
 
@@ -79,7 +82,7 @@ namespace Fasetto.Word.Core
             await semaphore.WaitAsync();
 
             try
-            {
+            {                
                 // Perform the job
                 return await task();
             }

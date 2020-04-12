@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Fasseto.Word.Core;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,16 @@ namespace Gabbetto.Word.Web.Server
         /// A shortcut to get a <see cref="Server.ApplicationDbContext"/> scoped reference
         /// </summary>
         public static ApplicationDbContext ApplicationDbContext => IocContainer.Provider.GetService<ApplicationDbContext>();
+
+        /// <summary>
+        /// A shortcut to get a <see cref="IConfiguration"/> singleton reference
+        /// </summary>
+        public static IConfiguration Configuration => IocContainer.Provider.GetService<IConfiguration>();
+
+        /// <summary>
+        /// A shortcut to get a <see cref="SendGridEmailSender"/> transient reference
+        /// </summary>
+        public static IEmailSender EmailSender => IocContainer.Provider.GetService<IEmailSender>();
 
         #endregion
 

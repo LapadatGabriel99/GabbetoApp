@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.IdentityModel.Tokens;
 using ProjectUniversal;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Gabbetto.Word.Web.Server
 {
@@ -105,7 +107,17 @@ namespace Gabbetto.Word.Web.Server
                 var userIdentity = await _userManager.FindByNameAsync(registerCredentials.Username);
 
                 // Generate an email verification code
-                var emailVerificationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var emailVerificationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);                
+
+                // TODO: Replace with API routes that will contain static routes to use
+                var confirmationUrl = $"https://{Request.Host.Value}api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
+
+                // Sent a verification link to the user's email address
+                // To confirm that it's him
+                Fasseto.Word.Core.IoC.Task.Run(async () =>
+                {
+                    await GabbettoEmailSender.SendUserVerificationEmailAsync(userIdentity.Id, userIdentity.Email, confirmationUrl);
+                });
 
                 // TODO: Email the user the verification code                
 
@@ -187,7 +199,7 @@ namespace Gabbetto.Word.Web.Server
             var isValidPassword = await _userManager.CheckPasswordAsync(user, loginCredentials.Password);
 
             // If password was wrong
-            if(!isValidPassword)
+            if (!isValidPassword)
             {
                 return errorResponse;
             }
@@ -212,6 +224,38 @@ namespace Gabbetto.Word.Web.Server
                     Username = user.UserName
                 },               
             };
+        }
+
+        [Route("api/verify/email/{userId}/{emailToken}")]
+        [HttpGet]
+        public async Task<ActionResult> VerifyEmailAsync(string userId, string emailToken)
+        {
+            // Get the user by id
+            var user = await _userManager.FindByIdAsync(userId);
+
+            // If the user is null
+            if (user == null)
+            {
+                // TODO: Replace with a nicer UI
+                return Content("Ups sorry went wrong");
+            }
+
+            emailToken = emailToken.Replace("%2f", "/").Replace("2F", "/");
+
+            // Try to confirm the email
+            var result = await _userManager.ConfirmEmailAsync(user, emailToken);
+
+            // If we successfully confirmed the email
+            if(result.Succeeded)
+            {
+                // TODO: Replace with a nicer UI
+                return Content("Congrats you now can login to our chat app");
+            }
+            
+            // If we got this far, it means we failed...
+
+            // TODO: Replace with a nicer UI
+            return Content("Sorry but your token isn't valid");
         }
 
         [AuthorizeToken]

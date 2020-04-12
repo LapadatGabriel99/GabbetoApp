@@ -23,7 +23,12 @@ namespace Gabbetto.Word.Web.Server
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {
+            // TODO: Add a generic ITempleteSender, for possible customization, in the near future
+
+            // Add SendGridEmailSender to DI
+            services.AddEmailSender<SendGridEmailSender>();
+
             // Add ApplicationDbContext to DI
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(IocContainer.Configuration.GetConnectionString("DefaultConnection")));
@@ -119,7 +124,7 @@ namespace Gabbetto.Word.Web.Server
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });            
         }
     }
 }
