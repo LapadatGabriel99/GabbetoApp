@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gabbetto.Word", "Gabbetto.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gabbeto.Word.Core", "Gabbeto.Word.Core\Gabbeto.Word.Core.csproj", "{AD3E7F59-9894-4B36-8183-C4F6D1BA704D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gabbeto.Word.Relational", "Gabbeto.Word.Relational\Gabbeto.Word.Relational.csproj", "{3A4F3698-F50A-4A55-9D78-D96F507394D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gabbeto.Word.Relational", "Gabbeto.Word.Relational\Gabbeto.Word.Relational.csproj", "{3A4F3698-F50A-4A55-9D78-D96F507394D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

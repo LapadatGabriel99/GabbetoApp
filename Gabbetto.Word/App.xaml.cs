@@ -74,7 +74,7 @@ namespace Fasseto.Word
             IoC.Kernel.Bind<IFileManager>().ToConstant(new FileManager());
 
             //Bind UI Manager
-            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());//TODO: Uncomment this line after port completion
+            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
 
             // Ensure the client data store
             await IoC.ClientDataStore.EnsureDataStoreAsync();

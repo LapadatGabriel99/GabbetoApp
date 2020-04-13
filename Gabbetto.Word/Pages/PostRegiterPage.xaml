@@ -1,0 +1,67 @@
+﻿<local:BasePage x:TypeArguments="core:PostRegisterViewModel"  x:Class="Fasseto.Word.PostRegiterPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fasseto.Word"
+             xmlns:core="clr-namespace:Fasseto.Word.Core;assembly=Fasseto.Word.Core"
+             mc:Ignorable="d" 
+             MinHeight="400"
+             MinWidth="400"
+             d:DesignHeight="700" d:DesignWidth="700">
+    <Border>
+        <Grid>
+            <!--Main content scroll-->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                            TextBlock.TextAlignment="Center">
+
+                    <!--Post Register main content white box-->
+                    <Border Background="{StaticResource ForegroundLightBrush}"
+                            CornerRadius="10"
+                            Padding="15 50 15 15"
+                            Width="330"
+                            Margin="50 50 50 0">
+
+                        <StackPanel>
+                            <!--Post Register header-->
+                            <TextBlock Text="Register Done" FontSize="{StaticResource FontSizeXXLarge}"
+                                       FontFamily="{StaticResource LatoRegular}"
+                                       Foreground="{StaticResource WordBlueBrush}"/>
+
+                            <!--Post Register subtext-->
+                            <TextBlock Text="We're almost there..."
+                                       FontSize="{StaticResource FontSizeLarge}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"
+                                       Margin="0 0 0 20"/>
+
+                            <TextBlock Text="In order to finish authentication..."
+                                       FontFamily="{StaticResource LatoRegular}"
+                                       FontSize="{StaticResource FontSizeXLarge}"
+                                       TextWrapping="WrapWithOverflow"/>
+
+                            <TextBlock Text="...you must verify your email first."
+                                       FontFamily="{StaticResource LatoRegular}"
+                                       FontSize="{StaticResource FontSizeXLarge}"
+                                       TextWrapping="Wrap"
+                                       Margin="20 15 20 20"/>
+
+                            <Button Command="{Binding VerifyCommand}"                                      
+                                    Content="Verify" HorizontalAlignment="Center"
+                                    local:IsBusyProperty.Value="{Binding VerifyIsRunning}"
+                                    IsDefault="True"/>
+                            
+                        </StackPanel>
+
+                    </Border>
+
+                    <Button Style="{StaticResource TextButton}"
+                            Command="{Binding RegisterCommand}"
+                            Content="Or, go to login page..." 
+                            HorizontalAlignment="Center"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</local:BasePage>

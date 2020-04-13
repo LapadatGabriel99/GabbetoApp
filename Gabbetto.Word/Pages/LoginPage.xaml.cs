@@ -29,11 +29,7 @@ namespace Fasseto.Word
         /// </summary>
         public LoginPage() : base()
         {
-            InitializeComponent();
-
-            //There is no need to bind into this ctor
-            //because we will bind automatically in the base page ctor to the respective view model
-            //this.DataContext = ViewModel;
+            InitializeComponent();            
         }
 
         /// <summary>
