@@ -37,6 +37,11 @@ namespace Fasseto.Word.Core
         /// </summary>
         public ICommand LoginCommand { get; set; }
 
+        /// <summary>
+        /// The command to go to the optional credentials command
+        /// </summary>
+        public ICommand OptionalCredentialsCommand { get; set; }
+
         #endregion
 
         #region Constructors
@@ -49,6 +54,7 @@ namespace Fasseto.Word.Core
             // Setup commands
             VerifyCommand = new RelayCommand(async () => await VerifyEmailAsync());
             LoginCommand = new RelayCommand(async () => await GoToLogin());
+            OptionalCredentialsCommand = new RelayCommand(async () => await GoToOptionalCredentials());
         }
 
         #endregion
@@ -112,6 +118,19 @@ namespace Fasseto.Word.Core
 
             // Change the page
             IoC.ApplicationViewModel.GoToPage(ApplicationPage.Login, new LoginViewModel());
+        }
+
+        /// <summary>
+        /// Go to optional credentials page
+        /// </summary>
+        /// <returns></returns>
+        public async Task GoToOptionalCredentials()
+        {
+            // Wait a bit before page swap
+            await Task.Delay(1);
+
+            // Change the page
+            IoC.ApplicationViewModel.GoToPage(ApplicationPage.OptionalCredentials, new OptionalCredentialsViewModel());
         }
 
         #endregion

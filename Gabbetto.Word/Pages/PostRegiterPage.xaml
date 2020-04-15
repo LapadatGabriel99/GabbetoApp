@@ -38,12 +38,14 @@
                             <TextBlock Text="In order to finish authentication..."
                                        FontFamily="{StaticResource LatoRegular}"
                                        FontSize="{StaticResource FontSizeXLarge}"
-                                       TextWrapping="WrapWithOverflow"/>
+                                       TextWrapping="WrapWithOverflow"
+                                       Foreground="{StaticResource WordBlueBrush}"/>
 
                             <TextBlock Text="...you must verify your email first."
                                        FontFamily="{StaticResource LatoRegular}"
-                                       FontSize="{StaticResource FontSizeXLarge}"
+                                       FontSize="{StaticResource FontSizeXLarge}"                                       
                                        TextWrapping="Wrap"
+                                       Foreground="{StaticResource WordBlueBrush}"
                                        Margin="20 15 20 20"/>
 
                             <Button Command="{Binding VerifyCommand}"                                      
@@ -56,9 +58,16 @@
                     </Border>
 
                     <Button Style="{StaticResource TextButton}"
+                            Command="{Binding OptionalCredentialsCommand}"
+                            HorizontalAlignment="Center"
+                            Content="Complete the rest of credentials"
+                            Margin="0 12 0 -10"/>
+
+                    <Button Style="{StaticResource TextButton}"
                             Command="{Binding RegisterCommand}"
                             Content="Or, go to login page..." 
-                            HorizontalAlignment="Center"/>
+                            HorizontalAlignment="Center"
+                            />
 
                 </StackPanel>
             </ScrollViewer>

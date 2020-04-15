@@ -44,6 +44,7 @@
                                      Text="{Binding Email}"/>
                             <!--Password-->
                             <PasswordBox x:Name="PasswordText" Tag="Password" Margin="0 0 0 30"/>
+                            
                             <!--Login button-->
                             <Button Command="{Binding LoginCommand}" 
                                     CommandParameter="{Binding ElementName=Page}" 

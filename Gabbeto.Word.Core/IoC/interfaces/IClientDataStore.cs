@@ -31,5 +31,12 @@ namespace Fasseto.Word.Core
         /// <param name="loginCredentials">The login credentials to save</param>
         /// <returns>Returns a task that will finish once the save is complete</returns>
         Task SaveLoginCredentialsAsync(LoginCredentialsDataModel loginCredentials);
+
+        /// <summary>
+        /// Updates the users optional credentials to the given backing data store
+        /// </summary>
+        /// <param name="optionalCredentials">The optional credentials to update</param>
+        /// <returns>Returns a task that will finish once the changes are made</returns>
+        Task UpdateUserOptionalCredentialsAsync(OptionalCredentialsDataModel optionalCredentials);
     }
 }

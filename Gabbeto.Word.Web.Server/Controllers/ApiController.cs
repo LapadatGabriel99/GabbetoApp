@@ -117,9 +117,7 @@ namespace Gabbetto.Word.Web.Server
                 Fasseto.Word.Core.IoC.Task.Run(async () =>
                 {
                     await GabbettoEmailSender.SendUserVerificationEmailAsync(userIdentity.Id, userIdentity.Email, confirmationUrl);
-                });
-
-                // TODO: Email the user the verification code                
+                });                         
 
                 return new ApiResponse<RegisterResultApiModel>
                 {
@@ -256,6 +254,76 @@ namespace Gabbetto.Word.Web.Server
 
             // TODO: Replace with a nicer UI
             return Content("Sorry but your token isn't valid");
+        }
+
+        /// <summary>
+        /// Attempts to save the optional credentials to the server
+        /// </summary>
+        /// <param name="credentialsModel">The given credentials</param>
+        /// <returns>Returns an api response once the task is finished</returns>
+        [Route("api/optionalCredentials")]
+        public async Task<ApiResponse<OptionalCredentialsResultApiModel>> SaveOptionalCredentialsAsync([FromBody] OptionalCredentialsApiModel credentialsModel)
+        {
+            // TODO: localize all strings
+            // The message when the save to the server fails
+            var defaultErrorMessage = "The first name and last name can't be empty";
+
+            // The error api response for a failed login
+            var errorResponse = new ApiResponse<OptionalCredentialsResultApiModel>
+            {
+                ErrorMessage = defaultErrorMessage
+            };
+
+            // Check to see if either of the credentials is empty, null or whitespace...
+            if (credentialsModel.FirstName.IsNullOrEmpty() || credentialsModel.FirstName.IsNullOrWhitespace() ||
+                credentialsModel.LastName.IsNullOrEmpty() || credentialsModel.LastName.IsNullOrWhitespace())
+            {
+                // Return an error response
+                return errorResponse;
+            }
+
+            // Check to see if the name passes some validation tests
+            if (credentialsModel.FirstName.HasDigitOrSpecialCharacter() || credentialsModel.LastName.HasDigitOrSpecialCharacter())
+            {
+                errorResponse.ErrorMessage = "Your name can't consist of any digits/special characters";
+
+                return errorResponse;
+            }
+
+            // Get the user by email
+            var user = await _userManager.FindByEmailAsync(credentialsModel.Email);
+
+            // Set the new credentials
+            user.FirstName = credentialsModel.FirstName;
+            user.LastName = credentialsModel.LastName;
+
+            // Try updating the user inside the backing store
+            var result = await _userManager.UpdateAsync(user);            
+
+            // If we succeeded
+            if(result.Succeeded)
+            {
+                // Return a successful api response
+                return new ApiResponse<OptionalCredentialsResultApiModel>
+                {
+                    Response = new OptionalCredentialsResultApiModel
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName
+                    }
+                };           
+            }
+            // Otherwise
+            else
+            {
+                // Return a failed api response
+                return new ApiResponse<OptionalCredentialsResultApiModel>
+                {
+                    ErrorMessage = result.Errors?.ToList()
+                                    .Select(identityError => identityError.Description)
+                                    .Aggregate((a, b) => $"{ a }{ Environment.NewLine }{ b }")
+                };
+            }
         }
 
         [AuthorizeToken]

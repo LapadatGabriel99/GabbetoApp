@@ -5,6 +5,7 @@ using Fasetto.Word.Core;
 using Fasseto.Word.Core;
 using System.IO;
 using System.Reflection;
+using System.Collections.Concurrent;
 
 namespace Gabbeto.Word.Relational
 {
@@ -24,9 +25,12 @@ namespace Gabbeto.Word.Relational
 
         #endregion
 
-        #region Private Members
+        #region Private Members        
 
-        private object _objectLock = new object();
+        /// <summary>
+        /// A list of object locks
+        /// </summary>
+        private ConcurrentDictionary<string, object> _locks = new ConcurrentDictionary<string, object>();
 
         #endregion
 
@@ -98,9 +102,12 @@ namespace Gabbeto.Word.Relational
         /// <returns>Returns a task that will finish once the save is complete</returns>
         public async Task SaveLoginCredentialsAsync(LoginCredentialsDataModel loginCredentials)
         {
-            
+            // Get a specific object lock
+            var objectLock = _locks.GetOrAdd(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).
+                GetUniqueKey(nameof(ClientDataStore), nameof(UpdateUserOptionalCredentialsAsync)), key => new object());
+
             // Lock these line of codes
-            lock(_objectLock)
+            lock (objectLock)
             {
                 // Clear all entries
                 _dbContext.LoginCredentials.RemoveRange(_dbContext.LoginCredentials);
@@ -110,7 +117,6 @@ namespace Gabbeto.Word.Relational
 
             }
 
-
             // Lock this action asynchronously so that
             // a limited number of threads may access it concurrently
 
@@ -119,6 +125,35 @@ namespace Gabbeto.Word.Relational
                     // Save changes to the database
                     await _dbContext.SaveChangesAsync()
                 );
+        }
+
+        /// <summary>
+        /// Updates the users optional credentials to the given backing data store
+        /// </summary>
+        /// <param name="optionalCredentials">The optional credentials to update</param>
+        /// <returns>Returns a task that will finish once the changes are made</returns>
+        public async Task UpdateUserOptionalCredentialsAsync(OptionalCredentialsDataModel optionalCredentials)
+        {            
+            // Get a specific object lock
+            var objectLock = _locks.GetOrAdd(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).
+                GetUniqueKey(nameof(ClientDataStore), nameof(UpdateUserOptionalCredentialsAsync)), key => new object());
+
+            lock (objectLock)
+            {
+                // Get the current user
+                var user = _dbContext.LoginCredentials.FirstOrDefault();
+
+                // Update the first and last name
+                user.FirstName = optionalCredentials.FirstName;
+                user.LastName = optionalCredentials.LastName;
+
+                _dbContext.LoginCredentials.Attach(user);
+                _dbContext.Entry(user).Property(p => p.FirstName).IsModified = true;
+                _dbContext.Entry(user).Property(p => p.LastName).IsModified = true;
+            }
+
+            // Save the changes to the local database
+            await _dbContext.SaveChangesAsync();
         }
 
         #endregion

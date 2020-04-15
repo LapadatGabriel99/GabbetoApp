@@ -24,6 +24,16 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// The register page
         /// </summary>
-        Register = 2
+        Register = 2,
+
+        /// <summary>
+        /// The post register page
+        /// </summary>
+        PostRegister = 3,
+
+        /// <summary>
+        /// The optional credentials page
+        /// </summary>
+        OptionalCredentials = 4
     }
 }
