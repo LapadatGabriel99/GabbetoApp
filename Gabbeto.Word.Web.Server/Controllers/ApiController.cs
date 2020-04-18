@@ -272,6 +272,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="credentialsModel">The given credentials</param>
         /// <returns>Returns an api response once the task is finished</returns>
+        [AllowAnonymous]
         [Route("api/optionalCredentials")]
         public async Task<ApiResponse<OptionalCredentialsResultApiModel>> SaveOptionalCredentialsAsync([FromBody] OptionalCredentialsApiModel credentialsModel)
         {
@@ -342,6 +343,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <returns></returns>
         [AuthorizeToken]
+        [Route("api/user/profile")]
         public async Task<ApiResponse<UserProfileDetailsApiModel>> GetUserProfileAsync()
         {          
             // Get the users claims
@@ -375,6 +377,8 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="model">The user profile details to update</param>
         /// <returns>Returns once the task is finished</returns>
+        [AuthorizeToken]
+        [Route("api/user/profile/update")]
         public async Task<ApiResponse> UpdateUserProfileAsync([FromBody] UpdateUserProfileApiModel model)
         {
             // Make a list of empty errors

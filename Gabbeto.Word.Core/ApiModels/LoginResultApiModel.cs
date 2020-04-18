@@ -47,5 +47,21 @@ namespace Fasseto.Word.Core
         }
 
         #endregion
+
+        #region Public Methods
+
+        public LoginCredentialsDataModel ToLoginCredentialsDataModel()
+        {
+            return new LoginCredentialsDataModel
+            {
+                Token = Token,
+                Username = Username,
+                Email = Email,
+                FirstName = FirstName,
+                LastName = LastName
+            };
+        }
+
+        #endregion
     }
 }

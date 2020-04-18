@@ -38,5 +38,11 @@ namespace Fasseto.Word.Core
         /// <param name="optionalCredentials">The optional credentials to update</param>
         /// <returns>Returns a task that will finish once the changes are made</returns>
         Task UpdateUserOptionalCredentialsAsync(OptionalCredentialsDataModel optionalCredentials);
+
+        /// <summary>
+        /// Removes all login credentials stored in the local database store
+        /// </summary>
+        /// <returns></returns>
+        Task ClearAllLoginCredentialsAsync();
     }
 }

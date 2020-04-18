@@ -32,13 +32,21 @@ namespace Fasseto.Word
             IoC.Logger.Log("This is Informative", LogLevel.Informative);
 
             // Set the application view model based on if we are logged in...
-            IoC.ApplicationViewModel.GoToPage(
+            if (await IoC.ClientDataStore.HasCredentialsAsync())
+            {
                 // If we are logged in...
-                await IoC.ClientDataStore.HasCredentialsAsync() ? 
                 // Go to chat page
-                ApplicationPage.Chat : 
+                IoC.ApplicationViewModel.GoToPage(ApplicationPage.Chat);
+
+                // Load the initial user profile settings
+                await IoC.SettingsViewModel.LoadAsync();
+            }
+            else
+            {
+                // If there is no current user on the local store...
                 // Go to login page
-                ApplicationPage.Login);
+                IoC.ApplicationViewModel.GoToPage(ApplicationPage.Login);
+            }                      
 
             //Show the main window
             Current.MainWindow = new MainWindow();
@@ -78,9 +86,6 @@ namespace Fasseto.Word
 
             // Ensure the client data store
             await IoC.ClientDataStore.EnsureDataStoreAsync();
-
-            // Load the initial settings
-            await IoC.SettingsViewModel.LoadAsync();
         }        
     }
 }

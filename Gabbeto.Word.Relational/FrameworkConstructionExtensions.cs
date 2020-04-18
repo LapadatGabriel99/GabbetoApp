@@ -19,12 +19,12 @@ namespace Gabbeto.Word.Relational
             {
                 // Setup connection string
                 options.UseSqlite(frameworkConstruction.Configuration.GetConnectionString("ClientDataStoreConnection"));
-            });
+            }, ServiceLifetime.Transient);
 
             // Add client data store for easy access use of the backing data store
             // Make it scoped so we can inject the inject the scoped db context
 
-            frameworkConstruction.Services.AddScoped<IClientDataStore>(
+            frameworkConstruction.Services.AddTransient<IClientDataStore>(
                 options => new ClientDataStore(options.GetService<ClientDataStoreDbContext>()));
 
             // Chain the construction

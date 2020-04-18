@@ -97,7 +97,7 @@ namespace Fasseto.Word.Core
             //Create commands
             GoBackCommand = new RelayCommand(() => GoBackToChatPage());
             GoToCommand = new RelayCommand(() => GoToSettingsPage());
-            LogoutCommand = new RelayCommand(() => Logout());
+            LogoutCommand = new RelayCommand(async () => await Logout());
             ClearUserDataCommand = new RelayCommand(() => ClearUserData());
             LoadCommand = new RelayCommand(async () => await LoadAsync());
             SaveNameCommand = new RelayCommand(async () => await SaveNameAsync(Name));
@@ -134,11 +134,12 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// Logout the current user
         /// </summary>
-        private void Logout()
+        private async Task Logout()
         {
             //TOTO: Confirm the user wants to log out
 
-            //TODO: Clear any user data/chace
+            // Clear any user data/chace
+            await IoC.ClientDataStore.ClearAllLoginCredentialsAsync();
 
             //Clean all application level view models that contain
             //any information about this current user
@@ -153,7 +154,7 @@ namespace Fasseto.Word.Core
         /// </summary>
         public async Task LoadAsync()
         {
-           
+            // Get the current stored login credentials
             var storedCredentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
 
             Name = new TextEntryViewModel

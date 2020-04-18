@@ -156,6 +156,19 @@ namespace Gabbeto.Word.Relational
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Removes all login credentials stored in the local database store
+        /// </summary>
+        /// <returns></returns>
+        public async Task ClearAllLoginCredentialsAsync()
+        {
+            // Clear all entries
+            _dbContext.LoginCredentials.RemoveRange(_dbContext.LoginCredentials);
+
+            // Save the changes to the local database
+            await _dbContext.SaveChangesAsync();
+        }
+
         #endregion
     }
 }
