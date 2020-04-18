@@ -26,6 +26,9 @@ namespace Gabbetto.Word.Web.Server
 
                 // Set the Email as a claim of this token
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
+
+                // Add user id so that UserManager.GetAsync() can find the user based on the id
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
             // Create the credentials used to generate the token

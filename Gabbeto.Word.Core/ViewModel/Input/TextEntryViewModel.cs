@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Fasseto.Word.Core
@@ -29,6 +30,17 @@ namespace Fasseto.Word.Core
         /// A flag that indicates if the current text is in edit mode
         /// </summary>
         public bool Editing { get; set; }
+
+        /// <summary>
+        /// Indicates if the current control is pending an update (in progress)
+        /// </summary>
+        public bool Pending { get; set; }
+
+        /// <summary>
+        /// The action to run when saving the text
+        /// Returns true if the commit was successful, or false otherwise
+        /// </summary>
+        public Func<TextEntryViewModel, Task<bool>> CommitAction { get; set; }
 
         #endregion
 
@@ -94,10 +106,38 @@ namespace Fasseto.Word.Core
         /// </summary>
         private void Save()
         {
-            //TODO Content
-            OriginalText = EditedText;
+            // Store the result of a commit call
+            var result = default(bool);
 
-            Editing = false;
+            // Store a copy of the original text
+            var currentSavedValue = OriginalText;
+
+            RunCommandAsync(() => Pending, async () =>
+            {
+                // While working come out of edit mode
+                Editing = false;
+
+                // Commit the changed text
+                // So we can see it while it is working
+                OriginalText = EditedText;
+
+                // Try to commit the action
+                result = CommitAction == null ? true : await CommitAction(this);
+
+            }).ContinueWith(t =>
+            {
+                // If we succeeded 
+                // Nothing to do
+                // If we fail...
+                if(!result)
+                {
+                    // Restore original value
+                    OriginalText = currentSavedValue;
+
+                    // Go back into edit mode
+                    Editing = true;
+                }
+            });           
 
             //NOTE: Small bug here, when pressing enter the content of edited text does not change
         }

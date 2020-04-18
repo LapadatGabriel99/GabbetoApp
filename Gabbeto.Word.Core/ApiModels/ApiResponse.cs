@@ -38,4 +38,37 @@ namespace Fasseto.Word.Core
 
         #endregion
     }
+
+    /// <summary>
+    /// A non generic for a <see cref="ApiResponse{T}"/> in case we don't want to return
+    /// an actual inner response
+    /// </summary>
+    public class ApiResponse
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if the API call was successful
+        /// </summary>
+        public bool Successful => ErrorMessage == null;
+
+        /// <summary>
+        /// The error message for a API call
+        /// </summary>
+        public string ErrorMessage { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        ///<sumary>
+        ///Default Constructor
+        ///</sumary>
+        public ApiResponse()
+        {
+
+        }
+
+        #endregion
+    }
 }

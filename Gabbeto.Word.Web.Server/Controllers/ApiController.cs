@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.IdentityModel.Tokens;
 using ProjectUniversal;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -65,6 +66,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="registerCredentialsApiModel">The registration details</param>
         /// <returns>Returns the result of the register request</returns>
+        [AllowAnonymous]
         [Route("api/register")]
         public async Task<ApiResponse<RegisterResultApiModel>> RegisterAsync([FromBody] RegisterCredentialsApiModel registerCredentials)
         {
@@ -116,7 +118,7 @@ namespace Gabbetto.Word.Web.Server
                 // To confirm that it's him
                 Fasseto.Word.Core.IoC.Task.Run(async () =>
                 {
-                    await GabbettoEmailSender.SendUserVerificationEmailAsync(userIdentity.Id, userIdentity.Email, confirmationUrl);
+                    await GabbettoEmailSender.SendUserVerificationEmailAsync(userIdentity.FirstName, userIdentity.Email, confirmationUrl);
                 });                         
 
                 return new ApiResponse<RegisterResultApiModel>
@@ -150,6 +152,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="loginCredentials">The login credentials</param>
         /// <returns>Returns an ApiResponse of LoginResultApiModel once the task is complete</returns>
+        [AllowAnonymous]
         [Route("api/login")]
         public async Task<ApiResponse<LoginResultApiModel>> LogInAsync([FromBody]LoginCredentialsApiModel loginCredentials)
         {
@@ -224,6 +227,14 @@ namespace Gabbetto.Word.Web.Server
             };
         }
 
+        /// <summary>
+        /// Attempts to verify an email address that was used to register a user
+        /// by checking the 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="emailToken"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
         [Route("api/verify/email/{userId}/{emailToken}")]
         [HttpGet]
         public async Task<ActionResult> VerifyEmailAsync(string userId, string emailToken)
@@ -326,13 +337,141 @@ namespace Gabbetto.Word.Web.Server
             }
         }
 
+        /// <summary>
+        /// Returns the users profile details based on the authenticated user
+        /// </summary>
+        /// <returns></returns>
         [AuthorizeToken]
-        [Route("api/private")]
-        public IActionResult Private()
-        {
-            var user = HttpContext.User;
+        public async Task<ApiResponse<UserProfileDetailsApiModel>> GetUserProfileAsync()
+        {          
+            // Get the users claims
+            var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            return Ok(new { privateData =  $"some secret content for { user.Identity.Name }" });
+            // If we have no user
+            if(user == null)
+            {
+                return new ApiResponse<UserProfileDetailsApiModel>
+                {
+                    // TODO: Localization
+                    ErrorMessage = "User not found"
+                };
+            }
+
+            // Return token to user
+            return new ApiResponse<UserProfileDetailsApiModel>
+            {
+                Response = new UserProfileDetailsApiModel
+                {                    
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Username = user.UserName
+                },
+            };
+        }
+
+        /// <summary>
+        /// Returns successful response if the update was successful
+        /// </summary>
+        /// <param name="model">The user profile details to update</param>
+        /// <returns>Returns once the task is finished</returns>
+        public async Task<ApiResponse> UpdateUserProfileAsync([FromBody] UpdateUserProfileApiModel model)
+        {
+            // Make a list of empty errors
+            var errors = new List<string>();
+
+            // Get the current user
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Flag to determine if the email has changed
+            var emailChanged = false;
+
+            // If we have no user...
+            if(user == null)
+            {
+                return new ApiResponse
+                {
+                    // TODO: Localize strings
+                    ErrorMessage = "User not found"
+                };
+            }
+
+            // If we have a first name...
+            if (model.FirstName != null)
+            {
+                // Update the profile details
+                user.FirstName = model.FirstName;
+            }
+
+            // If we have a last name...
+            if (model.LastName != null)
+            {
+                // Update the profile details
+                user.LastName = model.LastName;
+            }
+
+            // If we have an email...
+            if (model.Email != null &&
+                
+                // And it is not the same
+                string.Equals(model.Email.Replace(" ",""), user.NormalizedEmail))
+            {
+                // Update the profile details
+                user.Email = model.Email;
+
+                // Set the email confirmation to false
+                user.EmailConfirmed = false;
+
+                // Flag that we changed the email
+                emailChanged = true;
+            }
+
+            // If we have a username
+            if (model.Username != null)
+            {
+                // Update the profile details
+                user.UserName = model.Username;
+            }
+
+            // Attempt to commit change to data store
+            var result = await _userManager.UpdateAsync(user);
+
+            // If we succeeded
+            if(result.Succeeded)
+            {
+                if(emailChanged)
+                {
+                    // Get the updated user
+                    var userIdentity = await _userManager.GetUserAsync(HttpContext.User);
+
+                    // Generate an email verification code
+                    var emailVerificationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    // TODO: Replace with API routes that will contain static routes to use
+                    var confirmationUrl = $"https://{Request.Host.Value}api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
+
+                    // Sent a verification link to the user's email address
+                    // To confirm that it's him
+                    Fasseto.Word.Core.IoC.Task.Run(async () =>
+                    {
+                        await GabbettoEmailSender.SendUserVerificationEmailAsync(userIdentity.FirstName, userIdentity.Email, confirmationUrl);
+                    });
+                }
+
+                // Return a successful response
+                return new ApiResponse();
+            }
+            // Otherwise
+            else
+            {
+                // Return a failed response
+                return new ApiResponse
+                {
+                    ErrorMessage = result.Errors?.ToList()
+                                    .Select(identityError => identityError.Description)
+                                    .Aggregate((a, b) => $"{ a }{ Environment.NewLine }{ b }")
+                };
+            }
         }
     }
 }

@@ -77,6 +77,8 @@ namespace Fasseto.Word.Core
         /// <returns></returns>
         public async Task SaveCredentials()
         {
+            // Make sure we wait for the command to finish before attempting
+            // to start it again
             await RunCommandAsync(() => SaveIsRunning, async () =>
             {
                 // Make a post request to the server and get the result
