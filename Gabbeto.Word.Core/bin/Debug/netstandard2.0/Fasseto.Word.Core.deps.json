@@ -13,8 +13,8 @@
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "12.0.3",
           "Ninject": "3.3.4",
-          "ProjectUniversal.Framework": "1.0.3",
-          "PropertyChanged.Fody": "3.2.7"
+          "ProjectUniversal.Framework": "1.0.4",
+          "PropertyChanged.Fody": "3.2.8"
         },
         "runtime": {
           "Fasseto.Word.Core.dll": {}
@@ -263,7 +263,7 @@
           }
         }
       },
-      "ProjectUniversal.Framework/1.0.3": {
+      "ProjectUniversal.Framework/1.0.4": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.1.1",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "2.1.1",
@@ -278,20 +278,20 @@
         },
         "runtime": {
           "lib/netstandard2.0/ProjectUniversal.Framework.dll": {
-            "assemblyVersion": "1.0.3.0",
-            "fileVersion": "1.0.3.0"
+            "assemblyVersion": "1.0.4.0",
+            "fileVersion": "1.0.4.0"
           }
         }
       },
-      "PropertyChanged.Fody/3.2.7": {
+      "PropertyChanged.Fody/3.2.8": {
         "dependencies": {
           "Fody": "6.1.1",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
           "lib/netstandard1.0/PropertyChanged.dll": {
-            "assemblyVersion": "3.2.7.0",
-            "fileVersion": "3.2.7.0"
+            "assemblyVersion": "3.2.8.0",
+            "fileVersion": "3.2.8.0"
           }
         }
       },
@@ -587,19 +587,19 @@
       "path": "ninject/3.3.4",
       "hashPath": "ninject.3.3.4.nupkg.sha512"
     },
-    "ProjectUniversal.Framework/1.0.3": {
+    "ProjectUniversal.Framework/1.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-icWovUw17aI9as9A/XUaKmeGi9OT1Ja1S4RCgvmXeE2+TcQx8BlxclCq5L8B9AcTlaHRAFoeRV8jJgYCKKBSJw==",
-      "path": "projectuniversal.framework/1.0.3",
-      "hashPath": "projectuniversal.framework.1.0.3.nupkg.sha512"
+      "sha512": "sha512-UXhNArOvr2r0/qiP3mbbex2w1ixxYw1lqT/vy9eFx+k2gqnkfZofsay1V0DNPns+j6smM5ni19B4HX/ATfMLkw==",
+      "path": "projectuniversal.framework/1.0.4",
+      "hashPath": "projectuniversal.framework.1.0.4.nupkg.sha512"
     },
-    "PropertyChanged.Fody/3.2.7": {
+    "PropertyChanged.Fody/3.2.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2hbuKlk9/Vmsc4ttkfHYjnTriReQrqJidciicIGI7dr07v0cwPtMSYcqegJk0WvMc6WM8xbPzO8mysozibxSyQ==",
-      "path": "propertychanged.fody/3.2.7",
-      "hashPath": "propertychanged.fody.3.2.7.nupkg.sha512"
+      "sha512": "sha512-UfhhtFPgbqwx8cpuxdRbz9cuHve2BXEs1DjPAA/4p/TfqnTct3glcUz5MQ/TGDjFxHmO1Dc4ETS+B1Zk38TnbQ==",
+      "path": "propertychanged.fody/3.2.8",
+      "hashPath": "propertychanged.fody.3.2.8.nupkg.sha512"
     },
     "System.Buffers/4.4.0": {
       "type": "package",
