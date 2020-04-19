@@ -65,11 +65,11 @@
             },
             "ProjectUniversal.Framework": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.0.4, )"
             },
             "PropertyChanged.Fody": {
               "target": "Package",
-              "version": "[3.2.7, )"
+              "version": "[3.2.8, )"
             }
           },
           "imports": [
@@ -141,7 +141,7 @@
             },
             "ProjectUniversal.Framework": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.0.4, )"
             }
           },
           "imports": [
@@ -206,7 +206,7 @@
           "dependencies": {
             "ProjectUniversal.Framework": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.0.4, )"
             }
           },
           "imports": [

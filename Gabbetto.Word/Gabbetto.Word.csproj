@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.3" />
+    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>

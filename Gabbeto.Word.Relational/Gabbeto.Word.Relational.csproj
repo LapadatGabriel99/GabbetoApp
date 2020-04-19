@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
-    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.3" />
+    <PackageReference Include="ProjectUniversal.Framework" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>
