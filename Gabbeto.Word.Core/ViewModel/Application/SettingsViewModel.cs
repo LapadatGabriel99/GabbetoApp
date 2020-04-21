@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ProjectUniversal;
 
 namespace Fasseto.Word.Core
 {
@@ -258,10 +259,9 @@ namespace Fasseto.Word.Core
             // Set the first name
             credentials.FirstName = FirstName.OriginalText;
 
-            // Update the server with the details
-            // TODO: Urls localization
+            // Update the server with the details            
             var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
-                "https://localhost:5001/api/user/profile/update",
+                RouteHelpers.GetAbsoluteRoute(ApiRoutes.UpdateUserProfile),
                 new UpdateUserProfileApiModel
                 {
                     FirstName = credentials.FirstName
@@ -310,10 +310,9 @@ namespace Fasseto.Word.Core
             // Set the first name
             credentials.LastName = LastName.OriginalText;
 
-            // Update the server with the details
-            // TODO: Urls localization
+            // Update the server with the details            
             var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
-                "https://localhost:5001/api/user/profile/update",
+                RouteHelpers.GetAbsoluteRoute(ApiRoutes.UpdateUserProfile),
                 new UpdateUserProfileApiModel
                 {
                     LastName = credentials.LastName
@@ -358,10 +357,9 @@ namespace Fasseto.Word.Core
             // Set the first name
             credentials.Email = Email.OriginalText;
 
-            // Update the server with the details
-            // TODO: Urls localization
+            // Update the server with the details            
             var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
-                "https://localhost:5001/api/user/profile/update",
+                RouteHelpers.GetAbsoluteRoute(ApiRoutes.UpdateUserProfile),
                 new UpdateUserProfileApiModel
                 {
                     Email = credentials.Email
@@ -406,10 +404,9 @@ namespace Fasseto.Word.Core
             // Set the first name
             credentials.Username = UserName.OriginalText;
 
-            // Update the server with the details
-            // TODO: Urls localization
+            // Update the server with the details           
             var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
-                "https://localhost:5001/api/user/profile/update",
+                RouteHelpers.GetAbsoluteRoute(ApiRoutes.UpdateUserProfile),
                 new UpdateUserProfileApiModel
                 {
                     Username = credentials.Username
@@ -441,11 +438,95 @@ namespace Fasseto.Word.Core
         /// <returns>Returns true if successful, false otherwise</returns>
         public async Task<bool> SavePasswordAsync()
         {
-            // TODO: Update with server
-            await Task.Delay(3000);
+            // Log a message
+            IoC.Logger.Log("Changing password...", LogLevel.Informative);
+
+            // Get the current user credentials
+            var credentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
+
+            // Log a message
+            IoC.Logger.Log("Checking if the user entered the current password...", LogLevel.Informative);
+
+            // Make sure the user typed the current password
+            if (Password.CurrentPassword.Unsecure().IsNullOrEmpty() || 
+                Password.CurrentPassword.Unsecure().IsNullOrWhitespace())
+            {
+                // Log a message
+                IoC.Logger.Log("Update failed... Due to user not entering the current password", LogLevel.Informative);
+
+                // Display error
+                await IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    // TODO: Localization
+
+                    Title = "Missing Current Password",
+                    Message = "You must complete the current password field!",
+                    OkText = "OK"
+                });
+
+                // Return failed
+                return false;
+            }
+
+            // Log a message
+            IoC.Logger.Log("Checking if the user entered the same new password", LogLevel.Informative);
+
+            // Make sure the user has entered the same password
+            if (Password.NewPassword.Unsecure() != Password.ConfirmPassword.Unsecure())
+            {
+                // Log a message
+                IoC.Logger.Log("Update failed... Due to user not entering the same new password", LogLevel.Informative);
+
+                // Display error
+                await IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    // TODO: Localization
+
+                    Title = "Password Mismatch",
+                    Message = "New password and confirm password must match!",
+                    OkText = "OK"
+                });
+
+                // Return failed
+                return false;
+            }
+
+            // Log a message
+            IoC.Logger.Log("Make a web request...", LogLevel.Informative);
+
+            // Update the server with the current password            
+            var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
+                RouteHelpers.GetAbsoluteRoute(ApiRoutes.UpdateUserPassword),
+                new UpdateUserPasswordApiModel
+                {
+                    CurrentPassword = Password.CurrentPassword.Unsecure(),
+                    NewPassword = Password.NewPassword.Unsecure()
+                },
+                bearerToken: credentials.Token);
+
+            // Log a message
+            IoC.Logger.Log("Check the api response for any errors...", LogLevel.Informative);
+
+            // Check if there are any errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse>("Update Failed!", "OK");
+
+            // If there are any errors
+            if (errors)
+            {
+                // Log a message
+                IoC.Logger.Log("Update failed... Something went wrong while trying to update password on the server. " + result.ErrorMessage, LogLevel.Informative);
+
+                // Return failed
+                return false;
+            }
+
+            // If we got this far it means the commit was successful
+
+            // Log a message
+            IoC.Logger.Log("Update successful... Managed to change password", LogLevel.Informative);
 
             // Return true
-            return false;
+            return true;
         }
 
         #endregion

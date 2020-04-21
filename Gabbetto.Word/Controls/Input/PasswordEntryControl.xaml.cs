@@ -93,8 +93,14 @@ namespace Fasseto.Word
         {
             //Update the view model
             if (DataContext is PasswordEntryViewModel viewModel)
-                viewModel.CurrentPassword = CurrentPassword.SecurePassword;
+            {
+                if (viewModel.IsCommitFinished == true)
+                {
+                    return;
+                }
 
+                viewModel.CurrentPassword = CurrentPassword.SecurePassword;
+            }
         }
 
         /// <summary>
@@ -106,7 +112,14 @@ namespace Fasseto.Word
         {
             //Update the view model
             if (DataContext is PasswordEntryViewModel viewModel)
+            {
+                if (viewModel.IsCommitFinished == true)
+                {
+                    return;
+                }
+
                 viewModel.NewPassword = NewPassword.SecurePassword;
+            }
         }
 
         /// <summary>
@@ -118,7 +131,14 @@ namespace Fasseto.Word
         {
             //Update the view model
             if (DataContext is PasswordEntryViewModel viewModel)
+            {
+                if (viewModel.IsCommitFinished == true)
+                {
+                    return;
+                }
+
                 viewModel.ConfirmPassword = ConfirmPassword.SecurePassword;
+            }
         }
     }
 }

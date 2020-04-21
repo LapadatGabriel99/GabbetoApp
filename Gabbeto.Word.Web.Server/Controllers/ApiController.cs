@@ -67,7 +67,7 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="registerCredentialsApiModel">The registration details</param>
         /// <returns>Returns the result of the register request</returns>
         [AllowAnonymous]
-        [Route("api/register")]
+        [Route(ApiRoutes.Register)]
         public async Task<ApiResponse<RegisterResultApiModel>> RegisterAsync([FromBody] RegisterCredentialsApiModel registerCredentials)
         {
             // TODO: localize all strings
@@ -153,7 +153,7 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="loginCredentials">The login credentials</param>
         /// <returns>Returns an ApiResponse of LoginResultApiModel once the task is complete</returns>
         [AllowAnonymous]
-        [Route("api/login")]
+        [Route(ApiRoutes.Login)]
         public async Task<ApiResponse<LoginResultApiModel>> LogInAsync([FromBody]LoginCredentialsApiModel loginCredentials)
         {
             // TODO: localize all strings
@@ -235,7 +235,7 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="emailToken"></param>
         /// <returns></returns>
         [AllowAnonymous]
-        [Route("api/verify/email/{userId}/{emailToken}")]
+        [Route(ApiRoutes.VerifyEmail)]
         [HttpGet]
         public async Task<ActionResult> VerifyEmailAsync(string userId, string emailToken)
         {
@@ -273,7 +273,7 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="credentialsModel">The given credentials</param>
         /// <returns>Returns an api response once the task is finished</returns>
         [AllowAnonymous]
-        [Route("api/optionalCredentials")]
+        [Route(ApiRoutes.OptionalCredentials)]
         public async Task<ApiResponse<OptionalCredentialsResultApiModel>> SaveOptionalCredentialsAsync([FromBody] OptionalCredentialsApiModel credentialsModel)
         {
             // TODO: localize all strings
@@ -343,7 +343,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <returns></returns>
         [AuthorizeToken]
-        [Route("api/user/profile")]
+        [Route(ApiRoutes.GetUserProfile)]
         public async Task<ApiResponse<UserProfileDetailsApiModel>> GetUserProfileAsync()
         {          
             // Get the users claims
@@ -378,7 +378,7 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="model">The user profile details to update</param>
         /// <returns>Returns once the task is finished</returns>
         [AuthorizeToken]
-        [Route("api/user/profile/update")]
+        [Route(ApiRoutes.UpdateUserProfile)]
         public async Task<ApiResponse> UpdateUserProfileAsync([FromBody] UpdateUserProfileApiModel model)
         {            
             // Get the current user
@@ -481,7 +481,7 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="model">The new user password to update</param>
         /// <returns>Returns once the task is finished</returns>
         [AuthorizeToken]
-        [Route("api/user/password/update")]
+        [Route(ApiRoutes.UpdateUserPassword)]
         public async Task<ApiResponse> UpdateUserPasswordAsync([FromBody] UpdateUserPasswordApiModel model)
         {            
             // Get the current user

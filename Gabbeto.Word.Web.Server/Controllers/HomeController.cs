@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using Fasseto.Word.Core;
 
 namespace Gabbetto.Word.Web.Server
 {   
@@ -89,7 +90,7 @@ namespace Gabbetto.Word.Web.Server
         /// Creates our single user for now
         /// </summary>
         /// <returns></returns>
-        [Route("create")]
+        [Route(WebRoutes.CreateUser)]
         public async Task<IActionResult> CreateUserAsync()
         {
             var result = await _userManager.CreateAsync(new ApplicationUser
@@ -121,7 +122,7 @@ namespace Gabbetto.Word.Web.Server
         /// Logs out the current user
         /// </summary>
         /// <returns></returns>
-        [Route("logout")]
+        [Route(WebRoutes.Logout)]
         public async Task<IActionResult> LogutAsync()
         {
             await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
@@ -133,7 +134,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="returnUrl">The url to return to if successfully logged in</param>
         /// <returns></returns>
-        [Route("login")]
+        [Route(WebRoutes.Login)]
         public async Task<IActionResult> LoginAsync(string returnUrl)
         {
             // Sign out any previous sessions

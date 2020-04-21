@@ -87,9 +87,8 @@ namespace Fasseto.Word.Core
         {
             await RunCommandAsync(() => this.RegisterIsRunning, async () => 
             {
-                // Let the application view model perform a register task
-                // TODO: Move all url's and api routes to static class in core
-                await IoC.ApplicationViewModel.RegisterAsync("https://localhost:5001/api/login", Username, Email, parameter);
+                // Let the application view model perform a register task                
+                await IoC.ApplicationViewModel.RegisterAsync(RouteHelpers.GetAbsoluteRoute(ApiRoutes.Register), Username, Email, parameter);
             });
         }
 

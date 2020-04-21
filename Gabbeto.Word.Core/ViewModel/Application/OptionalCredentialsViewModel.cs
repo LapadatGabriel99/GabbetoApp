@@ -83,7 +83,7 @@ namespace Fasseto.Word.Core
             {
                 // Make a post request to the server and get the result
                 var result = await WebRequests.PostAsync<ApiResponse<OptionalCredentialsResultApiModel>>(
-                    "https://localhost:5001/api/optionalCredentials",
+                    RouteHelpers.GetAbsoluteRoute(ApiRoutes.OptionalCredentials),
                     new OptionalCredentialsApiModel
                     {
                         Email = (await IoC.ClientDataStore.GetLoginCredentialsAsync()).Email,

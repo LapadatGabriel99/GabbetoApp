@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fasseto.Word.Core.Routes
+namespace Fasseto.Word.Core
 {
     /// <summary>
     /// A static class that contains all available api routes
@@ -44,5 +44,10 @@ namespace Fasseto.Word.Core.Routes
         /// The route to the UpdateUserPassword Api method
         /// </summary>
         public const string UpdateUserPassword = "api/user/password/update";
+
+        /// <summary>
+        /// The route to the SaveOptionalCredentialsAsync Api method
+        /// </summary>
+        public const string OptionalCredentials = "api/optionalCredentials";
     }
 }

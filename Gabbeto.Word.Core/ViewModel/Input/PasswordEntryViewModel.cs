@@ -69,6 +69,11 @@ namespace Fasseto.Word.Core
         /// </summary>
         public Func<Task<bool>> CommitAction { get; set; }
 
+        /// <summary>
+        /// Indicates if the current commit has finished
+        /// </summary>
+        public bool IsCommitFinished { get; set; } = false;
+
         #endregion
 
         #region Public Commands
@@ -213,14 +218,21 @@ namespace Fasseto.Word.Core
             }).ContinueWith(t =>
             {
                 // If we succeeded 
-                // Nothing to do
+                if (result)
+                {
+                    ConfirmPassword = new SecureString();
+                    NewPassword = new SecureString();
+
+                    IsCommitFinished = true;
+                }
+
                 // If we fail...
                 if (!result)
                 {                    
                     // Go back into edit mode
                     Editing = true;
                 }
-            });
+            });            
 
             //NOTE: Small bug here, when pressing enter the content of edited text does not change
         }
