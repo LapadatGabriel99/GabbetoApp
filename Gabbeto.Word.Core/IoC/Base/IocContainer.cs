@@ -33,7 +33,7 @@ namespace Fasseto.Word.Core
         public static IFileManager File => IoC.Get<IFileManager>();
 
         /// <summary>
-        /// A shortcut to acces the <see cref="ITaskManager"/>
+        /// A shortcut to access the <see cref="ITaskManager"/>
         /// </summary>
         public static ITaskManager Task => IoC.Get<ITaskManager>();
 

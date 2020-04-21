@@ -6,6 +6,7 @@ using Fasseto.Word.Core;
 using System.IO;
 using System.Reflection;
 using System.Collections.Concurrent;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gabbeto.Word.Relational
 {
@@ -108,13 +109,12 @@ namespace Gabbeto.Word.Relational
 
             // Lock these line of codes
             lock (objectLock)
-            {
+            {                
                 // Clear all entries
                 _dbContext.LoginCredentials.RemoveRange(_dbContext.LoginCredentials);
 
                 // Add a new one
-                _dbContext.LoginCredentials.Add(loginCredentials);
-
+                _dbContext.LoginCredentials.Add(loginCredentials);                
             }
 
             // Lock this action asynchronously so that
@@ -124,7 +124,7 @@ namespace Gabbeto.Word.Relational
                 Assembly.GetEntryAssembly().Location) + nameof(ClientDataStore) + nameof(EnsureDataStoreAsync), async () =>                
                     // Save changes to the database
                     await _dbContext.SaveChangesAsync()
-                );
+                );            
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Gabbeto.Word.Relational
                 GetUniqueKey(nameof(ClientDataStore), nameof(UpdateUserOptionalCredentialsAsync)), key => new object());
 
             lock (objectLock)
-            {
+            {               
                 // Get the current user
                 var user = _dbContext.LoginCredentials.FirstOrDefault();
 
@@ -149,11 +149,11 @@ namespace Gabbeto.Word.Relational
 
                 _dbContext.LoginCredentials.Attach(user);
                 _dbContext.Entry(user).Property(p => p.FirstName).IsModified = true;
-                _dbContext.Entry(user).Property(p => p.LastName).IsModified = true;
+                _dbContext.Entry(user).Property(p => p.LastName).IsModified = true;               
             }
 
             // Save the changes to the local database
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();           
         }
 
         /// <summary>

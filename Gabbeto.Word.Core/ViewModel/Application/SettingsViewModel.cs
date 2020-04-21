@@ -5,7 +5,7 @@ using System.Windows.Input;
 namespace Fasseto.Word.Core
 {
     ///<sumary>
-    ///
+    /// The view model for the settings page
     ///</sumary>
     public class SettingsViewModel : BaseViewModel
     {
@@ -15,6 +15,16 @@ namespace Fasseto.Word.Core
         /// The current users name
         /// </summary>
         public TextEntryViewModel Name { get; set; }
+
+        /// <summary>
+        /// The current users first name
+        /// </summary>
+        public TextEntryViewModel FirstName { get; set; }
+
+        /// <summary>
+        /// The current users last name
+        /// </summary>
+        public TextEntryViewModel LastName { get; set; }
 
         /// <summary>
         /// The current users user-name
@@ -71,6 +81,16 @@ namespace Fasseto.Word.Core
         public ICommand SaveNameCommand { get; set; }
 
         /// <summary>
+        /// The command to save the current first name to the server
+        /// </summary>
+        public ICommand SaveFirstNameCommand { get; set; }
+
+        /// <summary>
+        /// The command to save the current last name to the server
+        /// </summary>
+        public ICommand SaveLastNameCommand { get; set; }
+
+        /// <summary>
         /// The command to save the current email to the server
         /// </summary>
         public ICommand SaveEmailCommand { get; set; }
@@ -100,10 +120,12 @@ namespace Fasseto.Word.Core
             LogoutCommand = new RelayCommand(async () => await Logout());
             ClearUserDataCommand = new RelayCommand(() => ClearUserData());
             LoadCommand = new RelayCommand(async () => await LoadAsync());
-            SaveNameCommand = new RelayCommand(async () => await SaveNameAsync(Name));
-            SaveUsernameCommand = new RelayCommand(async () => await SaveUsernameAsync(UserName));
-            SaveEmailCommand = new RelayCommand(async () => await SaveEmailAsync(Email));
-            SavePasswordCommand = new RelayCommand(async () => await SavePasswordAsync(Password));
+            SaveNameCommand = new RelayCommand(async () => await SaveNameAsync());
+            SaveFirstNameCommand = new RelayCommand(async () => await SaveFirstNameAsync());
+            SaveLastNameCommand = new RelayCommand(async () => await SaveLastNameAsync());
+            SaveUsernameCommand = new RelayCommand(async () => await SaveUsernameAsync());
+            SaveEmailCommand = new RelayCommand(async () => await SaveEmailAsync());
+            SavePasswordCommand = new RelayCommand(async () => await SavePasswordAsync());
 
             //TODO: Get from localization
             LogoutButtonText = "Logout";
@@ -138,7 +160,7 @@ namespace Fasseto.Word.Core
         {
             //TOTO: Confirm the user wants to log out
 
-            // Clear any user data/chace
+            // Clear any user data/cache
             await IoC.ClientDataStore.ClearAllLoginCredentialsAsync();
 
             //Clean all application level view models that contain
@@ -157,11 +179,18 @@ namespace Fasseto.Word.Core
             // Get the current stored login credentials
             var storedCredentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
 
-            Name = new TextEntryViewModel
+            FirstName = new TextEntryViewModel
             {
-                Label = "Name",
-                OriginalText = $"{ storedCredentials?.FirstName } { storedCredentials?.LastName } { DateTime.UtcNow.ToLocalTime() }",
-                CommitAction = SaveNameAsync
+                Label = "First Name",
+                OriginalText = $"{ storedCredentials?.FirstName }",
+                CommitAction = SaveFirstNameAsync
+            };
+
+            LastName = new TextEntryViewModel
+            {
+                Label = "Last Name",
+                OriginalText = $"{ storedCredentials?.LastName }",
+                CommitAction = SaveLastNameAsync
             };
 
             UserName = new TextEntryViewModel
@@ -191,13 +220,122 @@ namespace Fasseto.Word.Core
         /// </summary>
         /// <param name="self">The details of the view model</param>
         /// <returns>Returns true if successful, false otherwise</returns>
-        public async Task<bool> SaveNameAsync(TextEntryViewModel self)
+        public async Task<bool> SaveNameAsync()
         {
             // TODO: Update with server
             await Task.Delay(3000);
 
             // Return true
             return true;
+        }
+
+        /// <summary>
+        /// Saves the new first name to the server
+        /// </summary>
+        /// <param name="self">The details of the view model</param>
+        /// <returns>Returns true if successful, false otherwise</returns>
+        public async Task<bool> SaveFirstNameAsync()
+        {
+            // Log message
+            IoC.Logger.Log("Saving first name...", LogLevel.Informative);
+
+            // Get the current known credentials
+            var credentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
+
+            // Log message
+            IoC.Logger.Log($"First name currently { credentials.FirstName }, updating to { FirstName.OriginalText }", LogLevel.Informative);
+
+            // If the value the user is trying to update is the same...
+            if (credentials.FirstName == FirstName.OriginalText)
+            {
+                // Log message
+                IoC.Logger.Log("They are the same, ignoring...", LogLevel.Informative);
+
+                // Just return true
+                return true;
+            }
+
+            // Set the first name
+            credentials.FirstName = FirstName.OriginalText;
+
+            // Update the server with the details
+            // TODO: Urls localization
+            var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
+                "https://localhost:5001/api/user/profile/update",
+                new UpdateUserProfileApiModel
+                {
+                    FirstName = credentials.FirstName
+                }, bearerToken: credentials.Token);
+
+            // Check if there are any errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse>("Update Failed!", "OK");
+
+            // If there are any...
+            if(errors)
+            {
+                IoC.Logger.Log($"Failed to update first name. { result.ErrorMessage }", LogLevel.Informative);
+
+                // Return false
+                return false;
+            }
+
+            // If we got this far it means the commit was successful
+            // Log message
+            IoC.Logger.Log("Successfully updated First Name. Saving to local database cache", LogLevel.Informative);
+
+            // Now update the local store
+            await IoC.ClientDataStore.SaveLoginCredentialsAsync(credentials);
+
+            // Return true
+            return true;
+        }
+
+        /// <summary>
+        /// Saves the new last name to the server
+        /// </summary>
+        /// <param name="self">The details of the view model</param>
+        /// <returns>Returns true if successful, false otherwise</returns>
+        public async Task<bool> SaveLastNameAsync()
+        {
+            // Get the current known credentials
+            var credentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
+
+            // If the value the user is trying to update is the same...
+            if (credentials.LastName == LastName.OriginalText)
+            {
+                // Just return true
+                return true;
+            }
+
+            // Set the first name
+            credentials.LastName = LastName.OriginalText;
+
+            // Update the server with the details
+            // TODO: Urls localization
+            var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
+                "https://localhost:5001/api/user/profile/update",
+                new UpdateUserProfileApiModel
+                {
+                    LastName = credentials.LastName
+                }, bearerToken: credentials.Token);
+
+            // Check if there are any errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse>("Update Failed!", "OK");
+
+            // If there are any...
+            if (errors)
+            {
+                // Return false
+                return false;
+            }
+
+            // If we got this far it means the commit was successful
+
+            // Now update the local store
+            await IoC.ClientDataStore.SaveLoginCredentialsAsync(credentials);
+
+            // Return true
+            return true;            
         }
 
         /// <summary>
@@ -205,13 +343,47 @@ namespace Fasseto.Word.Core
         /// </summary>
         /// <param name="self">The details of the view model</param>
         /// <returns>Returns true if successful, false otherwise</returns>
-        public async Task<bool> SaveEmailAsync(TextEntryViewModel self)
+        public async Task<bool> SaveEmailAsync()
         {
-            // TODO: Update with server
-            await Task.Delay(3000);
+            // Get the current known credentials
+            var credentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
+
+            // If the value the user is trying to update is the same...
+            if (credentials.Email == Email.OriginalText)
+            {
+                // Just return true
+                return true;
+            }
+
+            // Set the first name
+            credentials.Email = Email.OriginalText;
+
+            // Update the server with the details
+            // TODO: Urls localization
+            var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
+                "https://localhost:5001/api/user/profile/update",
+                new UpdateUserProfileApiModel
+                {
+                    Email = credentials.Email
+                }, bearerToken: credentials.Token);
+
+            // Check if there are any errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse>("Update Failed!", "OK");
+
+            // If there are any...
+            if (errors)
+            {
+                // Return false
+                return false;
+            }
+
+            // If we got this far it means the commit was successful
+
+            // Now update the local store
+            await IoC.ClientDataStore.SaveLoginCredentialsAsync(credentials);
 
             // Return true
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -219,22 +391,55 @@ namespace Fasseto.Word.Core
         /// </summary>
         /// <param name="self">The details of the view model</param>
         /// <returns>Returns true if successful, false otherwise</returns>
-        public async Task<bool> SaveUsernameAsync(TextEntryViewModel self)
+        public async Task<bool> SaveUsernameAsync()
         {
-            // TODO: Update with server
-            await Task.Delay(3000);
+            // Get the current known credentials
+            var credentials = await IoC.ClientDataStore.GetLoginCredentialsAsync();
+
+            // If the value the user is trying to update is the same...
+            if (credentials.Username == UserName.OriginalText)
+            {
+                // Just return true
+                return true;
+            }
+
+            // Set the first name
+            credentials.Username = UserName.OriginalText;
+
+            // Update the server with the details
+            // TODO: Urls localization
+            var result = await ProjectUniversal.WebRequests.PostAsync<ApiResponse>(
+                "https://localhost:5001/api/user/profile/update",
+                new UpdateUserProfileApiModel
+                {
+                    Username = credentials.Username
+                }, bearerToken: credentials.Token);
+
+            // Check if there are any errors
+            var errors = await result.DisplayErrorIfFailedAsync<ApiResponse>("Update Failed!", "OK");
+
+            // If there are any...
+            if (errors)
+            {
+                // Return false
+                return false;
+            }
+
+            // If we got this far it means the commit was successful
+
+            // Now update the local store
+            await IoC.ClientDataStore.SaveLoginCredentialsAsync(credentials);
 
             // Return true
             return true;
         }
-
 
         /// <summary>
         /// Saves the new password to the server
         /// </summary>
         /// <param name="self">The details of the view model</param>
         /// <returns>Returns true if successful, false otherwise</returns>
-        public async Task<bool> SavePasswordAsync(PasswordEntryViewModel self)
+        public async Task<bool> SavePasswordAsync()
         {
             // TODO: Update with server
             await Task.Delay(3000);

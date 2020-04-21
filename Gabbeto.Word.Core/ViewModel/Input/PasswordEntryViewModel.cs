@@ -67,7 +67,7 @@ namespace Fasseto.Word.Core
         /// The action to run when saving the text
         /// Returns true if the commit was successful, or false otherwise
         /// </summary>
-        public Func<PasswordEntryViewModel, Task<bool>> CommitAction { get; set; }
+        public Func<Task<bool>> CommitAction { get; set; }
 
         #endregion
 
@@ -208,7 +208,7 @@ namespace Fasseto.Word.Core
                 Editing = false;               
 
                 // Try to commit the action
-                result = CommitAction == null ? true : await CommitAction(this);
+                result = CommitAction == null ? true : await CommitAction();
 
             }).ContinueWith(t =>
             {

@@ -112,7 +112,7 @@ namespace Gabbetto.Word.Web.Server
                 var emailVerificationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);                
 
                 // TODO: Replace with API routes that will contain static routes to use
-                var confirmationUrl = $"https://{Request.Host.Value}api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
+                var confirmationUrl = $"https://{Request.Host.Value}/api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
 
                 // Sent a verification link to the user's email address
                 // To confirm that it's him
@@ -380,10 +380,7 @@ namespace Gabbetto.Word.Web.Server
         [AuthorizeToken]
         [Route("api/user/profile/update")]
         public async Task<ApiResponse> UpdateUserProfileAsync([FromBody] UpdateUserProfileApiModel model)
-        {
-            // Make a list of empty errors
-            var errors = new List<string>();
-
+        {            
             // Get the current user
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
@@ -418,7 +415,7 @@ namespace Gabbetto.Word.Web.Server
             if (model.Email != null &&
                 
                 // And it is not the same
-                string.Equals(model.Email.Replace(" ",""), user.NormalizedEmail))
+                !string.Equals(model.Email.Replace(" ",""), user.NormalizedEmail))
             {
                 // Update the profile details
                 user.Email = model.Email;
@@ -452,11 +449,11 @@ namespace Gabbetto.Word.Web.Server
                     var emailVerificationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
                     // TODO: Replace with API routes that will contain static routes to use
-                    var confirmationUrl = $"https://{Request.Host.Value}api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
+                    var confirmationUrl = $"https://{Request.Host.Value}/api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
 
                     // Sent a verification link to the user's email address
                     // To confirm that it's him
-                    Fasseto.Word.Core.IoC.Task.Run(async () =>
+                    Task.Run(async () =>
                     {
                         await GabbettoEmailSender.SendUserVerificationEmailAsync(userIdentity.FirstName, userIdentity.Email, confirmationUrl);
                     });
@@ -474,6 +471,51 @@ namespace Gabbetto.Word.Web.Server
                     ErrorMessage = result.Errors?.ToList()
                                     .Select(identityError => identityError.Description)
                                     .Aggregate((a, b) => $"{ a }{ Environment.NewLine }{ b }")
+                };
+            }
+        }
+
+        /// <summary>
+        /// Returns successful response if the update was successful
+        /// </summary>
+        /// <param name="model">The new user password to update</param>
+        /// <returns>Returns once the task is finished</returns>
+        [AuthorizeToken]
+        [Route("api/user/password/update")]
+        public async Task<ApiResponse> UpdateUserPasswordAsync([FromBody] UpdateUserPasswordApiModel model)
+        {            
+            // Get the current user
+            var user = await _userManager.GetUserAsync(HttpContext.User);            
+
+            // If we have no user...
+            if (user == null)
+            {
+                return new ApiResponse
+                {
+                    // TODO: Localize strings
+                    ErrorMessage = "User not found"
+                };
+            }
+
+            // Try and change the current users password
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            // If we succeeded
+            if (result.Succeeded)
+            {
+                // Return a successful api response
+                return new ApiResponse();
+            }
+            // Otherwise
+            else
+            {
+                // Return a failed api response...
+                return new ApiResponse()
+                {
+                    // And the respective error message
+                    ErrorMessage = result.Errors?.ToList()
+                                        .Select(identityError => identityError.Description)
+                                        .Aggregate((a, b) => $"{a }{ Environment.NewLine }{ b }")
                 };
             }
         }
