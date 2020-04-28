@@ -48,7 +48,7 @@ namespace Gabbetto.Word.Web.Server
                     // forgot password links, phone number verification codes
                     .AddDefaultTokenProviders();
 
-            // Add JWT Authentification for api clients
+            // Add JWT Authentication for api clients
             services.AddAuthentication().
                 AddJwtBearer(options =>
                 {
@@ -95,6 +95,13 @@ namespace Gabbetto.Word.Web.Server
                 options.InputFormatters.Add(new XmlSerializerInputFormatter(options));
                 options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // Add SignalR service for server communication with the client side
+            // using server sent events
+            services.AddSignalR();
+
+            // Adds the data stores(mock repositories) specific to this application
+            services.AddGabbetoStores();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -124,7 +131,12 @@ namespace Gabbetto.Word.Web.Server
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });            
+            });
+
+            app.UseSignalR(options =>
+            {
+                options.MapHub<ChatHub>("/chatMessages");
+            });
         }
     }
 }
