@@ -207,6 +207,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
             "ProjectUniversal.Framework": {
               "target": "Package",
               "version": "[1.0.4, )"

@@ -139,6 +139,7 @@ namespace Gabbetto.Word.Web.Server
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // Map the signalR hub
             app.UseSignalR(options =>
             {
                 options.MapHub<ChatHub>("/chatMessages");

@@ -202,5 +202,4 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\SQLitePCLRaw.provider.e_sqlite3.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\System.Interactive.Async.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\bin\Debug\netcoreapp3.0\runtimes\win8-arm\native\e_sqlite3.dll
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Gabbetto.Word.csproj.CoreCompileInputs.cache
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Gabbetto.Word.genruntimeconfig.cache
