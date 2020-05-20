@@ -88,7 +88,7 @@ namespace Gabbetto.Word.Web.Server
                 options.User.RequireUniqueEmail = true;
             });
 
-            // Inject Mvc service into the service colletion
+            // Inject MVC service into the service collection
             // Also add xml formatters for input and output(for the response/request actions)
             services.AddMvc(options =>
             {
@@ -102,6 +102,12 @@ namespace Gabbetto.Word.Web.Server
 
             // Adds the data stores(mock repositories) specific to this application
             services.AddGabbetoStores();
+
+            // Adds a chat manager to the service collection
+            services.AddChatManager<ChatManager>();
+
+            // Adds a friendship manager to the service collection
+            services.AddFriendshipManager<FriendshipManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
