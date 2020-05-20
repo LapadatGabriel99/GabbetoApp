@@ -35,6 +35,16 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         public static IEmailSender EmailSender => IocContainer.Provider.GetService<IEmailSender>();
 
+        /// <summary>
+        /// A shortcut to get a <see cref="MockFriendshipRelationsRepository"/>
+        /// </summary>
+        public static IFriendshipRelationsRepository FriendshipRelations => IocContainer.Provider.GetService<IFriendshipRelationsRepository>();
+
+        /// <summary>
+        /// A shortcut to get a <see cref="MockConversationalRepository"/>
+        /// </summary>
+        public static IConversationalRepository ConversationalRepository => IocContainer.Provider.GetService<IConversationalRepository>();
+
         #endregion
 
         #region Helper Methods

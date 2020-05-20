@@ -48,5 +48,12 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="acceptDate">The accept date</param>
         /// <returns></returns>
         Friendship GetUserFriendByAcceptDate(ApplicationUser user, DateTime acceptDate);
+
+        /// <summary>
+        /// Get the status of the specified friendship
+        /// </summary>
+        /// <param name="friendship">The specified friendship</param>
+        /// <returns></returns>
+        FriendshipStatus GetFriendshipStatus(Friendship friendship);
     }
 }

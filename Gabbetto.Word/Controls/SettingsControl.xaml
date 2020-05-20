@@ -75,7 +75,7 @@
                             <VisualBrush Visual="{Binding ElementName=Mask}"/>
                         </Grid.OpacityMask>
 
-                        <Image Source="/Images/Samples/Test2AllisonParker.jpg"
+                        <Image Source="/Images/Samples/HappySample.jpg"
                                Stretch="UniformToFill"
                                RenderOptions.BitmapScalingMode="HighQuality"
                                RenderOptions.EdgeMode="Aliased"

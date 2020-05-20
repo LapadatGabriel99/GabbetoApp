@@ -55,6 +55,22 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="user"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        Conversation GetUserConversationByName(ApplicationUser user, string name);                
+        Conversation GetUserConversationByName(ApplicationUser user, string name);
+
+        /// <summary>
+        /// Gets the user's messages by the specified conversation name
+        /// </summary>
+        /// <param name="user">The specified user</param>
+        /// <param name="conversationName">The conversation name</param>
+        /// <returns></returns>
+        ICollection<Message> GetUserMessagesByConversationName(ApplicationUser user, string conversationName);
+
+        /// <summary>
+        /// Gets the user's messages by the specified conversation id
+        /// </summary>
+        /// <param name="user">The specified user</param>
+        /// <param name="conversationName">The conversation id</param>
+        /// <returns></returns>
+        ICollection<Message> GetUserMessagesByConversationId(ApplicationUser user, string conversationName);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject.Infrastructure.Language;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,18 +20,26 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public ICollection<Message> GetUserMessages(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            // Get the specified user's conversations
+            var specifiedUserConversations = GetUserConversations(user);
+
+            // Return all specified user's messages aggregated into one list
+            return specifiedUserConversations.Select(c => c.Messages.ToEnumerable()).Aggregate((a, b) => a.Concat(b)).ToList();
         }
 
         /// <summary>
         /// Gets the users message by id
         /// </summary>
-        /// <param name="messageId"></param>
+        /// <param name="messageId">The message id</param>
         /// <param name="user">The specified user</param>
         /// <returns></returns>
         public Message GetUserMessageById(ApplicationUser user, string messageId)
         {
-            throw new NotImplementedException();
+            // Get all the users messages
+            var specifiedUserMessages = GetUserMessages(user);
+
+            // Return the message that satisfies the condition
+            return specifiedUserMessages.SingleOrDefault(m => m.Id == messageId);
         }
 
         /// <summary>
@@ -41,7 +50,11 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public Message GetUserMessageBySentDate(ApplicationUser user, DateTime sentDate)
         {
-            throw new NotImplementedException();
+            // Get all the users messages
+            var specifiedUserMessages = GetUserMessages(user);
+
+            // Return the message that satisfies the condition
+            return specifiedUserMessages.SingleOrDefault(m => m.SentDate == sentDate);
         }
 
         /// <summary>
@@ -51,29 +64,70 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public ICollection<Conversation> GetUserConversations(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            //return _context.Users.Where(u => u.Id == user.Id).FirstOrDefault().Conversations;
+
+            // Return the list of conversations that the specified user has
+            return _context.Users.Find(user.Id).Conversations;
         }
 
         /// <summary>
         /// Gets the users conversation by id
         /// </summary>
         /// <param name="user">The specified user</param>
-        /// <param name="coversationId">The conversation id</param>
+        /// <param name="conversationId">The conversation id</param>
         /// <returns></returns>
-        public Conversation GetUserConversationById(ApplicationUser user, string coversationId)
+        public Conversation GetUserConversationById(ApplicationUser user, string conversationId)
         {
-            throw new NotImplementedException();
+            // Get the user
+            var specifiedUser = _context.Users.Find(user.Id);
+
+            // Return user's conversation which satisfies the condition
+            return specifiedUser.Conversations.SingleOrDefault(c => c.Id == conversationId);    
         }
 
         /// <summary>
         /// Gets the users conversation by name
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="name"></param>
+        /// <param name="user">The specified user</param>
+        /// <param name="name">The conversation name</param>
         /// <returns></returns>
         public Conversation GetUserConversationByName(ApplicationUser user, string name)
         {
-            throw new NotImplementedException();
+            // Get the user
+            var specifiedUser = _context.Users.Find(user.Id);
+
+            // Return user's conversation which satisfies the condition
+            return specifiedUser.Conversations.SingleOrDefault(c => c.Name == name);
+        }
+
+        /// <summary>
+        /// Gets the user's messages by the specified conversation name
+        /// </summary>
+        /// <param name="user">The specified user</param>
+        /// <param name="conversationName">The conversation name</param>
+        /// <returns></returns>
+        public ICollection<Message> GetUserMessagesByConversationName(ApplicationUser user, string conversationName)
+        {
+            // Gets the user's conversations by name
+            var specifiedUserConversation = GetUserConversationByName(user, conversationName);
+
+            // Returns the messages that this conversation has
+            return _context.Conversations.SingleOrDefault(c => c.Id == specifiedUserConversation.Id).Messages;
+        }
+
+        /// <summary>
+        /// Gets the user's messages by the specified conversation id
+        /// </summary>
+        /// <param name="user">The specified user</param>
+        /// <param name="conversationId">The conversation id</param>
+        /// <returns></returns>
+        public ICollection<Message> GetUserMessagesByConversationId(ApplicationUser user, string conversationId)
+        {
+            // Gets the user's conversations by name
+            var specifiedUserConversation = GetUserConversationById(user, conversationId);
+
+            // Returns the messages that this conversation has
+            return _context.Conversations.SingleOrDefault(c => c.Id == specifiedUserConversation.Id).Messages;
         }
 
         #endregion

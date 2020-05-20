@@ -20,7 +20,8 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public ICollection<Friendship> GetUserFriends(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            // Returns the user's list of friends
+            return _context.Users.SingleOrDefault(u => u.Id == user.Id).Friends;
         }
 
         /// <summary>
@@ -30,7 +31,8 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public IEnumerable<Friendship> GetUserPendingFriends(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            // Returns the user's list of pending friends
+            return _context.Users.SingleOrDefault(u => u.Id == user.Id).PendingFriends;
         }
 
         /// <summary>
@@ -39,9 +41,10 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="user">The specified user</param>
         /// <param name="Id">The id of the friend we are looking for</param>
         /// <returns></returns>
-        public Friendship GetUserFriendById(ApplicationUser user, string Id)
+        public Friendship GetUserFriendById(ApplicationUser user, string id)
         {
-            throw new NotImplementedException();
+            // Returns a user friend by id
+            return GetUserFriends(user).SingleOrDefault(f => f.Id == id);
         }
 
         /// <summary>
@@ -52,7 +55,8 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public Friendship GetUserFriendByRequestDate(ApplicationUser user, DateTime requestDate)
         {
-            throw new NotImplementedException();
+            // Returns a user friend by request date
+            return GetUserFriends(user).SingleOrDefault(f => f.RequestDate == requestDate);
         }
 
         /// <summary>
@@ -63,7 +67,19 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public Friendship GetUserFriendByAcceptDate(ApplicationUser user, DateTime acceptDate)
         {
-            throw new NotImplementedException();
+            // Returns a user friend by sent date
+            return GetUserFriends(user).SingleOrDefault(f => f.AcceptDate == acceptDate);
+        }
+
+        /// <summary>
+        /// Get the status of the specified friendship
+        /// </summary>
+        /// <param name="friendship">The specified friendship</param>
+        /// <returns></returns>
+        public FriendshipStatus GetFriendshipStatus(Friendship friendship)
+        {
+            // Returns a the status of the given friendship object
+            return _context.Friendships.SingleOrDefault(f => f.Id == friendship.Id).Status;
         }
 
         #endregion
