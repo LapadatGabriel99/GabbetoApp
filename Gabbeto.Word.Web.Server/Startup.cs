@@ -1,4 +1,5 @@
-﻿using Gabbetto.Word.Web.Server;
+﻿using Fasseto.Word.Core;
+using Gabbetto.Word.Web.Server;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -143,9 +144,9 @@ namespace Gabbetto.Word.Web.Server
             // Map the signalR hub
             app.UseSignalR(options =>
             {
-                options.MapHub<ChatHub>("/chatMessages");
-                options.MapHub<FriendsHub>("/friends");
-                options.MapHub<NotificationHub>("/notifications");
+                options.MapHub<ChatHub>(HubRoutes.ChatHub);
+                options.MapHub<FriendsHub>(HubRoutes.FriendsHub);
+                options.MapHub<NotificationHub>(HubRoutes.NotificationHub);
             });        
         }
     }
