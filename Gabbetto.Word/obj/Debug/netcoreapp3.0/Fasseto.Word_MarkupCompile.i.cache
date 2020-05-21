@@ -12,7 +12,7 @@ TRACE;RELEASE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\App.xaml
 24-1312401587
 
-63650712172
+6787812885
 241-389965324
 Controls\BubbleContent.xaml;Controls\Chat\ChatList\ChatListControl.xaml;Controls\Chat\ChatList\ChatListItemControl.xaml;Controls\Chat\ChatMessage\ChatMessageListControl.xaml;Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml;Controls\Input\PasswordEntryControl.xaml;Controls\Input\TextEntryControl.xaml;Controls\Menu\VerticalMenu.xaml;Controls\PageHost.xaml;Controls\SettingsControl.xaml;Controls\SideMenuControl.xaml;Dialogs\DialogMessageBox.xaml;DialogWindow.xaml;MainWindow.xaml;Pages\ChatPage.xaml;Pages\LoginPage.xaml;Pages\OptionalCredentialsPage.xaml;Pages\PostRegiterPage.xaml;Pages\RegisterPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Scroll.xaml;Styles\Texts.xaml;
 
