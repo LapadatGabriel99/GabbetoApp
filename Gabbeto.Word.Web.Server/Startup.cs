@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -143,7 +144,9 @@ namespace Gabbetto.Word.Web.Server
             app.UseSignalR(options =>
             {
                 options.MapHub<ChatHub>("/chatMessages");
-            });
+                options.MapHub<FriendsHub>("/friends");
+                options.MapHub<NotificationHub>("/notifications");
+            });        
         }
     }
 }
