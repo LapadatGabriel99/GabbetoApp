@@ -48,6 +48,11 @@ namespace Fasseto.Word.Core
         public static SettingsViewModel SettingsViewModel => IoC.Get<SettingsViewModel>();
 
         /// <summary>
+        /// A shortcut to access the <see cref="Fasseto.Word.Core.SideMenuViewModel"/>
+        /// </summary>
+        public static SideMenuViewModel SideMenuViewModel => IoC.Get<SideMenuViewModel>();
+
+        /// <summary>
         /// A shortcut to access the <see cref="IClientDataStore"/> service
         /// </summary>
         public static IClientDataStore ClientDataStore => (IClientDataStore)Framework.Provider.GetService(typeof(IClientDataStore));
@@ -78,6 +83,9 @@ namespace Fasseto.Word.Core
 
             //Bind to a single instance of SettingsViewModel
             Kernel.Bind<SettingsViewModel>().ToConstant(new SettingsViewModel());
+
+            //Bind to a single instance of SideMenuViewModel
+            Kernel.Bind<SideMenuViewModel>().ToConstant(new SideMenuViewModel());
         }
 
         #endregion

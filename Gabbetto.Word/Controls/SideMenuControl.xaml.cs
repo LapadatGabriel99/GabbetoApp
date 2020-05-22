@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fasseto.Word.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,9 @@ namespace Fasseto.Word
         public SideMenuControl()
         {
             InitializeComponent();
+
+            // Set the data context of this control
+            this.DataContext = IoC.SideMenuViewModel;
         }
     }
 }

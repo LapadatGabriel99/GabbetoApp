@@ -57,13 +57,13 @@ namespace Fasseto.Word
         /// Configures our application ready for use
         /// </summary>
         private async Task ApplicationSetup()
-        {
+        {            
             // Setup of ProjectUniversal framework
             new DefaultFrameworkConstruction()
                 .UseFileLogger()
                 .UseDataClientStore()
                 .Build();            
-
+                
             //Setup IoC
             IoC.Setup();
 
