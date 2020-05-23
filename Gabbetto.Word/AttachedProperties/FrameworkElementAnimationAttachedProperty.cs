@@ -31,7 +31,7 @@ namespace Fasseto.Word
         //If so we check if it's the first time the we get a value(or the first load)
         //In that case we are obligated to wait for the on loaded event to fire
         //But that event can only fire once in the element's life time
-        //So we have to unhook it(cut it out) insinde the event listener
+        //So we have to unhook it(cut it out) inside the event listener
         public override void OnValueUpdated(DependencyObject sender, object value)
         {
             //Get the framework element

@@ -18,12 +18,22 @@ namespace Fasseto.Word.Core
         public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Login;
 
         /// <summary>
+        /// The current side menu page
+        /// </summary>
+        public SideMenuPage CurrentSideMenuPage { get; private set; } = SideMenuPage.ChatList;
+
+        /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
         /// NOTE: This is not a live up-to-date view model of the current page
         ///       it is simply used to set the view model of the current page
         ///       at the time it changes
         /// </summary>
         public BaseViewModel CurrentPageViewModel { get; set; }
+
+        /// <summary>
+        /// The view model to use for the current side menu page when the CurrentSideMenuPage changes
+        /// </summary>
+        public BaseViewModel CurrentSideMenuPageViewModel { get; set; }
 
         /// <summary>
         /// True if the side menu should be shown
@@ -39,6 +49,7 @@ namespace Fasseto.Word.Core
         /// Navigate to the specified page
         /// </summary>
         /// <param name="page">The page to go to</param>
+        /// <param name="viewModel">The view model of the page</param>
         public void GoToPage(ApplicationPage page, BaseViewModel viewModel = null)
         {
             //Always hide settings menu when going to different page
@@ -58,6 +69,23 @@ namespace Fasseto.Word.Core
                 SideMenuVisible = true;
             else
                 SideMenuVisible = false;
+        }
+
+        /// <summary>
+        /// Function used to navigate to the specified side menu page
+        /// </summary>
+        /// <param name="page">The side menu page to go to</param>
+        /// <param name="viewModel">The view model of the page</param>
+        public void GoToSideMenuPage(SideMenuPage page, BaseViewModel viewModel = null)
+        {
+            // Set the view model
+            CurrentSideMenuPageViewModel = viewModel;
+
+            // Set the current side menu page
+            CurrentSideMenuPage = page;
+
+            // Fire off a property changed event
+            OnPropertyChanged(nameof(CurrentSideMenuPage));
         }
 
         /// <summary>

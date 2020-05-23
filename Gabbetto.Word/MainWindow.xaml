@@ -186,6 +186,7 @@
                 local:AnimateSlideInFromLeftProperty.Value ="{Binding ApplicationViewModel.SideMenuVisible,
                                                                       Source={x:Static local:ViewModelLocator.Instance}}">
 
+                <!-- TODO: Try to repeat the logic with the host page swaps.-->
                 <local:ChatListControl />
 
             </local:SideMenuControl>
