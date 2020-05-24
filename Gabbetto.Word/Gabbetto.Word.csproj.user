@@ -40,6 +40,9 @@
     <Compile Update="Controls\SideMenuControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\SideMenuPageHost.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Dialogs\DialogMessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\SideMenuControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\SideMenuPageHost.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Dialogs\DialogMessageBox.xaml">

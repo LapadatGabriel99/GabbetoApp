@@ -54,7 +54,7 @@ namespace Fasseto.Word {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;component/controls/chat/chatlist/chatlistcontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;V1.0.0.0;component/controls/chat/chatlist/chatlistcontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Controls\Chat\ChatList\ChatListControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

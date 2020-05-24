@@ -78,7 +78,7 @@ namespace Fasseto.Word {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;component/controls/input/textentrycontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;V1.0.0.0;component/controls/input/textentrycontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\Input\TextEntryControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
