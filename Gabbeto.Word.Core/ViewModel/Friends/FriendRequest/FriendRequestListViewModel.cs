@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fasseto.Word.Core.ViewModel.Friends
+namespace Fasseto.Word.Core
 {
     /// <summary>
     /// The view model for the friend request control
