@@ -22,6 +22,18 @@
     <Compile Update="Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Friends\AddSearch\AddSearchListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Friends\AddSearch\AddSearchListItemControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Friends\FriendRequest\FriendRequestListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Friends\FriendRequest\FriendRequestListItemControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Input\PasswordEntryControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +91,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Friends\AddSearch\AddSearchListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Friends\AddSearch\AddSearchListItemControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Friends\FriendRequest\FriendRequestListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Friends\FriendRequest\FriendRequestListItemControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Input\PasswordEntryControl.xaml">

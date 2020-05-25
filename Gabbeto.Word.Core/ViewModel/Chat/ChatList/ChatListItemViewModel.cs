@@ -72,17 +72,7 @@ namespace Fasseto.Word.Core
         #region Command Methods
 
         private void OpenMessage()
-        {
-            //if(Name == "BossBaros")
-            //{
-            //    IoC.ApplicationViewModel.GoToPage(ApplicationPage.Login, new LoginViewModel
-            //    {
-            //        Email = "bossbaros@yahoo.com"
-            //    });
-
-            //    return;
-            //}
-
+        {           
             IoC.ApplicationViewModel.GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
             {
                 DisplayTitle = "Mister Boss Baros",

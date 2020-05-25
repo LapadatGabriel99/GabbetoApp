@@ -8,7 +8,6 @@
              mc:Ignorable="d"              
              d:DesignWidth="300">
 
-
     <UserControl.Resources>
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
             <Setter Property="Template">
