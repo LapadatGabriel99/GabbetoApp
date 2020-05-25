@@ -11,9 +11,13 @@ namespace Fasseto.Word.Core
     /// </summary>
     public class ChatListViewModel : BaseViewModel
     {
+        #region Public Properties
+
         /// <summary>
         /// The chat list items for the list
         /// </summary>
-        public List<ChatListItemViewModel> Items { get; set; }
+        public List<ChatListItemViewModel> Items { get; set; } 
+
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Fasseto.Word.Core
@@ -11,31 +12,10 @@ namespace Fasseto.Word.Core
     {
         #region Public Properties
 
-
-
-        #endregion
-
-        #region Commands
-
-
-
-        #endregion
-
-        #region Constructors
-
         /// <summary>
-        /// Default Constructor
+        /// The search/add list items for the list control
         /// </summary>
-        public SearchAddListViewModel()
-        {
-
-        }
-
-        #endregion
-
-        #region Command Methods
-
-
+        public ObservableCollection<SearchAddListViewModel> Items; 
 
         #endregion
     }

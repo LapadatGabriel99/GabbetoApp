@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Fasseto.Word.Core
@@ -11,31 +12,7 @@ namespace Fasseto.Word.Core
     {
         #region Public Properties
 
-
-
-        #endregion
-
-        #region Commands
-
-
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        public FriendRequestListViewModel()
-        {
-
-        }
-
-        #endregion
-
-        #region Command Methods
-
-
+        public ObservableCollection<FriendRequestListItemViewModel> Items;
 
         #endregion
     }
