@@ -213,3 +213,13 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Fasseto.Word.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Fasseto.Word.pdb
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Gabbetto.Word.genruntimeconfig.cache
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\AddSearch\AddSearchListControl.g.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\AddSearch\AddSearchListItemControl.g.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListControl.g.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListItemControl.g.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\SideMenuPageHost.g.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\AddSearch\AddSearchListControl.baml
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\AddSearch\AddSearchListItemControl.baml
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListControl.baml
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListItemControl.baml
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\SideMenuPageHost.baml
