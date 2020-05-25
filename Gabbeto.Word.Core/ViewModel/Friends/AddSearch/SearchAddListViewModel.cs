@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fasseto.Word.Core.ViewModel.Friends
+namespace Fasseto.Word.Core
 {
     /// <summary>
-    /// The view model for the friend request control
+    /// The view model for the search/add friends control
     /// </summary>
-    public class FriendRequestNotificationViewModel : BaseViewModel
+    public class SearchAddListViewModel : BaseViewModel
     {
         #region Public Properties
 
@@ -26,7 +26,7 @@ namespace Fasseto.Word.Core.ViewModel.Friends
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public FriendRequestNotificationViewModel()
+        public SearchAddListViewModel()
         {
 
         }
