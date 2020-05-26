@@ -70,7 +70,7 @@ namespace Fasseto.Word {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;component/pages/registerpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;V1.0.0.0;component/pages/registerpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\RegisterPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

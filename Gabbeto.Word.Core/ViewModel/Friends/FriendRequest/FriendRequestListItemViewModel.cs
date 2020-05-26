@@ -53,6 +53,11 @@ namespace Fasseto.Word.Core
         /// </summary>
         public ICommand AcceptFriendRequestCommand { get; set; }
 
+        /// <summary>
+        /// The command when an user declines a friend request
+        /// </summary>
+        public ICommand DeclineFriendRequestCommand { get; set; }
+
         #endregion
 
         #region Constructors
@@ -64,6 +69,7 @@ namespace Fasseto.Word.Core
         {
             // Setup commands
             AcceptFriendRequestCommand = new RelayCommand(async () => await AcceptFriendRequest());
+            DeclineFriendRequestCommand = new RelayCommand(async () => await DeclineFriendRequest());
         }
 
         #endregion
@@ -75,6 +81,15 @@ namespace Fasseto.Word.Core
         /// </summary>
         /// <returns></returns>
         private async Task AcceptFriendRequest()
+        {
+            await Task.Delay(1000);
+        }
+
+        /// <summary>
+        /// Declines a friend request that the current user received
+        /// </summary>
+        /// <returns></returns>
+        private async Task DeclineFriendRequest()
         {
             await Task.Delay(1000);
         }
