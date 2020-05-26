@@ -25,7 +25,10 @@ namespace Fasseto.Word.Core
         /// </summary>
         public SearchAddListItemDesignModel()
         {
-
+            Initials = "GM";
+            Name = "Gabi";
+            Message = "Heeeey maaaan!!!";
+            ProfilePictureRGB = "3099c5";
         }
 
         #endregion

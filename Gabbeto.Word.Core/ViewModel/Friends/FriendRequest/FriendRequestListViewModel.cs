@@ -12,6 +12,9 @@ namespace Fasseto.Word.Core
     {
         #region Public Properties
 
+        /// <summary>
+        /// The friend request list items for the list control
+        /// </summary>
         public ObservableCollection<FriendRequestListItemViewModel> Items;
 
         #endregion

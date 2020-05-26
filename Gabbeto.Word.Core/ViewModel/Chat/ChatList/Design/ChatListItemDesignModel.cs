@@ -21,7 +21,7 @@ namespace Fasseto.Word.Core
 
         #endregion
 
-        #region Construtor
+        #region Constructor
 
         /// <summary>
         /// Default Constructor

@@ -15,7 +15,7 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// The search/add list items for the list control
         /// </summary>
-        public ObservableCollection<SearchAddListViewModel> Items; 
+        public ObservableCollection<SearchAddListItemViewModel> Items; 
 
         #endregion
     }
