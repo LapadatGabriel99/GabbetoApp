@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fasseto.Word.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,11 +17,27 @@ namespace Fasseto.Word
     /// <summary>
     /// Interaction logic for ChatListControl.xaml
     /// </summary>
-    public partial class ChatListControl : UserControl
+    public partial class ChatListControl : SideMenuBasePage<ChatListViewModel>
     {
-        public ChatListControl()
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public ChatListControl() : base()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="viewModel">The view model of this page</param>
+        public ChatListControl(ChatListViewModel viewModel) : base(specificViewModel: viewModel)
+        {
+            InitializeComponent();
+        } 
+
+        #endregion
     }
 }

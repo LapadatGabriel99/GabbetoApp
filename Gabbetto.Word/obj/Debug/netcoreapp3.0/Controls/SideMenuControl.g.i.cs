@@ -54,7 +54,7 @@ namespace Fasseto.Word {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;V1.0.0.0;component/controls/sidemenucontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;component/controls/sidemenucontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Controls\SideMenuControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

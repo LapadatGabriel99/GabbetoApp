@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fasseto.Word.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,11 +17,27 @@ namespace Fasseto.Word
     /// <summary>
     /// Interaction logic for AddSearchListControl.xaml
     /// </summary>
-    public partial class AddSearchListControl : UserControl
+    public partial class AddSearchListControl : SideMenuBasePage<SearchAddListViewModel>
     {
-        public AddSearchListControl()
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public AddSearchListControl() : base()
+        {
+            InitializeComponent();
+        } 
+
+        /// <summary>
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="viewModel"></param>
+        public AddSearchListControl(SearchAddListViewModel viewModel) : base(specificViewModel: viewModel)
         {
             InitializeComponent();
         }
+
+        #endregion
     }
 }

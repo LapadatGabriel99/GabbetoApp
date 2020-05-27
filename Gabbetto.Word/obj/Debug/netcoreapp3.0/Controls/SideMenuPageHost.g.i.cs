@@ -69,7 +69,7 @@ namespace Fasseto.Word {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;V1.0.0.0;component/controls/sidemenupagehost.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Fasseto.Word;component/controls/sidemenupagehost.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Controls\SideMenuPageHost.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

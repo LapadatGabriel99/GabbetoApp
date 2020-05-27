@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Fasseto.Word.AddSearchListControl"
+﻿<local:SideMenuBasePage x:TypeArguments="core:SearchAddListViewModel"  x:Class="Fasseto.Word.AddSearchListControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,4 +18,4 @@
             </ItemsControl>
         </ScrollViewer>
     </Grid>
-</UserControl>
+</local:SideMenuBasePage>

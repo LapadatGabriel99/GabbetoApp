@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fasseto.Word.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,11 +17,27 @@ namespace Fasseto.Word
     /// <summary>
     /// Interaction logic for FriendRequestListControl.xaml
     /// </summary>
-    public partial class FriendRequestListControl : UserControl
+    public partial class FriendRequestListControl : SideMenuBasePage<FriendRequestListViewModel>
     {
-        public FriendRequestListControl()
+        #region Constructor
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public FriendRequestListControl() : base()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="viewModel">The view model of this page</param>
+        public FriendRequestListControl(FriendRequestListViewModel viewModel) : base(specificViewModel: viewModel)
+        {
+            InitializeComponent();
+        } 
+
+        #endregion
     }
 }
