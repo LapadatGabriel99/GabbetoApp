@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Fasseto.Word.Core
@@ -43,9 +44,9 @@ namespace Fasseto.Word.Core
         public SideMenuViewModel()
         {
             // Setup the commands
-            GoToChatListPageCommand = new RelayCommand(GoToChatListPage);
-            GoToSearchAddPageCommand = new RelayCommand(GoToSearchAddFriendPage);
-            GoToFriendRequestPageCommand = new RelayCommand(GoToFriendRequestPage);
+            GoToChatListPageCommand = new RelayCommand(async () => await GoToChatListPage());
+            GoToSearchAddPageCommand = new RelayCommand(async () => await GoToSearchAddFriendPage());
+            GoToFriendRequestPageCommand = new RelayCommand(async () => await GoToFriendRequestPage());
         }
 
         #endregion
@@ -55,25 +56,31 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// Goes to the chat list page
         /// </summary>
-        public void GoToChatListPage()
+        public async Task GoToChatListPage()
         {
+            IoC.ApplicationViewModel.GoToSideMenuPage(SideMenuPage.ChatList, new ChatListViewModel());
 
+            await Task.Delay(1);
         }
 
         /// <summary>
         /// Goes to the search/add page
         /// </summary>
-        public void GoToSearchAddFriendPage()
+        public async Task GoToSearchAddFriendPage()
         {
+            IoC.ApplicationViewModel.GoToSideMenuPage(SideMenuPage.AddSearch, new SearchAddListViewModel());
 
+            await Task.Delay(1);
         }
 
         /// <summary>
         /// Goes to the friend request page
         /// </summary>
-        public void GoToFriendRequestPage()
+        public async Task GoToFriendRequestPage()
         {
+            IoC.ApplicationViewModel.GoToSideMenuPage(SideMenuPage.FriendshipRequest, new FriendRequestListViewModel());
 
+            await Task.Delay(1);
         }
 
         #endregion
