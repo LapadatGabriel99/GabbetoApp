@@ -16,21 +16,21 @@ namespace Fasseto.Word
         /// Converts a <see cref="SideMenuPage"/> into a <see cref="SideMenuBasePage"/>
         /// according to the view model
         /// </summary>
-        /// <param name="sideMenuPage"></param>
-        /// <param name="viewModel"></param>
+        /// <param name="sideMenuPage">The type of side menu page</param>
+        /// <param name="viewModel">The type of view model</param>
         /// <returns></returns>
         public static SideMenuBasePage ToSideMenuBasePage(this SideMenuPage sideMenuPage, object viewModel = null)
         {
             switch (sideMenuPage)
             {
                 case SideMenuPage.ChatList:
-                    return null;
+                    return new ChatListControl(viewModel as ChatListViewModel);
 
                 case SideMenuPage.AddSearch:
-                    return null;
+                    return new AddSearchListControl(viewModel as SearchAddListViewModel);
 
                 case SideMenuPage.FriendshipRequest:
-                    return null;
+                    return new FriendRequestListControl(viewModel as FriendRequestListViewModel);
 
                 default:
                     Debugger.Break();
@@ -41,10 +41,25 @@ namespace Fasseto.Word
         /// <summary>
         /// Converts a <see cref="SideMenuBasePage"/> into a <see cref="SideMenuPage"/>
         /// </summary>
-        /// <param name="sideMenuBasePage"></param>
+        /// <param name="sideMenuBasePage">The type of side menu page</param>
         /// <returns></returns>
         public static SideMenuPage ToSideMenuPage(this SideMenuBasePage sideMenuBasePage)
         {
+            if (sideMenuBasePage is ChatListControl)
+            {
+                return SideMenuPage.ChatList;
+            }
+
+            if (sideMenuBasePage is AddSearchListControl)
+            {
+                return SideMenuPage.AddSearch;
+            }
+
+            if (sideMenuBasePage is FriendRequestListControl)
+            {
+                return SideMenuPage.FriendshipRequest;
+            }
+
             Debugger.Break();
             return default(SideMenuPage);
         }
