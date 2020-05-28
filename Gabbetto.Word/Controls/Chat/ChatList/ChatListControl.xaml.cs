@@ -43,13 +43,10 @@ namespace Fasseto.Word
 
         #region Override Methods
 
-        public override void OnViewModelChanged()
+        public async override void OnViewModelChanged()
         {
-            // Fade in this UI element
-
-            var storyboard = new Storyboard();
-            storyboard.AddFadeIn(0.3f);
-            storyboard.Begin(this);
+            // Perform a fade in animation
+            await this.FadeInAsync();
         }
 
         #endregion
