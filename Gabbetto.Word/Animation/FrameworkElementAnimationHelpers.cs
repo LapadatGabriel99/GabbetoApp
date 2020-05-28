@@ -335,6 +335,27 @@ namespace Fasseto.Word
             await Task.Delay((int)(seconds * 1000));
         }
 
+        /// <summary>
+        /// Fades in an element
+        /// </summary>
+        /// <param name="frameworkElement">The element to animate</param>
+        /// <param name="seconds">The time it takes to animate the element</param>
+        /// <returns></returns>
+        public static async Task FadeInAsync(this FrameworkElement frameworkElement, float seconds = 0.3f)
+        {
+            // Create storyboard
+            var storyboard = new Storyboard();
+
+            // Add fade in animation
+            storyboard.AddFadeIn(seconds);
+
+            // Begin animation
+            storyboard.Begin(frameworkElement);
+
+            // Wait for the animation to finish
+            await Task.Delay(TimeSpan.FromSeconds(seconds));
+        }
+
         #endregion
 
         #region FadeOut
