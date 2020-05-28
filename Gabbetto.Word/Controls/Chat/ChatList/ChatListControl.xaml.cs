@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -36,7 +37,20 @@ namespace Fasseto.Word
         public ChatListControl(ChatListViewModel viewModel) : base(specificViewModel: viewModel)
         {
             InitializeComponent();
-        } 
+        }
+
+        #endregion
+
+        #region Override Methods
+
+        public override void OnViewModelChanged()
+        {
+            // Fade in this UI element
+
+            var storyboard = new Storyboard();
+            storyboard.AddFadeIn(0.3f);
+            storyboard.Begin(this);
+        }
 
         #endregion
     }

@@ -74,7 +74,7 @@ namespace Fasseto.Word
             // If we are in design time, just show the current page
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-
+                NewSideMenuPage.Content = IoC.ApplicationViewModel.CurrentSideMenuPage.ToSideMenuBasePage();
             }
         }
 
@@ -90,7 +90,40 @@ namespace Fasseto.Word
         /// <returns></returns>
         private static object OnCurrentSideMenuPagePropertyChanged(DependencyObject d, object value)
         {
-            return new object();
+            // Get current values
+            var currentPage = (SideMenuPage)d.GetValue(CurrentSideMenuPageProperty);
+            var currentPageViewModel = d.GetValue(CurrentSideMenuPageViewModelProperty);
+
+            // Get the frames
+            var oldPageFrame = (d as SideMenuPageHost).OldSideMenuPage;
+            var newPageFrame = (d as SideMenuPageHost).NewSideMenuPage;
+
+            // If the current side menu pages hasn't changed
+            // Just update the view model
+            if (newPageFrame.Content is SideMenuBasePage page &&
+                page.ToSideMenuPage() == currentPage)
+            {
+                // Update the view model
+                page.ViewModelObject = currentPageViewModel;
+
+                return value;
+            }
+
+            // Store the current page content as the old page
+            var oldPageContent = newPageFrame.Content;
+
+            //Remove current page from new page frame
+            newPageFrame.Content = null;
+
+            // Move the previous page into the old frame page
+            oldPageFrame.Content = oldPageContent;
+
+            oldPageFrame.Content = null;
+
+            // Set the new page content
+            newPageFrame.Content = currentPage.ToSideMenuBasePage(currentPageViewModel);
+
+            return value;
         }
 
         #endregion
