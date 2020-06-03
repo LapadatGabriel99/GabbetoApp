@@ -187,7 +187,12 @@
                                                                       Source={x:Static local:ViewModelLocator.Instance}}">
 
                 <!-- TODO: Try to repeat the logic with the host page swaps.-->
-                <local:ChatListControl />
+                <local:SideMenuPageHost 
+                       CurrentSideMenuPage="{Binding ApplicationViewModel.CurrentSideMenuPage, 
+                                                     Source={x:Static local:ViewModelLocator.Instance}}"
+                       
+                       CurrentSideMenuPageViewModel="{Binding ApplicationViewModel.CurrentSideMenuPageViewModel, 
+                                                              Source={x:Static local:ViewModelLocator.Instance}}"/>
 
             </local:SideMenuControl>
         </Grid>
