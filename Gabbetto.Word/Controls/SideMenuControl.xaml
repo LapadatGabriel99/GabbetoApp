@@ -33,9 +33,15 @@
 
                         <!-- Main Buttons -->
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeChatIcon}"/>
-                            <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeUserIcon}"/>
-                            <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomePictureIcon}"/>
+                            <Button Style="{StaticResource IconButton}" 
+                                    Content="{StaticResource FontAwesomeChatIcon}"
+                                    Command="{Binding GoToChatListPageCommand}"/>
+                            <Button Style="{StaticResource IconButton}" 
+                                    Content="{StaticResource FontAwesomeUserIcon}"
+                                    Command="{Binding GoToSearchAddPageCommand}"/>
+                            <Button Style="{StaticResource IconButton}" 
+                                    Content="{StaticResource FontAwesomePictureIcon}"
+                                    Command="{Binding GoToFriendRequestPageCommand}"/>
                         </StackPanel>
 
                         <!-- Settings Button -->
