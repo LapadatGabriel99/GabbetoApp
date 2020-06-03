@@ -16,5 +16,5 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 241-1043778122
 Controls\BubbleContent.xaml;Controls\Chat\ChatList\ChatListControl.xaml;Controls\Chat\ChatList\ChatListItemControl.xaml;Controls\Chat\ChatMessage\ChatMessageListControl.xaml;Controls\Chat\ChatMessage\ChatMessageListItemControl.xaml;Controls\Friends\AddSearch\AddSearchListControl.xaml;Controls\Friends\AddSearch\AddSearchListItemControl.xaml;Controls\Friends\FriendRequest\FriendRequestListControl.xaml;Controls\Friends\FriendRequest\FriendRequestListItemControl.xaml;Controls\Input\PasswordEntryControl.xaml;Controls\Input\Search\SearchItemControl.xaml;Controls\Input\TextEntryControl.xaml;Controls\Menu\VerticalMenu.xaml;Controls\PageHost.xaml;Controls\SettingsControl.xaml;Controls\SideMenuControl.xaml;Controls\SideMenuPageHost.xaml;Dialogs\DialogMessageBox.xaml;DialogWindow.xaml;MainWindow.xaml;Pages\ChatPage.xaml;Pages\LoginPage.xaml;Pages\OptionalCredentialsPage.xaml;Pages\PostRegiterPage.xaml;Pages\RegisterPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Scroll.xaml;Styles\Texts.xaml;
 
-False
+True
 

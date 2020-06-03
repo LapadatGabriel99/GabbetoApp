@@ -20,6 +20,9 @@
     <Color x:Key="ForegroundDark">#bdbdbd</Color>
     <SolidColorBrush x:Key="ForegroundDarkBrush" Color="{StaticResource ForegroundDark}"/>
 
+    <Color x:Key="ForegroundLightDark">#F2F3F5</Color>
+    <SolidColorBrush x:Key="ForegroundLightDarkBrush" Color="{StaticResource ForegroundLightDark}"/>
+
     <Color x:Key="WordBlue">#3099c5</Color>
     <SolidColorBrush x:Key="WordBlueBrush" Color="{StaticResource WordBlue}"/>
 
