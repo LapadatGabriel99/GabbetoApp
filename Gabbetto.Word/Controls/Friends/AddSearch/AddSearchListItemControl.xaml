@@ -50,17 +50,39 @@
                                 <Border Grid.Column="1" Padding="0 0 15 0">
                                     <StackPanel VerticalAlignment="Center">
                                         <!-- Name -->
-                                        <TextBlock Text="{Binding Name}"
-                                                   Padding="0 0 0 2"       
+                                        <TextBlock Text="{Binding NameAndUserName}"
+                                                   Padding="0 0 0 2"                                                   
                                                    Foreground="{StaticResource WordLightBlueBrush}"
                                                    FontFamily="{StaticResource LatoRegular}"
-                                                   TextTrimming="CharacterEllipsis"/>
-                                        <!-- Message -->
-                                        <TextBlock Text="{Binding Message}"
-                                                   Padding="0 2 0 0"
-                                                   FontFamily="{StaticResource LatoRegular}"
-                                                   Foreground="{StaticResource ForegroundDarkBrush}"
-                                                   TextTrimming="CharacterEllipsis"/>
+                                                   TextTrimming="CharacterEllipsis"
+                                                   HorizontalAlignment="Left"/>
+
+                                        <Grid Margin="0 4 0 -4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Message -->
+                                            <TextBlock Text="{Binding Description}"
+                                                       Padding="0 3 0 0"
+                                                       FontFamily="{StaticResource LatoRegular}"
+                                                       Foreground="{StaticResource ForegroundDarkBrush}"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       VerticalAlignment="Center"/>
+
+                                            <Button Grid.Column="1"
+                                                    Background="{StaticResource WordDarkBlueBrush}"
+                                                    Content="Add"
+                                                    FontSize="{StaticResource FontSizeSmall}"                                                                                                
+                                                    HorizontalAlignment="Right"                                                    
+                                                    Margin="0 0 -10 0"
+                                                    Height="30"
+                                                    Width="122"
+                                                    x:Name="add"/>
+                                        </Grid>
+                                        
+                                        
                                     </StackPanel>
                                 </Border>
                             </Grid>
@@ -75,6 +97,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="{StaticResource WordVeryLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="{StaticResource WordLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="add" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -83,6 +106,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="{StaticResource WordDarkBlue}" Duration="0:0:0.3" Storyboard.TargetName="add" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

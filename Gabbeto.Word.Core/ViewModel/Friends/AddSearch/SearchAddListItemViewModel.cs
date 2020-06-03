@@ -17,12 +17,12 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// The display name of the chat list item
         /// </summary>
-        public string Name { get; set; }
+        public string NameAndUserName { get; set; }
 
         /// <summary>
         /// The latest message from the chat 
         /// </summary>
-        public string Message { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// The initials for the profile picture background
@@ -33,12 +33,7 @@ namespace Fasseto.Word.Core
         /// The RGB values, in hex, for the background color of the profile picture
         /// For example FF00FF for red and blue mixed
         /// </summary>
-        public string ProfilePictureRGB { get; set; }
-
-        /// <summary>
-        /// True if there are unread messages in this chat
-        /// </summary>
-        public bool NewContentAvailable { get; set; }
+        public string ProfilePictureRGB { get; set; }        
 
         /// <summary>
         /// True if this item is selected

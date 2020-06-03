@@ -26,8 +26,8 @@ namespace Fasseto.Word.Core
         public SearchAddListItemDesignModel()
         {
             Initials = "GM";
-            Name = "Gabi";
-            Message = "Heeeey maaaan!!!";
+            NameAndUserName = "Gabi Lapadat (KGUltraz)";
+            Description = "Hi there, I'm using Gabetto!";
             ProfilePictureRGB = "3099c5";
         }
 

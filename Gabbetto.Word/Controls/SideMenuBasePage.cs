@@ -16,6 +16,11 @@ namespace Fasseto.Word
         /// </summary>
         private object _viewModel;
 
+        /// <summary>
+        /// A boolean value that indicates if we should animate or not
+        /// </summary>
+        private static bool _shouldNotAnimate = true;
+
         #endregion
 
         #region Public Properties
@@ -38,8 +43,17 @@ namespace Fasseto.Word
                 // Set the new value
                 _viewModel = value;
 
-                // Fire off the view model changed method
-                OnViewModelChanged();
+                // If we shouldn't animate...
+                if(_shouldNotAnimate)
+                {
+                    // Set this member to false
+                    _shouldNotAnimate = false;                    
+                }
+                else
+                {
+                    // Fire off the view model changed method
+                    OnViewModelChanged();
+                }
 
                 // Set the data context for the page
                 DataContext = _viewModel;

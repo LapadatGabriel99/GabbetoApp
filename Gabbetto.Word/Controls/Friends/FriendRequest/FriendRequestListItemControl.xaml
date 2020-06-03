@@ -50,17 +50,40 @@
                                 <Border Grid.Column="1" Padding="0 0 15 0">
                                     <StackPanel VerticalAlignment="Center">
                                         <!-- Name -->
-                                        <TextBlock Text="{Binding Name}"
-                                                   Padding="0 0 0 2"       
+                                        <TextBlock Text="{Binding NameAndUserName}"
+                                                   Padding="0 0 0 6"       
                                                    Foreground="{StaticResource WordLightBlueBrush}"
                                                    FontFamily="{StaticResource LatoRegular}"
-                                                   TextTrimming="CharacterEllipsis"/>
-                                        <!-- Message -->
-                                        <TextBlock Text="{Binding Message}"
-                                                   Padding="0 2 0 0"
-                                                   FontFamily="{StaticResource LatoRegular}"
-                                                   Foreground="{StaticResource ForegroundDarkBrush}"
-                                                   TextTrimming="CharacterEllipsis"/>
+                                                   TextTrimming="CharacterEllipsis"
+                                                   HorizontalAlignment="Center"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Grid.Column="0"
+                                                    Background="{StaticResource WordGreenBrush}"
+                                                    Content="Accept"
+                                                    FontSize="{StaticResource FontSizeSmall}"                                                                                                
+                                                    HorizontalAlignment="Left"
+                                                    Padding="0"
+                                                    Height="30"
+                                                    Width="100"
+                                                    Margin="10 0 0 0"
+                                                    x:Name="accept"/>
+
+                                            <Button Grid.Column="1"
+                                                    Background="{StaticResource WordRedBrush}"
+                                                    Content="Decline"
+                                                    FontSize="{StaticResource FontSizeSmall}"                                                                                                
+                                                    HorizontalAlignment="Right"
+                                                    Padding="0"
+                                                    Height="30"
+                                                    Width="100"
+                                                    Margin="0 0 -6 0"
+                                                    x:Name="decline"/>
+                                        </Grid>
                                     </StackPanel>
                                 </Border>
                             </Grid>
@@ -75,6 +98,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="{StaticResource WordVeryLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="{StaticResource WordDarkGreen}" Duration="0:0:0.3" Storyboard.TargetName="accept" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="{StaticResource WordDarkRed}" Duration="0:0:0.3" Storyboard.TargetName="decline" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -83,6 +108,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="{StaticResource WordDarkGreen}" Duration="0:0:0.3" Storyboard.TargetName="accept" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="{StaticResource WordDarkRed}" Duration="0:0:0.3" Storyboard.TargetName="decline" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

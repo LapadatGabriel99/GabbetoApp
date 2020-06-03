@@ -26,8 +26,7 @@ namespace Fasseto.Word.Core
         public FriendRequestListItemDesignModel()
         {
             Initials = "GM";
-            Name = "Gabi";
-            Message = "Heeeey maaaan!!!";
+            NameAndUserName = "Gabi Lapadat (KGUltraz)";            
             ProfilePictureRGB = "3099c5";
         }
 

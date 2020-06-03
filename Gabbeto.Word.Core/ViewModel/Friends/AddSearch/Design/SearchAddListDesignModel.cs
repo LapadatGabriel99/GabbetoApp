@@ -30,83 +30,82 @@ namespace Fasseto.Word.Core
             {
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
-                    ProfilePictureRGB = "3099c5",
-                    NewContentAvailable = true
+                    Description = "Heeeyaaaaaaaaaa",
+                    ProfilePictureRGB = "3099c5",                    
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "BossBaros",
+                    NameAndUserName = "BossBaros",
                     Initials = "BB",
-                    Message = "Sa traiasca nasu",
+                    Description = "Sa traiasca nasu",
                     ProfilePictureRGB = "ff0000"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "0000ff"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "fe4503",
                     IsSelected = true
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "00d405"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "00d455"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "00d450"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "ff55ff"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "ff0045"
                 },
 
                 new SearchAddListItemViewModel
                 {
-                    Name = "Gabi",
+                    NameAndUserName = "Gabi",
                     Initials = "GM",
-                    Message = "Heeeyaaaaaaaaaa",
+                    Description = "Heeeyaaaaaaaaaa",
                     ProfilePictureRGB = "00d045"
                 }
             };
