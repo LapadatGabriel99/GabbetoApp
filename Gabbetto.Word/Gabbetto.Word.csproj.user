@@ -37,6 +37,9 @@
     <Compile Update="Controls\Input\PasswordEntryControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Input\Search\SearchItemControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Input\TextEntryControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -106,6 +109,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Input\PasswordEntryControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Input\Search\SearchItemControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Input\TextEntryControl.xaml">
