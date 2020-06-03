@@ -37,6 +37,8 @@ namespace Fasseto.Word
         public FriendRequestListControl(FriendRequestListViewModel viewModel) : base(specificViewModel: viewModel)
         {
             InitializeComponent();
+
+            this.Items.ItemsSource = (this.Grid.DataContext as FriendRequestListDesignModel).Items;
         }
 
         #endregion

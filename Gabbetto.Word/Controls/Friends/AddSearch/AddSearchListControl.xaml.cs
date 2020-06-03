@@ -37,6 +37,8 @@ namespace Fasseto.Word
         public AddSearchListControl(SearchAddListViewModel viewModel) : base(specificViewModel: viewModel)
         {
             InitializeComponent();
+
+            this.Items.ItemsSource = (this.Grid.DataContext as SearchAddListDesignModel).Items;
         }
 
         #endregion

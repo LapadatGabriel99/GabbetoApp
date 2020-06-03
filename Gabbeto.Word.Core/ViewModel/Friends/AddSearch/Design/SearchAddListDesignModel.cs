@@ -15,7 +15,7 @@ namespace Fasseto.Word.Core
         /// <summary>
         /// A single instance of this design model
         /// </summary>
-        public static SearchAddListDesignModel Instance => new SearchAddListDesignModel();
+        public static SearchAddListDesignModel Instance { get { return new SearchAddListDesignModel(); } }
 
         #endregion
 
