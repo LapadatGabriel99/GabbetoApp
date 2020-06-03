@@ -9,7 +9,16 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid DataContext="{x:Static core:SearchAddListDesignModel.Instance}" Background="{StaticResource ForegroundLightBrush}"
           x:Name="Grid">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <local:SearchItemControl Grid.Row="0"
+                                 Margin="6 4 6 6"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Items}"
                           x:Name="Items">
                 <ItemsControl.ItemTemplate>

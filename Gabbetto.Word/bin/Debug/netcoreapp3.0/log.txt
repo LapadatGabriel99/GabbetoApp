@@ -482,3 +482,15 @@
 [2020-06-03 10:11:41] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
 [2020-06-03 10:11:43] This is Informative [App.xaml.cs > OnStartup() > Line32]
 [2020-06-03 10:11:43] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.
+[2020-06-04 12:50:14] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
+[2020-06-04 12:50:16] This is Informative [App.xaml.cs > OnStartup() > Line32]
+[2020-06-04 12:50:16] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.
+[2020-06-04 12:52:28] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
+[2020-06-04 12:52:30] This is Informative [App.xaml.cs > OnStartup() > Line32]
+[2020-06-04 12:52:31] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.
+[2020-06-04 12:53:26] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
+[2020-06-04 12:53:28] This is Informative [App.xaml.cs > OnStartup() > Line32]
+[2020-06-04 12:53:28] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.
+[2020-06-04 12:54:53] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
+[2020-06-04 12:54:55] This is Informative [App.xaml.cs > OnStartup() > Line32]
+[2020-06-04 12:54:55] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.

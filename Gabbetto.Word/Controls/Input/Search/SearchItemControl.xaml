@@ -8,7 +8,7 @@
              d:DesignHeight="50" d:DesignWidth="300">
 
     <Border Background="{StaticResource ForegroundLightDarkBrush}"
-            CornerRadius="20">
+            CornerRadius="23">
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -26,7 +26,8 @@
                  FontSize="{StaticResource FontSizeRegular}"
                  Background="Transparent"
                  BorderThickness="0"
-                 Padding="10 8 0 0"/>
+                 Padding="10 8 0 0"
+                 />
         </Grid>
     </Border>
 </UserControl>

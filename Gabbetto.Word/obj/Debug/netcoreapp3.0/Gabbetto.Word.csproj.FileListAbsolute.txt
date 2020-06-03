@@ -167,6 +167,7 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListControl.g.cs
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListItemControl.g.cs
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\PasswordEntryControl.g.cs
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\Search\SearchItemControl.g.cs
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\TextEntryControl.g.cs
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Menu\VerticalMenu.g.cs
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\PageHost.g.cs
@@ -196,6 +197,7 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListControl.baml
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Friends\FriendRequest\FriendRequestListItemControl.baml
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\PasswordEntryControl.baml
+C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\Search\SearchItemControl.baml
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\TextEntryControl.baml
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Menu\VerticalMenu.baml
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\PageHost.baml
@@ -223,5 +225,3 @@ C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Fasseto.Word.dll
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Fasseto.Word.pdb
 C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Gabbetto.Word.genruntimeconfig.cache
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\Search\SearchItemControl.g.cs
-C:\Users\Gabriel\Documents\Visual Studio 2019\Projects\GabbetoApp\Gabbetto.Word\obj\Debug\netcoreapp3.0\Controls\Input\Search\SearchItemControl.baml
