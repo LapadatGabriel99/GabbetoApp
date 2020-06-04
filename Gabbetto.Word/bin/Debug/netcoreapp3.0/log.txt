@@ -494,3 +494,9 @@
 [2020-06-04 12:54:53] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
 [2020-06-04 12:54:55] This is Informative [App.xaml.cs > OnStartup() > Line32]
 [2020-06-04 12:54:55] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.
+[2020-06-04 01:29:21] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
+[2020-06-04 01:29:24] This is Informative [App.xaml.cs > OnStartup() > Line32]
+[2020-06-04 01:29:24] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.
+[2020-06-04 01:36:01] ProjectUniversal started in Production... [Framework.cs > Build() > Line 69]
+[2020-06-04 01:36:03] This is Informative [App.xaml.cs > OnStartup() > Line32]
+[2020-06-04 01:36:03] Query: '(from LoginCredentialsDataModel <generated>_1 in DbSet<LoginCredentialsDataModel> select [<generated...' uses First/FirstOrDefault/Last/LastOrDefault operation without OrderBy and filter which may lead to unpredictable results.

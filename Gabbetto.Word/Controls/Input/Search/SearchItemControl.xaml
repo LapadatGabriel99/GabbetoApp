@@ -18,16 +18,17 @@
             </Grid.ColumnDefinitions>
 
             <Button Style="{StaticResource ChatPageIconGrowButton}"
-                Content="{StaticResource FontAwesomeSearchIcon}"/>
+                    Content="{StaticResource FontAwesomeSearchIcon}"
+                    Foreground="{StaticResource ForegroundDarkBrush}"/>
 
             <TextBox Grid.Column="1"
-                 Tag="Search user..."
-                 Margin="0 5 5 5"
-                 FontSize="{StaticResource FontSizeRegular}"
-                 Background="Transparent"
-                 BorderThickness="0"
-                 Padding="10 8 0 0"
-                 />
+                     Tag="Search user..."
+                     Margin="0 5 5 5"
+                     FontSize="{StaticResource FontSizeRegular}"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Padding="10 8 0 0"
+                     />
         </Grid>
     </Border>
 </UserControl>
