@@ -61,7 +61,7 @@ namespace Fasseto.Word.Core
 
         public async Task SearchUser()
         {
-
+            await Task.Delay(1);
         }
 
         #endregion

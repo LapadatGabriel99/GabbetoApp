@@ -33,7 +33,7 @@
                      Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}">
 
                 <TextBox.InputBindings>
-                    <KeyBinding Command="{Binding SearchUserCommand}"/>
+                    <KeyBinding Command="{Binding SearchUserCommand}" Key="Return"/>
                 </TextBox.InputBindings>
             </TextBox>
         </Grid>
