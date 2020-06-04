@@ -16,7 +16,8 @@
         </Grid.RowDefinitions>
 
         <local:SearchItemControl Grid.Row="0"
-                                 Margin="6 4 6 6"/>
+                                 Margin="6 4 6 6"
+                                 DataContext="{Binding SearchBar}"/>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Items}"

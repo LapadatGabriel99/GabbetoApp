@@ -17,6 +17,26 @@ namespace Fasseto.Word.Core
         /// </summary>
         public ObservableCollection<SearchAddListItemViewModel> Items; 
 
+        /// <summary>
+        /// The search bar view model
+        /// </summary>
+        public SearchItemViewModel SearchBar { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public SearchAddListViewModel()
+        {
+            SearchBar = new SearchItemViewModel()
+            {
+
+            };
+        }
+
         #endregion
     }
 }
