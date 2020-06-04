@@ -24,6 +24,11 @@ namespace Fasseto.Word.Core
         /// </summary>
         public Func<Task<bool>> CommitAction { get; set; }
 
+        /// <summary>
+        /// The text that the current user enters in the search bar
+        /// </summary>
+        public string InputText { get; set; }
+
         #endregion
 
         #region Commands
@@ -47,7 +52,7 @@ namespace Fasseto.Word.Core
             SearchUserCommand = new RelayCommand(async () => await SearchUser());
 
             // TODO: Localize strings, in a static class
-            SearchBarText = "SearchUser";
+            SearchBarText = "Search user...";
         }
 
         #endregion
