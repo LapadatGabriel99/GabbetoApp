@@ -71,7 +71,9 @@
                                                     Height="30"
                                                     Width="100"
                                                     Margin="10 0 0 0"
-                                                    x:Name="accept"/>
+                                                    x:Name="accept"
+                                                    MouseEnter="accept_MouseEnter"
+                                                    MouseLeave="accept_MouseLeave"/>
 
                                             <Button Grid.Column="1"
                                                     Background="{StaticResource WordRedBrush}"
@@ -82,7 +84,9 @@
                                                     Height="30"
                                                     Width="100"
                                                     Margin="0 0 0 0"
-                                                    x:Name="decline"/>
+                                                    x:Name="decline"
+                                                    MouseEnter="accept_MouseEnter"
+                                                    MouseLeave="accept_MouseLeave"/>
                                         </Grid>
                                     </StackPanel>
                                 </Border>

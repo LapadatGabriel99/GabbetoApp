@@ -22,5 +22,15 @@ namespace Fasseto.Word
         {
             InitializeComponent();
         }
+
+        private async void add_MouseEnter(object sender, MouseEventArgs e)
+        {
+            await this.ChangeColorTo("");
+        }
+
+        private async void add_MouseLeave(object sender, MouseEventArgs e)
+        {
+            await this.ChangeColorTo("");
+        }
     }
 }

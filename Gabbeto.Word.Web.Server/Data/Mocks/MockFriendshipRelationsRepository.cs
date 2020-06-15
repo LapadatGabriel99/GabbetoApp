@@ -82,6 +82,107 @@ namespace Gabbetto.Word.Web.Server
             return _context.Friendships.SingleOrDefault(f => f.Id == friendship.Id).Status;
         }
 
+        /// <summary>
+        /// Creates a friendship and adds an user to the current users friendship list
+        /// </summary>
+        /// <param name="currentUser">The user that made the friend request</param>
+        /// <param name="user">The user that should receive the request</param>
+        public void AddFriend(ApplicationUser currentUser, ApplicationUser user)
+        {
+            var newFriendshipStatus = new FriendshipStatus
+            {
+                IsConfirmed = false,
+
+                // TODO: Serialize strings
+                Name = $"{ currentUser.UserName }&{ user.UserName }",
+
+                // TODO: Serialize strings
+                Description = $"Friendship between { currentUser.UserName } and { user.UserName }"
+            };
+
+            _context.FriendshipStatuses.Add(newFriendshipStatus);
+
+            _context.SaveChanges();
+
+            var status = _context.FriendshipStatuses.FirstOrDefault(f => f.Name == newFriendshipStatus.Name);
+
+            var newFriendship = new Friendship
+            {
+                UserId = currentUser.Id,
+                User = currentUser,
+                RequestedBy = currentUser.UserName,
+                RequestedTo = user.UserName,
+                RequestDate = DateTime.UtcNow,   
+                Status = status,
+                StatusId = status.Id
+            };
+
+            _context.Friendships.Add(newFriendship);
+
+            _context.SaveChanges();
+
+            status.Friendship = newFriendship;
+
+            _context.FriendshipStatuses.Update(status);
+
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Removes a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship relation</param>
+        public void RemoveFriendship(Friendship friendship)
+        {
+            _context.Friendships.Remove(friendship);
+
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Updates a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship relation</param>
+        public void UpdateFriendship(Friendship friendship)
+        {
+            _context.Friendships.Update(friendship);
+
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Adds a friendship status to the database
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        public void AddFriendshipStatus(FriendshipStatus status)
+        {
+            _context.FriendshipStatuses.Add(status);
+
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Removes a friendship status to the database
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        public void RemoveFriendshipStatus(FriendshipStatus status)
+        {
+            _context.FriendshipStatuses.Remove(status);
+
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Updates a friendship status to the database
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        public void UpdateFriendshipStatus(FriendshipStatus status)
+        {
+            _context.FriendshipStatuses.Update(status);
+
+            _context.SaveChanges();
+        }
+
         #endregion
 
         #region Private Members

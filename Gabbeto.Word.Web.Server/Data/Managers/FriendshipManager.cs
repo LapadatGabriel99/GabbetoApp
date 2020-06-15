@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,6 +53,74 @@ namespace Gabbetto.Word.Web.Server
         {
             // Returns a result from a completed task
             return await Task.FromResult(_friendshipRelationsRepository.GetUserFriendByAcceptDate(user, acceptDate));
+        }
+
+        /// <summary>
+        /// Adds a friendship between the specified users
+        /// </summary>
+        /// <typeparam name="TUser">The type of specified user</typeparam>
+        /// <param name="user">The current first user</param>
+        /// <param name="otherUser">The second user</param>
+        /// <returns></returns>
+        public async Task AddFriendshipBetween<TUser>(TUser user, TUser otherUser) where TUser: ApplicationUser
+        {
+            // Wait for this task to do it's job
+            await Task.Factory.StartNew(() => _friendshipRelationsRepository.AddFriend(user, otherUser));            
+        }
+
+        /// <summary>
+        /// Removes a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship</param>
+        /// <returns></returns>
+        public async Task RemoveFriendship(Friendship friendship)
+        {
+            // Wait for this task to do it's job
+            await Task.Factory.StartNew(() => _friendshipRelationsRepository.RemoveFriendship(friendship));
+        }
+
+        /// <summary>
+        /// Updates a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship</param>
+        /// <returns></returns>
+        public async Task UpdateFriendship(Friendship friendship)
+        {
+            // Wait for this task to do it's job
+            await Task.Factory.StartNew(() => _friendshipRelationsRepository.UpdateFriendship(friendship));
+        }
+
+        /// <summary>
+        /// Adds a friendship status
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        /// <returns></returns>
+        public async Task AddFriendshipStatus(FriendshipStatus status)
+        {
+            // Wait for this task to do it's job
+            await Task.Factory.StartNew(() => _friendshipRelationsRepository.AddFriendshipStatus(status));
+        }
+
+        /// <summary>
+        /// Removes a friendship status
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        /// <returns></returns>
+        public async Task RemoveFriendshipStatus(FriendshipStatus status)
+        {
+            // Wait for this task to do it's job
+            await Task.Factory.StartNew(() => _friendshipRelationsRepository.RemoveFriendshipStatus(status));
+        }
+
+        /// <summary>
+        /// Updates a friendship status
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        /// <returns></returns>
+        public async Task UpdateFriendshipStatus(FriendshipStatus status)
+        {
+            // Wait for this task to do it's job
+            await Task.Factory.StartNew(() => _friendshipRelationsRepository.UpdateFriendshipStatus(status));
         }
 
         #endregion

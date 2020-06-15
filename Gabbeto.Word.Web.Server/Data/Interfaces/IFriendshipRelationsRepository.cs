@@ -55,5 +55,43 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="friendship">The specified friendship</param>
         /// <returns></returns>
         FriendshipStatus GetFriendshipStatus(Friendship friendship);
+
+        /// <summary>
+        /// Creates a friendship and adds an user to the current users friendship list
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <param name="user"></param>
+        void AddFriend(ApplicationUser currentUser, ApplicationUser user);
+
+        /// <summary>
+        /// Removes a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship relation</param>
+        
+        void RemoveFriendship(Friendship friendship);
+       
+        /// <summary>
+        /// Updates a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship relation</param>
+        void UpdateFriendship(Friendship friendship);        
+
+        /// <summary>
+        /// Adds a friendship status to the database
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        void AddFriendshipStatus(FriendshipStatus status);
+        
+        /// <summary>
+        /// Removes a friendship status to the database
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        void RemoveFriendshipStatus(FriendshipStatus status);        
+
+        /// <summary>
+        /// Updates a friendship status to the database
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        void UpdateFriendshipStatus(FriendshipStatus status);       
     }
 }

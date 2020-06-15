@@ -39,5 +39,49 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="acceptDate">The accept date</param>
         /// <returns>It returns a friendship object after completion</returns>
         Task<Friendship> FindFriendshipByAcceptDate<TUser>(TUser user, DateTime acceptDate) where TUser : ApplicationUser;
+
+        /// <summary>
+        /// Adds a friendship between the specified users
+        /// </summary>
+        /// <typeparam name="TUser">The type of specified user</typeparam>
+        /// <param name="user">The current first user</param>
+        /// <param name="otherUser">The second user</param>
+        /// <returns></returns>
+        Task AddFriendshipBetween<TUser>(TUser user, TUser otherUser) where TUser : ApplicationUser;        
+
+        /// <summary>
+        /// Removes a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship</param>
+        /// <returns></returns>
+        Task RemoveFriendship(Friendship friendship);        
+
+        /// <summary>
+        /// Updates a friendship relation
+        /// </summary>
+        /// <param name="friendship">The specified friendship</param>
+        /// <returns></returns>
+        Task UpdateFriendship(Friendship friendship);        
+
+        /// <summary>
+        /// Adds a friendship status
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        /// <returns></returns>
+        Task AddFriendshipStatus(FriendshipStatus status);        
+
+        /// <summary>
+        /// Removes a friendship status
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        /// <returns></returns>
+        Task RemoveFriendshipStatus(FriendshipStatus status);
+       
+        /// <summary>
+        /// Updates a friendship status
+        /// </summary>
+        /// <param name="status">The specified status</param>
+        /// <returns></returns>
+        Task UpdateFriendshipStatus(FriendshipStatus status);        
     }
 }

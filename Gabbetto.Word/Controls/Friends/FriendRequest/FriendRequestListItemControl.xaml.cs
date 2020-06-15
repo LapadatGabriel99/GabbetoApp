@@ -22,5 +22,15 @@ namespace Fasseto.Word
         {
             InitializeComponent();
         }
+
+        private void accept_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void accept_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }
