@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Fasseto.Word.Core
 {
@@ -33,6 +34,42 @@ namespace Fasseto.Word.Core
 
                 case ColorType.WordDarkBlue:
                     return "#0c6991";
+
+                case ColorType.WordDarkGreen:
+                    return "#009631";
+
+                case ColorType.WordDarkRed:
+                    return "#ec0000";
+
+                case ColorType.WordTransparentBlue:
+                    return "#003099c5";
+
+                case ColorType.WordLightBlue:
+                    return "#45b6e5";
+
+                case ColorType.WordAlmostVeryLightBlue:
+                    return "#c3e5f3";
+
+                case ColorType.WordVeryLightBlue:
+                    return "#ecf6fb";
+
+                case ColorType.BackgroundLight:
+                    return "#efefef";
+
+                case ColorType.BackgroundVeryLight:
+                    return "#fafafa";
+
+                case ColorType.ForegroundMain:
+                    return "#686868";
+
+                case ColorType.ForegroundVeryDark:
+                    return "#000000";
+
+                case ColorType.ForegroundDark:
+                    return "#bdbdbd";
+
+                case ColorType.ForegroundLightDark:
+                    return "#F2F3F5";
 
                 default:
                     return null;
