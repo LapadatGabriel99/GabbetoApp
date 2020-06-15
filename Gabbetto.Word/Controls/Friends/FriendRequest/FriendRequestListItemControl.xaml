@@ -102,8 +102,6 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="{StaticResource WordVeryLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation To="{StaticResource WordDarkGreen}" Duration="0:0:0.3" Storyboard.TargetName="accept" Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation To="{StaticResource WordDarkRed}" Duration="0:0:0.3" Storyboard.TargetName="decline" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -112,8 +110,6 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation To="{StaticResource WordDarkGreen}" Duration="0:0:0.3" Storyboard.TargetName="accept" Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation To="{StaticResource WordDarkRed}" Duration="0:0:0.3" Storyboard.TargetName="decline" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

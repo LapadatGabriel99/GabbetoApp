@@ -100,7 +100,6 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="{StaticResource WordVeryLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation To="{StaticResource WordLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="add" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -109,7 +108,6 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation To="{StaticResource WordDarkBlue}" Duration="0:0:0.3" Storyboard.TargetName="add" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
