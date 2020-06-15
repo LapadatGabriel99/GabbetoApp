@@ -23,14 +23,28 @@ namespace Fasseto.Word
             InitializeComponent();
         }
 
-        private void accept_MouseEnter(object sender, MouseEventArgs e)
+        private async void accept_MouseEnter(object sender, MouseEventArgs e)
         {
-
+            // Perform the color change animation
+            await this.ChangeColorTo("");
         }
 
-        private void accept_MouseLeave(object sender, MouseEventArgs e)
+        private async void accept_MouseLeave(object sender, MouseEventArgs e)
         {
+            // Perform the color change animation
+            await this.ChangeColorTo("");
+        }
 
+        private async void decline_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Perform the color change animation
+            await this.ChangeColorTo("");
+        }
+
+        private async void decline_MouseLeave(object sender, MouseEventArgs e)
+        {
+            // Perform the color change animation
+            await this.ChangeColorTo("");
         }
     }
 }

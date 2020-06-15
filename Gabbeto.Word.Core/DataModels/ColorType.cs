@@ -17,6 +17,30 @@ namespace Fasseto.Word.Core
 
         WordBlue = 4,
 
-        WordDarkBlue = 5
+        WordDarkBlue = 5,
+
+        WordDarkGreen = 6,
+
+        WordDarkRed = 7,
+
+        WordTransparentBlue = 8,
+
+        WordLightBlue = 9,
+
+        WordAlmostVeryLightBlue = 10,
+
+        WordVeryLightBlue = 11,
+
+        BackgroundLight = 12,
+
+        BackgroundVeryLight = 13,
+
+        ForegroundMain = 14,
+
+        ForegroundVeryDark = 15,
+
+        ForegroundDark = 16,
+
+        ForegroundLightDark = 17
     }
 }
