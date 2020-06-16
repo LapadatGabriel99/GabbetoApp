@@ -25,50 +25,6 @@ namespace Fasseto.Word
         public FriendRequestListItemControl()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// The mouse enter event handler for the accept button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void accept_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Perform the color change animation
-            await this.ChangeColorTo(ColorType.WordDarkGreen.ToStringRGB());
-        }
-
-        /// <summary>
-        /// The mouse leave event handler for the accept button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void accept_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Perform the color change animation
-            await this.ChangeColorTo(ColorType.WordGreen.ToStringRGB());
-        }
-
-        /// <summary>
-        /// The mouse enter event handler for the decline button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void decline_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Perform the color change animation
-            await this.ChangeColorTo(ColorType.WordDarkRed.ToStringRGB());
-        }
-
-        /// <summary>
-        /// The mouse leave event handler for the decline button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void decline_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Perform the color change animation
-            await this.ChangeColorTo(ColorType.WordRed.ToStringRGB());
-        }
+        }        
     }
 }

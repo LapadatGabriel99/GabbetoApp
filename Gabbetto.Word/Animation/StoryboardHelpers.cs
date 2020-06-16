@@ -277,7 +277,7 @@ namespace Fasseto.Word
             var animation = new ColorAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
-                To = color.FromStringRGBToColor()
+                To = color.FromStringArgbToColor()
             };
 
             //Set the target property name

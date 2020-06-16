@@ -25,29 +25,7 @@ namespace Fasseto.Word
         /// </summary>
         public AddSearchListItemControl()
         {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// The mouse enter event handler for the add button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void add_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Perform the color change animation
-            await this.ChangeColorTo(ColorType.WordDarkBlue.ToStringRGB());
-        }
-
-        /// <summary>
-        /// The mouse leave event handler for the add button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void add_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Perform the color change animation
-            await this.ChangeColorTo(ColorType.WordBlue.ToStringRGB());
-        }
+            InitializeComponent();            
+        }        
     }
 }

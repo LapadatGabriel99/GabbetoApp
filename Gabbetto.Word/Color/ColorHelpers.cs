@@ -37,7 +37,7 @@ namespace Fasseto.Word
                                 (byte)int.Parse(_defaultStringRGB.Substring(0, 2), NumberStyles.HexNumber),
                                 (byte)int.Parse(_defaultStringRGB.Substring(2, 2), NumberStyles.HexNumber),
                                 (byte)int.Parse(_defaultStringRGB.Substring(4, 2), NumberStyles.HexNumber));
-            }
+            }            
 
             return color;
         }
@@ -76,6 +76,21 @@ namespace Fasseto.Word
             }
 
             return color;
+        }
+
+        /// <summary>
+        /// Converts an RGB string to a <see cref="Color"/>
+        /// </summary>
+        /// <param name="colorCode">The string to convert</param>
+        /// <param name="a">The alpha value</param>
+        /// <returns></returns>
+        public static Color FromStringArgbToColor(this string colorCode, string a = "FF")
+        {
+            var code = colorCode.TrimStart('#');
+
+            var argb = $"#{ a }{ code }";
+
+            return (Color)ColorConverter.ConvertFromString(argb); 
         }
     }
 }
