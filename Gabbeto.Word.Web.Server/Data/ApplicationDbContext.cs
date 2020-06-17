@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Gabbetto.Word.Web.Server
 {
@@ -43,6 +44,21 @@ namespace Gabbetto.Word.Web.Server
         /// A data model that defines the state of a friendship relation
         /// </summary>
         public DbSet<FriendshipStatus> FriendshipStatuses { get; set; }
+
+        /// <summary>
+        /// The table representing the clients of a web socket connection
+        /// </summary>
+        public DbSet<WebSocketClient> Clients { get; set; }
+
+        /// <summary>
+        /// The table representing the groups of a web socket connection
+        /// </summary>
+        public DbSet<WebSocketGroup> Groups { get; set; }
+
+        /// <summary>
+        /// A composite table of the client and group ones
+        /// </summary>
+        public DbSet<WebSocketGroupClient> GroupClients { get; set; }
 
         #endregion
 
@@ -106,6 +122,21 @@ namespace Gabbetto.Word.Web.Server
                 .HasOne(f => f.Friendship)
                 .WithOne(f => f.Status)
                 .HasForeignKey<Friendship>(f => f.StatusId);
+
+            // Set the composite key of the composite table
+            modelBuilder.Entity<WebSocketGroupClient>().HasKey(gc => new { gc.WebSocketClientId, gc.WebSocketGroupId });
+
+            // Set the one to many relation for the client - group client tables
+            modelBuilder.Entity<WebSocketClient>()
+                .HasMany(c => c.GroupClients)
+                .WithOne(gc => gc.WebSocketClient)
+                .HasForeignKey(gc => gc.WebSocketClientId);
+
+            // Set the one to many relation for the group - group client tables
+            modelBuilder.Entity<WebSocketGroup>()
+                .HasMany(g => g.GroupClients)
+                .WithOne(gc => gc.WebSocketGroup)
+                .HasForeignKey(gc => gc.WebSocketGroupId);
 
             #endregion
         }
