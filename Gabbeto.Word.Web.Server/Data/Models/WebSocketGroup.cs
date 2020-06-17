@@ -7,28 +7,22 @@ using System.Threading.Tasks;
 namespace Gabbetto.Word.Web.Server
 {
     /// <summary>
-    /// This model holds data related to the web socket connection
-    /// Such as the connectionId, the user's name, the user's groups
+    /// A model that represents a web socket group
     /// </summary>
-    public class WebSocketClient
+    public class WebSocketGroup
     {
         /// <summary>
-        /// The primary key of this table
+        /// The id of this table
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// The user, in this case he is associated with a client
+        /// The name of the group
         /// </summary>
         [Required]
-        public string User { get; set; }
-
-        /// <summary>
-        /// The client's connection id
-        /// </summary>
-        [Required]
-        public string ConnectionId { get; set; }
+        [MaxLength(100)]
+        public string Name { get; set; }
 
         /// <summary>
         /// A list of group clients that represents a many to many relation
@@ -39,7 +33,7 @@ namespace Gabbetto.Word.Web.Server
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public WebSocketClient()
+        public WebSocketGroup()
         {
             GroupClients = new List<WebSocketGroupClient>();
         }
