@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
+using System.Security.Permissions;
 
 namespace Gabbetto.Word.Web.Server
 {
@@ -59,6 +60,11 @@ namespace Gabbetto.Word.Web.Server
         /// A composite table of the client and group ones
         /// </summary>
         public DbSet<WebSocketGroupClient> GroupClients { get; set; }
+
+        /// <summary>
+        /// The table representing the connections in a hub
+        /// </summary>
+        public DbSet<WebSocketConnection> Connections { get; set; }
 
         #endregion
 
@@ -137,6 +143,12 @@ namespace Gabbetto.Word.Web.Server
                 .HasMany(g => g.GroupClients)
                 .WithOne(gc => gc.WebSocketGroup)
                 .HasForeignKey(gc => gc.WebSocketGroupId);
+
+            // Set the one to many relation for the client - connection tables
+            modelBuilder.Entity<WebSocketClient>()
+                .HasMany(c => c.Connections)
+                .WithOne(c => c.WebSocketClient)
+                .HasForeignKey(c => c.ClientId);
 
             #endregion
         }

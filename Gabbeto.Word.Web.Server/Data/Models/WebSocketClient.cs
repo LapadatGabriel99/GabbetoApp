@@ -25,10 +25,10 @@ namespace Gabbetto.Word.Web.Server
         public string User { get; set; }
 
         /// <summary>
-        /// The client's connection id
+        /// A list of connections that represents a many to many relation
+        /// between the client and connection tables
         /// </summary>
-        [Required]
-        public string ConnectionId { get; set; }
+        public ICollection<WebSocketConnection> Connections { get; set; }
 
         /// <summary>
         /// A list of group clients that represents a many to many relation
@@ -42,6 +42,8 @@ namespace Gabbetto.Word.Web.Server
         public WebSocketClient()
         {
             GroupClients = new List<WebSocketGroupClient>();
+
+            Connections = new List<WebSocketConnection>();
         }
     }
 }
