@@ -30,12 +30,12 @@ namespace Gabbetto.Word.Web.Server.Data.Interfaces
         /// </summary>
         /// <param name="client">The specified client</param>
         /// <returns></returns>
-        ICollection<WebSocketConnection> GetConnections(WebSocketClient client);
+        Task<ICollection<WebSocketConnection>> GetConnections(WebSocketClient client);
 
         /// <summary>
         /// Gets the current on line users
         /// </summary>
         /// <returns></returns>
-        IEnumerable<WebSocketClient> OnlineUsers();
+        Task<IEnumerable<WebSocketClient>> OnlineUsers();
     }
 }
