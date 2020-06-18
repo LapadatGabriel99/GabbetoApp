@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gabbetto.Word.Web.Server.Data.Interfaces
+namespace Gabbetto.Word.Web.Server
 {
     /// <summary>
     /// The interface for the connection manager that handles web socket related data
     /// </summary>
-    public interface IConnetionManager
+    public interface IConnectionManager
     {
         /// <summary>
         /// Registers a connection of a client

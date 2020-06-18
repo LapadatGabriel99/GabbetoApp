@@ -43,5 +43,21 @@ namespace Gabbetto.Word.Web.Server
             // Chain the call
             return services;
         }
+
+        /// <summary>
+        /// Injects a connection manager into the service collection
+        /// </summary>
+        /// <typeparam name="T">The type of connection manager</typeparam>
+        /// <param name="services">The services collection</param>
+        /// <returns></returns>
+        public static IServiceCollection AddConnectionManager<T>(this IServiceCollection services)
+            where T : class, IConnectionManager
+        {
+            // Add a scoped reference to the passed service
+            services.AddScoped<IConnectionManager, T>();
+
+            // Chain the call
+            return services;
+        }
     }
 }

@@ -110,6 +110,10 @@ namespace Gabbetto.Word.Web.Server
 
             // Adds a friendship manager to the service collection
             services.AddFriendshipManager<FriendshipManager>();
+
+            // Adds a connection manager to the service collection
+            services.AddConnectionManager<ConnectionManager>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

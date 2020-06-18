@@ -1,5 +1,4 @@
-﻿using Gabbetto.Word.Web.Server.Data.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ namespace Gabbetto.Word.Web.Server
     /// <summary>
     /// The connection manager that handles web socket related data
     /// </summary>
-    public class ConnectionManager : IConnetionManager
+    public class ConnectionManager : IConnectionManager
     {
         #region Interface Implementation
 
