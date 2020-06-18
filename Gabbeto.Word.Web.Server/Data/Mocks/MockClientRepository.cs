@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Razor.Language;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Gabbetto.Word.Web.Server
@@ -52,6 +55,28 @@ namespace Gabbetto.Word.Web.Server
             _context.Clients.Update(client);
 
             _context.SaveChanges();
+        }
+
+        public ICollection<WebSocketClient> GetOnlineClients()
+        {
+            var onlineConnections = _context.Connections.Where(c => c.Connected == true).Select(c => c.ClientId).ToList();
+
+            var clients = _context.Clients.ToList();
+
+            var onlineClients = new List<WebSocketClient>();
+
+            foreach (var client in clients)
+            {
+                foreach( var connection in onlineConnections)
+                {
+                    if (client.Id == connection)
+                    {
+                        onlineClients.Add(client);
+                    }
+                }
+            }
+
+            return onlineClients;
         }
 
         #endregion

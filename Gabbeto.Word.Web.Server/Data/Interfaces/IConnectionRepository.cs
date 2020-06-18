@@ -33,5 +33,12 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <returns></returns>
         WebSocketConnection GetConnection(string connection);
+
+        /// <summary>
+        /// Gets the connections of a specific client
+        /// </summary>
+        /// <param name="Client">The specified client</param>
+        /// <returns></returns>
+        ICollection<WebSocketConnection> GetConnections(WebSocketClient Client);
     }
 }

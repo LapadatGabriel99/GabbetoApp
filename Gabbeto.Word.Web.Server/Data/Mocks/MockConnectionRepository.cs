@@ -54,6 +54,16 @@ namespace Gabbetto.Word.Web.Server
             _context.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets the connections of a specific client
+        /// </summary>
+        /// <param name="Client">The specified client</param>
+        /// <returns></returns>
+        public ICollection<WebSocketConnection> GetConnections(WebSocketClient client)
+        {
+            return _context.Connections.Where(c => c.ClientId == client.Id).ToList();
+        }
+
         #endregion
 
         #region Private Members

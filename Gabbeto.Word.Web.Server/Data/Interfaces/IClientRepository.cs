@@ -33,5 +33,11 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <returns></returns>
         WebSocketClient GetClient(string user);
+
+        /// <summary>
+        /// Gets the current on line users
+        /// </summary>
+        /// <returns></returns>
+        ICollection<WebSocketClient> GetOnlineClients();        
     }
 }

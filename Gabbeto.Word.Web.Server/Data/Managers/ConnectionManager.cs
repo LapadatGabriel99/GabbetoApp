@@ -20,7 +20,12 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public async Task AddConnetion(WebSocketClient client, WebSocketConnection connection)
         {
-            throw new NotImplementedException();
+            // Wait for the task to complete
+            await Task.Factory.StartNew(() =>
+            {
+                _client.AddClient(client);
+                _connection.AddConnection(connection);
+            });
         }
 
         /// <summary>
@@ -30,7 +35,11 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public async Task RemoveConnetion(WebSocketConnection connection)
         {
-            throw new NotImplementedException();
+            // Wait for the task to complete
+            await Task.Factory.StartNew(() =>
+            {
+                _connection.RemoveConnection(connection);
+            });
         }
 
         /// <summary>
@@ -40,7 +49,8 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public async Task<ICollection<WebSocketConnection>> GetConnections(WebSocketClient client)
         {
-            throw new NotImplementedException();
+            // Wait for the task to complete
+            return await Task.Factory.StartNew(() => _connection.GetConnections(client));
         }
 
         /// <summary>
@@ -49,7 +59,8 @@ namespace Gabbetto.Word.Web.Server
         /// <returns></returns>
         public async Task<IEnumerable<WebSocketClient>> OnlineUsers()
         {
-            throw new NotImplementedException();
+            // Wait for the task to complete
+            return await Task.Factory.StartNew(() => _client.GetOnlineClients());
         }
 
         #endregion
