@@ -18,16 +18,18 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="group"></param>
         public void AddGroup(WebSocketGroup group)
         {
-            throw new NotImplementedException();
+            _context.Groups.Add(group);
+
+            _context.SaveChanges();
         }
 
         /// <summary>
         /// Gets a group from the database
         /// </summary>
         /// <returns></returns>
-        public WebSocketGroup GetGroup()
+        public WebSocketGroup GetGroup(string name)
         {
-            throw new NotImplementedException();
+            return _context.Groups.Where(g => g.Name == name).FirstOrDefault();
         }
 
         /// <summary>
@@ -36,7 +38,9 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="group"></param>
         public void RemoveGroup(WebSocketGroup group)
         {
-            throw new NotImplementedException();
+            _context.Groups.Remove(group);
+
+            _context.SaveChanges();            
         }
 
         /// <summary>
@@ -45,8 +49,32 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="group"></param>
         public void UpdateGroup(WebSocketGroup group)
         {
-            throw new NotImplementedException();
-        } 
+            _context.Groups.Update(group);
+
+            _context.SaveChanges();
+        }
+
+        #endregion
+
+        #region Private Members
+
+        /// <summary>
+        /// The db context of this app
+        /// </summary>
+        ApplicationDbContext _context;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public MockGroupRepository(ApplicationDbContext context)
+        {
+            // Set the context
+            _context = context;
+        }
 
         #endregion
     }

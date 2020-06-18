@@ -18,16 +18,18 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="client"></param>
         public void AddClient(WebSocketClient client)
         {
-            throw new NotImplementedException();
+            _context.Clients.Add(client);
+
+            _context.SaveChanges();
         }
 
         /// <summary>
         /// Gets a client from the database
         /// </summary>
         /// <returns></returns>
-        public WebSocketClient GetClient()
+        public WebSocketClient GetClient(string user)
         {
-            throw new NotImplementedException();
+            return _context.Clients.Where(c => c.User == user).FirstOrDefault();
         }
 
         /// <summary>
@@ -36,7 +38,9 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="client"></param>
         public void RemoveClient(WebSocketClient client)
         {
-            throw new NotImplementedException();
+            _context.Clients.Remove(client);
+
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -45,8 +49,32 @@ namespace Gabbetto.Word.Web.Server
         /// <param name="client"></param>
         public void UpdateClient(WebSocketClient client)
         {
-            throw new NotImplementedException();
-        } 
+            _context.Clients.Update(client);
+
+            _context.SaveChanges();
+        }
+
+        #endregion
+
+        #region Private Members
+
+        /// <summary>
+        /// The db context of this app
+        /// </summary>
+        ApplicationDbContext _context;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public MockClientRepository(ApplicationDbContext context)
+        {
+            // Set the context
+            _context = context;
+        }
 
         #endregion
     }

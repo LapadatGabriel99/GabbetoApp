@@ -32,6 +32,6 @@ namespace Gabbetto.Word.Web.Server
         /// Gets a group from the database
         /// </summary>
         /// <returns></returns>
-        WebSocketGroup GetGroup();
+        WebSocketGroup GetGroup(string name);
     }
 }

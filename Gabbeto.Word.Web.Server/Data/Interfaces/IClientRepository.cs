@@ -32,6 +32,6 @@ namespace Gabbetto.Word.Web.Server
         /// Gets a client from the database
         /// </summary>
         /// <returns></returns>
-        WebSocketClient GetClient();
+        WebSocketClient GetClient(string user);
     }
 }
