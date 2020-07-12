@@ -33,12 +33,12 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="connection">The specified connection</param>
         /// <returns></returns>
-        public async Task RemoveConnetion(WebSocketConnection connection)
+        public async Task RemoveConnetion(string connectionId)
         {
             // Wait for the task to complete
             await Task.Factory.StartNew(() =>
             {
-                _connection.RemoveConnection(connection);
+                _connection.RemoveConnection(connectionId);
             });
         }
 
@@ -63,6 +63,10 @@ namespace Gabbetto.Word.Web.Server
             return await Task.Factory.StartNew(() => _client.GetOnlineClients());
         }
 
+        public async Task<WebSocketClient> GetClient(string user)
+        {
+            return await Task.Factory.StartNew(() => _client.GetClient(user));
+        }
         #endregion
 
         #region Private Members

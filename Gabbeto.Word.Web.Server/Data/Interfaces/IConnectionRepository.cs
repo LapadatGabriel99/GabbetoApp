@@ -26,7 +26,7 @@ namespace Gabbetto.Word.Web.Server
         /// Removes a connection from the database
         /// </summary>
         /// <param name="client"></param>
-        void RemoveConnection(WebSocketConnection connection);
+        void RemoveConnection(string connectionId);
 
         /// <summary>
         /// Gets a connection from the database

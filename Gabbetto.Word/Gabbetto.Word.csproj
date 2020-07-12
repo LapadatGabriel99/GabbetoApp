@@ -30,8 +30,6 @@
     <Resource Include="Images\Logos\logo.png" />
     <Resource Include="Images\Samples\HappySample.jpg" />
     <Resource Include="Images\Samples\HappySmaple1jpg.jpg" />
-    <Resource Include="Images\Samples\Test2AllisonParker.jpg" />
-    <Resource Include="Images\Samples\TestAllisonParker.jpg" />
   </ItemGroup>
 
   <ItemGroup>

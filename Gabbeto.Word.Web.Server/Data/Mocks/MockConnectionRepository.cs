@@ -36,8 +36,10 @@ namespace Gabbetto.Word.Web.Server
         /// Removes a connection from the database
         /// </summary>
         /// <param name="client"></param>
-        public void RemoveConnection(WebSocketConnection connection)
+        public void RemoveConnection(string connectionId)
         {
+            var connection = _context.Connections.Where(c => c.ConnectionId == connectionId).FirstOrDefault();
+
             _context.Connections.Remove(connection);
 
             _context.SaveChanges();

@@ -23,7 +23,7 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <param name="connection">The specified connection</param>
         /// <returns></returns>
-        Task RemoveConnetion(WebSocketConnection connection);
+        Task RemoveConnetion(string connectionId);
 
         /// <summary>
         /// Gets the connections of a specified client
@@ -37,5 +37,12 @@ namespace Gabbetto.Word.Web.Server
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<WebSocketClient>> OnlineUsers();
+
+        /// <summary>
+        /// Gets the specified client
+        /// </summary>
+        /// <param name="username">User name</param>
+        /// <returns></returns>
+        Task<WebSocketClient> GetClient(string username);
     }
 }
